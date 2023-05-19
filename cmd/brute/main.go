@@ -15,7 +15,7 @@
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-// A brute force solver for the "Weighted Exact Set Cover Problem".
+// A brute force solver for the "Weighted Exact Cover Problem".
 package main
 
 import (
