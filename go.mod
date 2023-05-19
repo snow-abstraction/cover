@@ -1,4 +1,4 @@
-module github.com/snow-abstraction/optimal_set_partition
+module github.com/snow-abstraction/cover
 
 go 1.20
 

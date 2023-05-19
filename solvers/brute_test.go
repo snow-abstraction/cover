@@ -52,7 +52,7 @@ func TestCheaperSolutionFound(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(result.subsetsIndices, []int{2, 3}) {
-		t.Fatalf("Didn't find the cheapest partition.")
+		t.Fatalf("Didn't find the cheapest cover.")
 	}
 
 	if result.cost != 5+3 {

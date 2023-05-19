@@ -20,7 +20,7 @@ package main
 import (
 	"math"
 
-	"github.com/snow-abstraction/optimal_set_partition/tree"
+	"github.com/snow-abstraction/cover/tree"
 )
 
 func main() {

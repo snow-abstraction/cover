@@ -15,13 +15,13 @@
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-// A brute force solver for the "Set Partitioning Problem".
+// A brute force solver for the "Weighted Exact Set Cover Problem".
 package main
 
 import (
 	"fmt"
 
-	"github.com/snow-abstraction/optimal_set_partition/solvers"
+	"github.com/snow-abstraction/cover/solvers"
 )
 
 func main() {

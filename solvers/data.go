@@ -22,7 +22,7 @@ import (
 )
 
 type instance struct {
-	// The number of elements in the set X to be partitioned, indexed
+	// The number of elements in the set X to be covered, indexed
 	// 0 ... n-1.
 	n int
 	// subsets of X. The inner slices must only contain element indices in

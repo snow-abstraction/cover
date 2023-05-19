@@ -15,7 +15,7 @@
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-// A brute force solver for the "Set Partitioning Problem".
+// A brute force solver for the "Weighted Exact Cover Problem".
 package solvers
 
 import (
@@ -43,9 +43,9 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
 		}
 
 		s.cost += ins.costs[subsetIdx]
-		// TODO: the use case is find a solution (aka a partition) that is cheaper than
+		// TODO: the use case is find a solution (aka a cover) that is cheaper than
 		// a known solution so we could abort the search if s.cost greater than the cost
-		// of a known partition.
+		// of a known cover.
 		s.subsetsIndices = append(s.subsetsIndices, subsetIdx)
 
 		allConstraintsCoveredExactly := true
