@@ -91,7 +91,7 @@ func makeCompressedColumnMatrix(x []uint32) (cCSMatrix, error) {
 	return cCSMatrix(x), nil
 }
 
-func transpose(x []uint32) []uint32 {
+func transpose(x []uint32) ([]uint32, error) {
 	// The notation (comments and variable names) are as if we are going
 	// from row to column representation but the mechanics of the code work
 	// to go from colum to row representation as well.
@@ -139,24 +139,24 @@ func transpose(x []uint32) []uint32 {
 			continue
 		}
 		if t[currentColumnPos[x[i]]] == sen {
-			panic("Overwriting sentential.")
+			return []uint32{}, fmt.Errorf("transpose: overwrote sentintel value indicating indexing error")
 		}
 		t[currentColumnPos[x[i]]] = row
 		currentColumnPos[x[i]]++
 	}
 
-	if checkValidMatrixIndices(t) != nil {
-		panic("bad matrix")
+	if err := checkValidMatrixIndices(t); err != nil {
+		return []uint32{}, fmt.Errorf("transposed matrix is invalid: %w", err)
 	}
 
-	return t
+	return t, nil
 }
 
-func (m cCSMatrix) Convert() cRSMatrix {
+func (m cCSMatrix) Convert() (cRSMatrix, error) {
 	return transpose(m)
 }
 
-func (m cRSMatrix) Convert() cCSMatrix {
+func (m cRSMatrix) Convert() (cCSMatrix, error) {
 	return transpose(m)
 }
 

@@ -20,13 +20,17 @@ package solvers
 import (
 	"reflect"
 	"testing"
+
+	"gotest.tools/v3/assert"
 )
 
 // Test that when all possible sets of subsets result in either some elements not
 // being covered or some elements being overcovered
 func TestInfeasible(t *testing.T) {
-	ins := MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{1.0, 1.0, 1.0})
-	result := SolveByBruteForce(ins)
+	ins, err := MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{1.0, 1.0, 1.0})
+	assert.NilError(t, err)
+	result, err := SolveByBruteForce(ins)
+	assert.NilError(t, err)
 	if result.exactlyCovered != false {
 		t.Fatalf("Should be Infeasible.")
 	}
@@ -34,8 +38,10 @@ func TestInfeasible(t *testing.T) {
 }
 
 func TestEmptyInstance(t *testing.T) {
-	ins := MakeInstance(0, [][]int{}, []float64{})
-	result := SolveByBruteForce(ins)
+	ins, err := MakeInstance(0, [][]int{}, []float64{})
+	assert.NilError(t, err)
+	result, err := SolveByBruteForce(ins)
+	assert.NilError(t, err)
 	if result.exactlyCovered != true &&
 		len(result.subsetsIndices) == 0 &&
 		result.cost == 0 {
@@ -45,8 +51,10 @@ func TestEmptyInstance(t *testing.T) {
 }
 
 func TestCheaperSolutionFound(t *testing.T) {
-	ins := MakeInstance(2, [][]int{{0, 1}, {0}, {1}, {0}}, []float64{17, 7, 5, 3})
-	result := SolveByBruteForce(ins)
+	ins, err := MakeInstance(2, [][]int{{0, 1}, {0}, {1}, {0}}, []float64{17, 7, 5, 3})
+	assert.NilError(t, err)
+	result, err := SolveByBruteForce(ins)
+	assert.NilError(t, err)
 	if result.exactlyCovered != true {
 		t.Fatalf("Feasible set of subsets should be found.")
 	}

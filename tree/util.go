@@ -18,6 +18,7 @@
 package tree
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -31,7 +32,7 @@ type printNode struct {
 // For the start node and its ancestors, create corresponding PrintNodes if
 // they are not already in printNodeByNode. And set the links for the PrintNodes
 // from the parent to its children.
-func add(printNodeByNode map[*node]*printNode, start *node) *printNode {
+func add(printNodeByNode map[*node]*printNode, start *node) (*printNode, error) {
 	curr := start // curr = current
 	var prev *node
 
@@ -39,7 +40,7 @@ func add(printNodeByNode map[*node]*printNode, start *node) *printNode {
 	var currPNode *printNode
 
 	// Isn't necessary to actually follow parents to the root node
-	// if a node is already in PNodeByNode, but we do so to
+	// if a node is already in printNodeByNode, but we do so to
 	// check for errors.
 	for curr != nil {
 		var ok bool
@@ -52,23 +53,23 @@ func add(printNodeByNode map[*node]*printNode, start *node) *printNode {
 		if prev != nil {
 			switch prev.kind {
 			case root:
-				panic(fmt.Sprintf("Node of kind root has a non-nil paren %+v.", *curr))
+				return nil, fmt.Errorf("node of kind root has a non-nil parent %+v", *curr)
 			case bothBranch:
 				if currPNode.bothBranchChild == nil {
 					currPNode.bothBranchChild = prevPNode
 				} else if currPNode.bothBranchChild != prevPNode {
-					panic(fmt.Sprintf(
-						"bothBranchChild set before to a different node for node %+v.", *curr))
+					return nil, fmt.Errorf(
+						"bothBranchChild set before to a different node for node %+v", *curr)
 				}
 			case diffBranch:
 				if currPNode.diffBranchChild == nil {
 					currPNode.diffBranchChild = prevPNode
 				} else if currPNode.diffBranchChild != prevPNode {
-					panic(fmt.Sprintf(
-						"diffBranchChild set before to a different node for node %+v.", *curr))
+					return nil, fmt.Errorf(
+						"diffBranchChild set before to a different node for node %+v", *curr)
 				}
 			default:
-				panic(fmt.Sprintf("Unknown kind for for node %+v.", *curr))
+				return nil, fmt.Errorf("unknown kind for for node %+v", *curr)
 
 			}
 		}
@@ -79,7 +80,7 @@ func add(printNodeByNode map[*node]*printNode, start *node) *printNode {
 
 	}
 
-	return currPNode
+	return currPNode, nil
 }
 
 func printImpl(depth int, node *printNode) {
@@ -99,21 +100,25 @@ func printImpl(depth int, node *printNode) {
 
 // For the nodes, find all ancestors and print the tree of nodes
 // All the supplied nodes, must have the same root.
-func PrintTree(nodes []*node) {
+func PrintTree(nodes []*node) error {
 	if len(nodes) == 0 {
-		return
+		return nil
 	}
 
 	var root *printNode
 	m := make(map[*node]*printNode)
 	for _, node := range nodes {
-		r := add(m, node)
+		r, err := add(m, node)
+		if err != nil {
+			return nil
+		}
+
 		if root != nil && r != root {
-			panic("Two different root nodes found.")
+			return errors.New("two different root nodes found")
 		}
 		root = r
 	}
 
 	printImpl(0, root)
-
+	return nil
 }

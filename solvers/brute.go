@@ -19,6 +19,8 @@
 package solvers
 
 import (
+	"fmt"
+
 	"gonum.org/v1/gonum/stat/combin"
 )
 
@@ -67,7 +69,7 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
 	return s
 }
 
-func SolveByBruteForce(ins instance) subsetsEval {
+func SolveByBruteForce(ins instance) (subsetsEval, error) {
 
 	nSubsetsToTry := ins.n
 	if len(ins.subsets) < ins.n {
@@ -75,8 +77,8 @@ func SolveByBruteForce(ins instance) subsetsEval {
 	}
 
 	permutations := combin.NewPermutationGenerator(len(ins.subsets), nSubsetsToTry)
-	if permutations.Next() == false {
-		panic("No permutations.")
+	if !permutations.Next() {
+		return subsetsEval{}, fmt.Errorf("no %dP%d permutations", len(ins.subsets), nSubsetsToTry)
 	}
 	bestSubsetsEval := makeSolutionFromSubsets(ins, permutations.Permutation(nil))
 
@@ -91,5 +93,5 @@ func SolveByBruteForce(ins instance) subsetsEval {
 
 	}
 
-	return bestSubsetsEval
+	return bestSubsetsEval, nil
 }

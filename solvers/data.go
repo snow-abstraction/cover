@@ -18,6 +18,7 @@
 package solvers
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -37,30 +38,30 @@ type instance struct {
 }
 
 // Make an Instance and check the constraints that an Instance should satisfy.
-func MakeInstance(n int, subsets [][]int, costs []float64) instance {
+func MakeInstance(n int, subsets [][]int, costs []float64) (instance, error) {
 	if n < 0 {
-		panic(fmt.Sprintf(
-			"The number of elements n must be nonnegative. %d was supplied.", n))
+		return instance{}, fmt.Errorf(
+			"the number of elements n must be nonnegative. %d was supplied", n)
 	} else if n == 0 {
 		if len(subsets) != 0 && len(costs) != 0 {
-			panic(
-				"When the set is empty (n=0), then both subsets and costs must be empty.")
+			return instance{}, errors.New(
+				"when the set is empty (n=0), then both subsets and costs must be empty")
 		}
-		return instance{}
+		return instance{}, nil
 
 	}
 
 	for i, subset := range subsets {
 		if len(subset) == 0 {
-			panic(fmt.Sprintf(
-				"Subset index %d was empty. Empty subsets are not allowed.", i))
+			return instance{}, fmt.Errorf(
+				"subset index %d was empty. Empty subsets are not allowed", i)
 		}
 
 		for _, element := range subset {
 			if element < 0 || element >= n {
-				panic(fmt.Sprintf(
-					"The subset %v with index %d is invalid since it contains element %d which is not a member of [0, %d).",
-					subset, i, element, n))
+				return instance{}, fmt.Errorf(
+					"the subset %v with index %d is invalid since it contains element %d which is not a member of [0, %d)",
+					subset, i, element, n)
 			}
 		}
 
@@ -69,18 +70,18 @@ func MakeInstance(n int, subsets [][]int, costs []float64) instance {
 			usedElements[element] = true
 		}
 		if len(subset) > len(usedElements) {
-			panic(fmt.Sprintf(
-				"The subset %v with index %d is invalid since it contains duplicate elements.",
-				subset, i))
+			return instance{}, fmt.Errorf(
+				"the subset %v with index %d is invalid since it contains duplicate elements",
+				subset, i)
 
 		}
 
 		prevElement := subset[0]
 		for _, element := range subset[1:] {
 			if prevElement > element {
-				panic(fmt.Sprintf(
-					"The subset %v with index %d is invalid since it is not sorted",
-					subset, i))
+				return instance{}, fmt.Errorf(
+					"the subset %v with index %d is invalid since it is not sorted",
+					subset, i)
 
 			}
 			prevElement = element
@@ -89,19 +90,19 @@ func MakeInstance(n int, subsets [][]int, costs []float64) instance {
 	}
 
 	if len(subsets) != len(costs) {
-		panic("There must be exactly one cost per subset.")
+		return instance{}, errors.New("there must be exactly one cost per subset")
 	}
 
 	for i, cost := range costs {
 		if cost <= 0 {
-			panic(fmt.Sprintf(
-				"The cost %f with index %d is invalid since it is only (strictly) positive costs are supported.",
-				cost, i))
+			return instance{}, fmt.Errorf(
+				"the cost %f with index %d is invalid since it is only (strictly) positive costs are supported",
+				cost, i)
 
 		}
 	}
 
-	return instance{n: n, subsets: subsets, costs: costs}
+	return instance{n: n, subsets: subsets, costs: costs}, nil
 }
 
 // Subsets with an evaluation of them w.r.t. some instance.

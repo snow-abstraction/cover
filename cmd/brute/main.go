@@ -25,7 +25,13 @@ import (
 )
 
 func main() {
-	ins := solvers.MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{1.0, 1.0, 1.0})
-	sol := solvers.SolveByBruteForce(ins)
+	ins, err := solvers.MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{1.0, 1.0, 1.0})
+	if err != nil {
+		fmt.Printf("failed to optimal solution due to instance data: %s", err)
+	}
+	sol, err := solvers.SolveByBruteForce(ins)
+	if err != nil {
+		fmt.Printf("failed to optimal solution due to error: %s", err)
+	}
 	fmt.Printf("%+v\n", sol)
 }
