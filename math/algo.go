@@ -26,7 +26,7 @@ import "log"
 // on the Lagrangian dual of the integer linear programming formulation of
 // the set covering problem.
 // TODO: pass in transpose instead of re-calculating on every call/
-func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) float64 {
+func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64, error) {
 	var n_cols int
 	for i := 0; i < len(aC); i++ {
 		if aC[i] == sen {
@@ -34,17 +34,16 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) float64 {
 		}
 	}
 
-	aR := aC.Convert() // R for row storage
+	aR, err := aC.Convert() // R for row storage
+	if err != nil {
+		return 0, err
+	}
 
 	var n_rows int
 	for i := 0; i < len(aR); i++ {
 		if aR[i] == sen {
 			n_rows++
 		}
-	}
-
-	if n_cols != len(costs) {
-		panic("Dimension mismatch between columns in a and costs")
 	}
 
 	// The primal column vector
@@ -113,7 +112,7 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) float64 {
 	// calculate the lower bound i.e. the Lagrangian Dual objective value
 	objectiveValue := calcObjectiveValue(n_cols, costs, x, aR, ax, n_rows, u)
 
-	return objectiveValue
+	return objectiveValue, nil
 
 }
 

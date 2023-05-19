@@ -57,10 +57,6 @@ func CreateInitialNodes() []*node {
 func (parent *node) Branch(lowerBound float64, branchConstraintOne uint32,
 	branchConstraintTwo uint32) (*node, *node) {
 
-	if parent == nil {
-		panic("Cannot branch nil node.")
-	}
-
 	return &node{bothBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo},
 		&node{diffBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo}
 

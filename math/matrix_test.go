@@ -20,17 +20,21 @@ package math
 import (
 	"reflect"
 	"testing"
+
+	"gotest.tools/v3/assert"
 )
 
 func TestConvert(t *testing.T) {
 	ccs := cCSMatrix{0, 1, 2, sen, sen, 1, sen}
-	crs := ccs.Convert()
+	crs, err := ccs.Convert()
+	assert.NilError(t, err)
 	want := cRSMatrix{0, sen, 0, 2, sen, 0, sen}
 	if !reflect.DeepEqual(crs, want) {
 		t.Fatalf("\n%v !=\n%v", crs, want)
 	}
 
-	ccs_again := crs.Convert()
+	ccs_again, err := crs.Convert()
+	assert.NilError(t, err)
 	if !reflect.DeepEqual(ccs_again, ccs) {
 		t.Fatalf("\n%v !=\n%v", ccs_again, ccs)
 	}
