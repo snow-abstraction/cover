@@ -20,7 +20,7 @@ package main
 import (
 	"math"
 
-	"github.com/snow-abstraction/cover/tree"
+	"github.com/snow-abstraction/cover/internal/tree"
 )
 
 func main() {
