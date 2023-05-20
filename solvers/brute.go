@@ -24,18 +24,17 @@ import (
 	"gonum.org/v1/gonum/stat/combin"
 )
 
-// Attempt to make a solution by adding the candidates (subsets) one by one (in order)
-// until either feasible or infeasible (overcovered or no subsets left).
+// makeSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
+// one by one (in order) until either feasible or infeasible (overcovered or no subsets left).
 //
-// Returns the solution (the subset indices) and its cost. If no solution, then
-// it returns nil and NaN
+// It returns a subsetsEval to indicating the either-or case above.
 func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
 	coverCounts := make([]int, ins.n)
 
 	var s subsetsEval
 
 	if ins.n == 0 {
-		s.exactlyCovered = true
+		s.ExactlyCovered = true
 		return s
 	}
 
@@ -44,11 +43,11 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
 			coverCounts[elementIdx] += 1
 		}
 
-		s.cost += ins.costs[subsetIdx]
+		s.Cost += ins.costs[subsetIdx]
 		// TODO: the use case is find a solution (aka a cover) that is cheaper than
 		// a known solution so we could abort the search if s.cost greater than the cost
 		// of a known cover.
-		s.subsetsIndices = append(s.subsetsIndices, subsetIdx)
+		s.SubsetsIndices = append(s.SubsetsIndices, subsetIdx)
 
 		allConstraintsCoveredExactly := true
 		for _, coverCount := range coverCounts {
@@ -61,7 +60,7 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
 		}
 
 		if allConstraintsCoveredExactly {
-			s.exactlyCovered = true
+			s.ExactlyCovered = true
 			return s
 		}
 	}
@@ -69,9 +68,18 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
 	return s
 }
 
+// SolveByBruteForce attempts finds a minimum cost exact cover for
+// an instance.
+//
+// If a minimum cost exact cover exists, the returned subsetsEval will contain
+// indices to this cover and its exactlyCovered flag will be true. Otherwise,
+// the zero value of subsetEval will be returned.
 func SolveByBruteForce(ins instance) (subsetsEval, error) {
 
 	nSubsetsToTry := ins.n
+	// At most len(ins.subsets) are needed because each subset has to cover
+	// at least one unique elemnt not covered by the other subsets in an
+	// exact cover.
 	if len(ins.subsets) < ins.n {
 		nSubsetsToTry = len(ins.subsets)
 	}
@@ -85,12 +93,16 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 	for permutations.Next() {
 		perm := permutations.Permutation(nil)
 		subsetEval := makeSolutionFromSubsets(ins, perm)
-		if !subsetEval.exactlyCovered {
+		if !subsetEval.ExactlyCovered {
 			continue
-		} else if !bestSubsetsEval.exactlyCovered || subsetEval.cost < bestSubsetsEval.cost {
+		} else if !bestSubsetsEval.ExactlyCovered || subsetEval.Cost < bestSubsetsEval.Cost {
 			bestSubsetsEval = subsetEval
 		}
 
+	}
+
+	if !bestSubsetsEval.ExactlyCovered {
+		return subsetsEval{}, nil
 	}
 
 	return bestSubsetsEval, nil

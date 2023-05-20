@@ -107,9 +107,10 @@ func MakeInstance(n int, subsets [][]int, costs []float64) (instance, error) {
 
 // Subsets with an evaluation of them w.r.t. some instance.
 type subsetsEval struct {
-	subsetsIndices []int
-	// For some instance, do the subsets exactly cover each element.
-	exactlyCovered bool
+	SubsetsIndices []int
+	// For the instance, do the subsets exactly cover each element.
+	// If false, the subsets either undercover or overcover the set.
+	ExactlyCovered bool
 	// The sum of the subsets' costs.
-	cost float64
+	Cost float64
 }
