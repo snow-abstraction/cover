@@ -21,7 +21,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/snow-abstraction/cover/solvers"
+	"github.com/snow-abstraction/cover/internal/solvers"
 )
 
 func main() {
