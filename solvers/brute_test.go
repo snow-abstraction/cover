@@ -18,23 +18,19 @@
 package solvers
 
 import (
-	"reflect"
 	"testing"
 
 	"gotest.tools/v3/assert"
 )
 
-// Test that when all possible sets of subsets result in either some elements not
-// being covered or some elements being overcovered
+// Test when all possible sets of subsets result in either some elements not
+// being covered or some elements being overcovered.
 func TestInfeasible(t *testing.T) {
 	ins, err := MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{1.0, 1.0, 1.0})
 	assert.NilError(t, err)
 	result, err := SolveByBruteForce(ins)
 	assert.NilError(t, err)
-	if result.exactlyCovered != false {
-		t.Fatalf("Should be Infeasible.")
-	}
-
+	assert.Assert(t, !result.ExactlyCovered, "should be infeasible")
 }
 
 func TestEmptyInstance(t *testing.T) {
@@ -42,12 +38,9 @@ func TestEmptyInstance(t *testing.T) {
 	assert.NilError(t, err)
 	result, err := SolveByBruteForce(ins)
 	assert.NilError(t, err)
-	if result.exactlyCovered != true &&
-		len(result.subsetsIndices) == 0 &&
-		result.cost == 0 {
-		t.Fatalf("Result for an empty instance should be a feasible and itself be empty.")
-	}
-
+	//  The result for an empty instance should be a feasible and itself be empty.
+	emptyCover := subsetsEval{ExactlyCovered: true}
+	assert.DeepEqual(t, result, emptyCover)
 }
 
 func TestCheaperSolutionFound(t *testing.T) {
@@ -55,16 +48,6 @@ func TestCheaperSolutionFound(t *testing.T) {
 	assert.NilError(t, err)
 	result, err := SolveByBruteForce(ins)
 	assert.NilError(t, err)
-	if result.exactlyCovered != true {
-		t.Fatalf("Feasible set of subsets should be found.")
-	}
-
-	if !reflect.DeepEqual(result.subsetsIndices, []int{2, 3}) {
-		t.Fatalf("Didn't find the cheapest cover.")
-	}
-
-	if result.cost != 5+3 {
-		t.Fatalf("The cost is incorrect.")
-	}
-
+	theMinimum := subsetsEval{SubsetsIndices: []int{2, 3}, ExactlyCovered: true, Cost: 5 + 3}
+	assert.DeepEqual(t, result, theMinimum)
 }
