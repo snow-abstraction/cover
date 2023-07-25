@@ -19,19 +19,65 @@
 package main
 
 import (
+	"encoding/json"
+	"flag"
 	"fmt"
+	"log"
+	"os"
 
+	"github.com/snow-abstraction/cover"
 	"github.com/snow-abstraction/cover/internal/solvers"
 )
 
+func usage() {
+	w := flag.CommandLine.Output()
+	fmt.Fprintf(
+		w,
+		`Usage: %s -instance instance.json
+
+%s reads in a problem instance JSON file, solves it and outputs a solution
+to standard out.
+
+Arguments:
+`,
+		os.Args[0],
+		os.Args[0])
+	flag.PrintDefaults()
+}
+
 func main() {
-	ins, err := solvers.MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{1.0, 1.0, 1.0})
-	if err != nil {
-		fmt.Printf("failed to optimal solution due to instance data: %s", err)
+	flag.Usage = usage
+	filename := flag.String("instance", "", "instance JSON filename")
+	flag.Parse()
+
+	if *filename == "" {
+		log.Fatalln("Please supply the instance file name")
 	}
-	sol, err := solvers.SolveByBruteForce(ins)
+
+	b, err := os.ReadFile(*filename)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	var ins cover.Instance
+	err = json.Unmarshal(b, &ins)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	err = json.Unmarshal(b, &ins)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	solverInstance, err := solvers.MakeInstance(ins.N, ins.Subsets, ins.Costs)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	sol, err := solvers.SolveByBruteForce(solverInstance)
 	if err != nil {
 		fmt.Printf("failed to optimal solution due to error: %s", err)
 	}
-	fmt.Printf("%+v\n", sol)
+	fmt.Printf("Solution: %+v\n", sol)
 }
