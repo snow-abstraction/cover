@@ -17,6 +17,14 @@
 
 package cover
 
+import (
+	"math"
+	"math/rand"
+	"sort"
+
+	"golang.org/x/exp/slices"
+)
+
 type Instance struct {
 	// The number of elements in the set X to be covered, indexed
 	// 0 ... N-1.
@@ -30,4 +38,53 @@ type Instance struct {
 	// The restrictions on the Costs reasonable for many problems and
 	// suit certain algorithms.
 	Costs []float64
+}
+
+func MakeRandomInstance(m int, n int, seed int64) Instance {
+	gen := rand.New(rand.NewSource(seed))
+
+	ins := Instance{N: n, Subsets: make([][]int, 0), Costs: make([]float64, 0)}
+
+	// universe of elements to be covered
+	u := make([]int, ins.N)
+	for i := 0; i < ins.N; i++ {
+		u[i] = i
+	}
+	for j := 0; j < m; j++ {
+		for {
+			// make random subset u[:k]
+			gen.Shuffle(len(u), func(i, j int) { u[i], u[j] = u[j], u[i] })
+			k := gen.Intn(ins.N) + 1
+			subset := u[:k]
+			// sort subset to give it an unique representation
+			sort.Ints(subset)
+
+			// only add subset if unique
+			// TODO: This introduces quadratic complexity. Ideally we would
+			// do a binary search or use some hash table to check if the
+			// subset has alredy been added.
+			match := false
+			for _, s := range ins.Subsets {
+				if slices.Equal(subset, s) {
+					match = true
+					break
+				}
+			}
+
+			if !match {
+				ins.Subsets = append(ins.Subsets, make([]int, len(subset)))
+				copy(ins.Subsets[len(ins.Subsets)-1], subset)
+
+				// generate random cost such that 1 <= cost < 10
+				// with that basis that the cost should be lower if few
+				// elements.
+				x := math.Pow(gen.Float64(), math.Log(float64(k)))
+				ins.Costs = append(ins.Costs, 10.0*(1-0.9*x))
+				break
+			}
+		}
+
+	}
+
+	return ins
 }
