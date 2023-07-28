@@ -21,6 +21,7 @@ package solvers
 import (
 	"fmt"
 
+	"golang.org/x/exp/slices"
 	"gonum.org/v1/gonum/stat/combin"
 )
 
@@ -106,5 +107,6 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 		return subsetsEval{}, nil
 	}
 
+	slices.Sort(bestSubsetsEval.SubsetsIndices)
 	return bestSubsetsEval, nil
 }
