@@ -25,7 +25,8 @@ import (
 )
 
 // makeSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
-// one by one (in order) until either feasible or infeasible (overcovered or no subsets left).
+// one by one (in order listed in subsetIndicies) until either feasible or infeasible
+// (overcovered or undercovered with no subsets left).
 //
 // It returns a subsetsEval to indicating the either-or case above.
 func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
