@@ -22,12 +22,9 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"math/rand"
 	"os"
-	"sort"
 
 	"github.com/snow-abstraction/cover"
-	"golang.org/x/exp/slices"
 )
 
 func usage() {
@@ -56,23 +53,21 @@ func main() {
 	ins := cover.Instance{Subsets: make([][]int, 0), Costs: make([]float64, 0)}
 
 	flag.Usage = usage
-	var seed int64
-	flag.Int64Var(&seed, "seed", 1, "seed for the random generator")
-	var m int
-	flag.IntVar(&m, "m", 0, "number of subsets")
-	flag.IntVar(&ins.N, "n", 0, "number of sets to be covered")
+	m := flag.Int("m", 0, "number of subsets")
+	n := flag.Int("n", 0, "number of sets to be covered")
+	seed := flag.Int64("seed", 1, "seed for the random generator")
 	flag.Parse()
 
-	if m < 0 {
+	if *m < 0 {
 		log.Fatalln("m must be non-negative (0 <= m)")
 	}
 
-	if ins.N < 0 {
+	if *n < 0 {
 		log.Fatalln("n must be non-negative (0 <= n)")
 	}
 
-	if ins.N > 0 {
-		populateInstance(&ins, seed, m)
+	if *n > 0 {
+		ins = cover.MakeRandomInstance(*m, *n, *seed)
 	}
 
 	b, err := json.MarshalIndent(ins, "", "  ")
@@ -80,47 +75,5 @@ func main() {
 		log.Fatalln(err)
 
 	}
-	fmt.Print(string(b))
-}
-
-func populateInstance(ins *cover.Instance, seed int64, m int) {
-	gen := rand.New(rand.NewSource(seed))
-
-	// universe of elements to be covered
-	u := make([]int, ins.N)
-	for i := 0; i < ins.N; i++ {
-		u[i] = i
-	}
-	for j := 0; j < m; j++ {
-		for {
-			// make random subset u[:k]
-			gen.Shuffle(len(u), func(i, j int) { u[i], u[j] = u[j], u[i] })
-			k := gen.Intn(ins.N) + 1
-			subset := u[:k]
-			// sort subset to give it an unique representation
-			sort.Ints(subset)
-
-			// only add subset if unique
-			// TODO: This introduces quadratic complexity. Ideally we would
-			// do a binary search or use some hash table to check if the
-			// subset has alredy been added.
-			match := false
-			for _, s := range ins.Subsets {
-				if slices.Equal(subset, s) {
-					match = true
-					break
-				}
-			}
-
-			if !match {
-				ins.Subsets = append(ins.Subsets, make([]int, len(subset)))
-				copy(ins.Subsets[len(ins.Subsets)-1], subset)
-				break
-			}
-		}
-
-		// generate random cost such that 1 <= cost < 10
-		ins.Costs = append(ins.Costs, 10.0*(1-0.9*gen.Float64()))
-	}
-
+	fmt.Println(string(b))
 }
