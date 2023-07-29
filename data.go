@@ -75,11 +75,12 @@ func MakeRandomInstance(m int, n int, seed int64) Instance {
 				ins.Subsets = append(ins.Subsets, make([]int, len(subset)))
 				copy(ins.Subsets[len(ins.Subsets)-1], subset)
 
-				// generate random cost such that 1 <= cost < 10
-				// with that basis that the cost should be lower if few
-				// elements.
-				x := math.Pow(gen.Float64(), math.Log(float64(k)))
-				ins.Costs = append(ins.Costs, 10.0*(1-0.9*x))
+				// generate random cost such that 1 < cost <= k^smallSubsetPreference + 1
+				// This baiases instances where optimal solutions
+				// constist of several small subsets.
+				const smallSubsetPreference = 1.1
+				f := math.Pow(float64(k), smallSubsetPreference) + 1
+				ins.Costs = append(ins.Costs, f+((1-f)*gen.Float64()))
 				break
 			}
 		}
