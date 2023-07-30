@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2022 Douglas Wayne Potter
+ Copyright (C) 2023 Douglas Wayne Potter
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU Affero General Public License as
@@ -19,18 +19,19 @@
 package solvers
 
 import (
-	"fmt"
-
 	"golang.org/x/exp/slices"
 	"gonum.org/v1/gonum/stat/combin"
 )
 
 // makeSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
-// one by one (in order listed in subsetIndicies) until either feasible or infeasible
-// (overcovered or undercovered with no subsets left).
+// one by one (in order listed in subsetIndicies) until one of the three conditions are met:
+// 1. feasible (solution found),
+// 2. infeasible (overcovered or undercovered with no subsets left) or
+// 3. cost is greater or equal to that in the supplied in `best` if `best.ExactlyCovered`.
 //
-// It returns a subsetsEval to indicating the either-or case above.
-func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
+// It returns a subsetsEval with representing the cover found with ExactlyCovered == true found
+// for 1. and ExactlyCovered == false for 2. and 3.
+func makeSolutionFromSubsets(ins instance, subsetIndices []int, best subsetsEval) subsetsEval {
 	coverCounts := make([]int, ins.n)
 
 	var s subsetsEval
@@ -65,6 +66,10 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int) subsetsEval {
 			s.ExactlyCovered = true
 			return s
 		}
+
+		if best.ExactlyCovered && best.Cost <= s.Cost {
+			return s
+		}
 	}
 
 	return s
@@ -86,21 +91,20 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 		nSubsetsToTry = len(ins.subsets)
 	}
 
-	permutations := combin.NewPermutationGenerator(len(ins.subsets), nSubsetsToTry)
-	if !permutations.Next() {
-		return subsetsEval{}, fmt.Errorf("no %dP%d permutations", len(ins.subsets), nSubsetsToTry)
-	}
-	bestSubsetsEval := makeSolutionFromSubsets(ins, permutations.Permutation(nil))
+	bestSubsetsEval := makeSolutionFromSubsets(ins, nil, subsetsEval{})
 
-	for permutations.Next() {
-		perm := permutations.Permutation(nil)
-		subsetEval := makeSolutionFromSubsets(ins, perm)
-		if !subsetEval.ExactlyCovered {
-			continue
-		} else if !bestSubsetsEval.ExactlyCovered || subsetEval.Cost < bestSubsetsEval.Cost {
-			bestSubsetsEval = subsetEval
+	for i := 1; i <= nSubsetsToTry; i++ {
+		combinations := combin.NewCombinationGenerator(len(ins.subsets), nSubsetsToTry)
+		for combinations.Next() {
+			perm := combinations.Combination(nil)
+			subsetEval := makeSolutionFromSubsets(ins, perm, bestSubsetsEval)
+			if !subsetEval.ExactlyCovered {
+				continue
+			} else if !bestSubsetsEval.ExactlyCovered || subsetEval.Cost < bestSubsetsEval.Cost {
+				bestSubsetsEval = subsetEval
+			}
+
 		}
-
 	}
 
 	if !bestSubsetsEval.ExactlyCovered {
