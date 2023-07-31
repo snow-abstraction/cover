@@ -77,10 +77,11 @@ func MakeRandomInstance(m int, n int, seed int64) Instance {
 
 				// generate random cost such that 1 < cost <= k^smallSubsetPreference + 1
 				// This baiases instances where optimal solutions
-				// constist of several small subsets.
+				// consist of several small subsets.
 				const smallSubsetPreference = 1.1
 				f := math.Pow(float64(k), smallSubsetPreference) + 1
-				ins.Costs = append(ins.Costs, f+((1-f)*gen.Float64()))
+				s := gen.Float64()
+				ins.Costs = append(ins.Costs, f*(1-s)+s)
 				break
 			}
 		}
