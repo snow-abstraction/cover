@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install Python dependencies for tools
+        run: pip install -r ./tools/requirements.txt
+
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
