@@ -94,7 +94,7 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 	bestSubsetsEval := makeSolutionFromSubsets(ins, nil, subsetsEval{})
 
 	for i := 1; i <= nSubsetsToTry; i++ {
-		combinations := combin.NewCombinationGenerator(len(ins.subsets), nSubsetsToTry)
+		combinations := combin.NewCombinationGenerator(len(ins.subsets), i)
 		for combinations.Next() {
 			perm := combinations.Combination(nil)
 			subsetEval := makeSolutionFromSubsets(ins, perm, bestSubsetsEval)
