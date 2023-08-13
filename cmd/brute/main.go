@@ -70,7 +70,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	solverInstance, err := solvers.MakeInstance(ins.N, ins.Subsets, ins.Costs)
+	solverInstance, err := solvers.MakeInstance(ins.M, ins.Subsets, ins.Costs)
 	if err != nil {
 		log.Fatalln(err)
 	}

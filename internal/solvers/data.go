@@ -24,8 +24,8 @@ import (
 
 type instance struct {
 	// The number of elements in the set X to be covered, indexed
-	// 0 ... n-1.
-	n int
+	// 0 ... m-1.
+	m int
 	// subsets of X. The inner slices must only contain element indices in
 	// [0, n-1]. The indices must be sorted and each subset must be include
 	// at most once. Empty subsets are not allowed.
@@ -38,11 +38,11 @@ type instance struct {
 }
 
 // Make an Instance and check the constraints that an Instance should satisfy.
-func MakeInstance(n int, subsets [][]int, costs []float64) (instance, error) {
-	if n < 0 {
+func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
+	if m < 0 {
 		return instance{}, fmt.Errorf(
-			"the number of elements n must be nonnegative. %d was supplied", n)
-	} else if n == 0 {
+			"the number of elements n must be nonnegative. %d was supplied", m)
+	} else if m == 0 {
 		if len(subsets) != 0 && len(costs) != 0 {
 			return instance{}, errors.New(
 				"when the set is empty (n=0), then both subsets and costs must be empty")
@@ -58,10 +58,10 @@ func MakeInstance(n int, subsets [][]int, costs []float64) (instance, error) {
 		}
 
 		for _, element := range subset {
-			if element < 0 || element >= n {
+			if element < 0 || element >= m {
 				return instance{}, fmt.Errorf(
 					"the subset %v with index %d is invalid since it contains element %d which is not a member of [0, %d)",
-					subset, i, element, n)
+					subset, i, element, m)
 			}
 		}
 
@@ -102,7 +102,7 @@ func MakeInstance(n int, subsets [][]int, costs []float64) (instance, error) {
 		}
 	}
 
-	return instance{n: n, subsets: subsets, costs: costs}, nil
+	return instance{m: m, subsets: subsets, costs: costs}, nil
 }
 
 // Subsets with an evaluation of them w.r.t. some instance.

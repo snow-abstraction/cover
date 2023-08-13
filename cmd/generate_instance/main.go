@@ -31,14 +31,14 @@ func usage() {
 	w := flag.CommandLine.Output()
 	fmt.Fprintf(
 		w,
-		`Usage: %s -seed 1 -m 100 -n 10
+		`Usage: %s -seed 1 -m 10 -n 100
 
 %s outputs a random instance to standard out. The instance generated may be
 infeasible.
 
 For certain m and n will take a long time because each
 subset is generated randomly but must be unique. In fact if the number of
-possible nonempty subsets (2^n-1) is less than m then the program will never
+possible nonempty subsets (2^m-1) is less than n then the program will never
 terminate.
 		
 Arguments:
@@ -53,8 +53,8 @@ func main() {
 	ins := cover.Instance{Subsets: make([][]int, 0), Costs: make([]float64, 0)}
 
 	flag.Usage = usage
-	m := flag.Int("m", 0, "number of subsets")
-	n := flag.Int("n", 0, "number of sets to be covered")
+	m := flag.Int("m", 0, "number of sets to be covered")
+	n := flag.Int("n", 0, "number of subsets")
 	seed := flag.Int64("seed", 1, "seed for the random generator")
 	flag.Parse()
 

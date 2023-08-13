@@ -32,11 +32,11 @@ import (
 // It returns a subsetsEval with representing the cover found with ExactlyCovered == true found
 // for 1. and ExactlyCovered == false for 2. and 3.
 func makeSolutionFromSubsets(ins instance, subsetIndices []int, best subsetsEval) subsetsEval {
-	coverCounts := make([]int, ins.n)
+	coverCounts := make([]int, ins.m)
 
 	var s subsetsEval
 
-	if ins.n == 0 {
+	if ins.m == 0 {
 		s.ExactlyCovered = true
 		return s
 	}
@@ -83,11 +83,11 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int, best subsetsEval
 // the zero value of subsetEval will be returned.
 func SolveByBruteForce(ins instance) (subsetsEval, error) {
 
-	nSubsetsToTry := ins.n
+	nSubsetsToTry := ins.m
 	// At most len(ins.subsets) are needed because each subset has to cover
 	// at least one unique elemnt not covered by the other subsets in an
 	// exact cover.
-	if len(ins.subsets) < ins.n {
+	if len(ins.subsets) < ins.m {
 		nSubsetsToTry = len(ins.subsets)
 	}
 
