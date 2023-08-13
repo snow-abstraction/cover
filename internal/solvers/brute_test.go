@@ -21,6 +21,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
 	"os/exec"
 	"strings"
@@ -135,10 +136,14 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 }
 
 func TestRandomInstances(t *testing.T) {
-	seed := int64(1) // random seed
-	maxM := 8        // max number of elements
+	// The loops and constants are set up so we only test a few instances so
+	// this test run in less than 10s.
 
-	for m := 1; m < maxM; m++ {
+	// TODO: run more instances but keep everyday testing fast.
+	seed := int64(rand.Int63()) // random seed
+	maxM := 5                   // max number of elementt
+
+	for m := 1; m < maxM; m *= 2 {
 		maxN := int(math.Exp2(float64(m))) / 2
 		for n := 1; n <= maxN; n *= 2 {
 			testBruteFindsEquallyGoodSolution(t, m, n, seed)
