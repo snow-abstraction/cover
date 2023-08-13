@@ -27,10 +27,10 @@ import (
 
 type Instance struct {
 	// The number of elements in the set X to be covered, indexed
-	// 0 ... N-1.
-	N int
+	// 0 ... M-1.
+	M int
 	// Subsets of X. The inner slices must only contain element indices in
-	// [0, n-1]. The indices must be sorted and each subset must be include
+	// [0, M-1]. The indices must be sorted and each subset must be include
 	// at most once. Empty Subsets are not allowed.
 	Subsets [][]int
 	// The cost of each subset. Each cost must be strictly positive.
@@ -43,18 +43,18 @@ type Instance struct {
 func MakeRandomInstance(m int, n int, seed int64) Instance {
 	gen := rand.New(rand.NewSource(seed))
 
-	ins := Instance{N: n, Subsets: make([][]int, 0), Costs: make([]float64, 0)}
+	ins := Instance{M: m, Subsets: make([][]int, 0), Costs: make([]float64, 0)}
 
 	// universe of elements to be covered
-	u := make([]int, ins.N)
-	for i := 0; i < ins.N; i++ {
+	u := make([]int, ins.M)
+	for i := 0; i < ins.M; i++ {
 		u[i] = i
 	}
-	for j := 0; j < m; j++ {
+	for j := 0; j < n; j++ {
 		for {
 			// make random subset u[:k]
 			gen.Shuffle(len(u), func(i, j int) { u[i], u[j] = u[j], u[i] })
-			k := gen.Intn(ins.N) + 1
+			k := gen.Intn(ins.M) + 1
 			subset := u[:k]
 			// sort subset to give it an unique representation
 			sort.Ints(subset)

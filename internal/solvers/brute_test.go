@@ -102,7 +102,7 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 
 	pythonResult := solveWithPythonScript(t, ins)
 
-	solverInstance, err := MakeInstance(ins.N, ins.Subsets, ins.Costs)
+	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
 	assert.NilError(t, err)
 	result, err := SolveByBruteForce(solverInstance)
 	assert.NilError(t, err)
@@ -136,11 +136,11 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 
 func TestRandomInstances(t *testing.T) {
 	seed := int64(1) // random seed
-	maxN := 8        // max number of elements
+	maxM := 8        // max number of elements
 
-	for n := 1; n < maxN; n++ {
-		maxM := int(math.Exp2(float64(n))) / 2
-		for m := 1; m <= maxM; m *= 2 {
+	for m := 1; m < maxM; m++ {
+		maxN := int(math.Exp2(float64(m))) / 2
+		for n := 1; n <= maxN; n *= 2 {
 			testBruteFindsEquallyGoodSolution(t, m, n, seed)
 			seed++
 		}
