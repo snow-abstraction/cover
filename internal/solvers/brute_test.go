@@ -92,13 +92,6 @@ func solveWithPythonScript(t *testing.T, ins cover.Instance) map[string]interfac
 }
 
 func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
-	instanceInfo := fmt.Sprintf(
-		"for instance generated using [m: %d, n: %d, random seed: %d]",
-		m,
-		n,
-		seed,
-	)
-	t.Log(instanceInfo)
 	ins := cover.MakeRandomInstance(m, n, seed)
 
 	pythonResult := solveWithPythonScript(t, ins)
@@ -110,14 +103,13 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 
 	// This is tightly coupled to JSON format of tools/solve_sc.py.
 	if result.ExactlyCovered {
-		assert.Equal(t, "optimal", pythonResult["status"].(string), instanceInfo)
+		assert.Equal(t, "optimal", pythonResult["status"].(string))
 		pythonCost := pythonResult["cost"].(float64)
 		costDiff := math.Abs(result.Cost - pythonCost)
 		assert.Assert(
 			t,
 			costDiff < 0.000000000001,
-			"%s, brute found an optimal cost %f but %s found an optimal cost %f ",
-			instanceInfo,
+			"brute found an optimal cost %f but %s found an optimal cost %f ",
 			result.Cost,
 			solveSCPATH,
 			pythonCost,
@@ -127,8 +119,7 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 			t,
 			"infeasible",
 			pythonResult["status"].(string),
-			"%s was found infeasible by brute but not by %s",
-			instanceInfo,
+			"was found infeasible by brute but not by %s",
 			solveSCPATH,
 		)
 	}
@@ -136,18 +127,24 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 }
 
 func TestRandomInstances(t *testing.T) {
-	// The loops and constants are set up so we only test a few instances so
-	// this test run in less than 10s.
-
-	// TODO: run more instances but keep everyday testing fast.
+	// The loops and constants are set up so we only test a few instances.
 	seed := int64(rand.Int63()) // random seed
-	maxM := 5                   // max number of elementt
+	maxM := 5                   // max number of elements
 
 	for m := 1; m < maxM; m *= 2 {
-		maxN := int(math.Exp2(float64(m))) / 2
-		for n := 1; n <= maxN; n *= 2 {
-			testBruteFindsEquallyGoodSolution(t, m, n, seed)
-			seed++
+		maxN := int(3*math.Exp2(float64(m))) / 4
+		for n := 1; n <= maxN; n++ {
+			// Try a two instances for the dimensions m and n.
+			for j := 0; j < 2; j++ {
+				name := fmt.Sprintf("instance %d, %d, %d", m, n, seed)
+				mNew, nNew, seedNew := m, n, seed // new variables for closure
+				t.Run(name, func(t *testing.T) {
+					t.Parallel()
+					testBruteFindsEquallyGoodSolution(t, mNew, nNew, seedNew)
+				})
+
+				seed++
+			}
 		}
 	}
 }
