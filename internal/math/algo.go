@@ -25,7 +25,6 @@ import "log"
 // This is done using a subgradient algorithm
 // on the Lagrangian dual of the integer linear programming formulation of
 // the set covering problem.
-// TODO: pass in transpose instead of re-calculating on every call/
 func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64, error) {
 	var n_cols int
 	for i := 0; i < len(aC); i++ {
@@ -34,6 +33,7 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 		}
 	}
 
+	// TODO: pass in transpose instead of re-calculating on every call:
 	aR, err := aC.Convert() // R for row storage
 	if err != nil {
 		return 0, err

@@ -17,12 +17,45 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package math
 
 import (
+	"math/rand"
 	"testing"
+
+	"github.com/snow-abstraction/cover"
+	"github.com/snow-abstraction/cover/internal/solvers"
+	"gotest.tools/v3/assert"
 )
 
 func Test2(t *testing.T) {
-	subsets := cCSMatrix{0, 1, sen, 1, 2, sen, 0, 1, sen}
-	costs := []float64{1, 2, 3}
+	m := 6
+	n := 30
+	for i := 0; i < 100; i++ {
+		seed := int64(rand.Int63())
+		//seed := int64(944779272699051336)
+		t.Logf("seed %d", seed)
+		ins := cover.MakeRandomInstance(m, n, seed)
+		solverInstance, err := solvers.MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		assert.NilError(t, err)
 
-	CalcScLb(subsets, costs)
+		// subsets := cCSMatrix{0, 1, sen, 1, 2, sen, 0, 1, sen}
+
+		matrixData := make([]uint32, len(solverInstance.Subsets))
+		for _, subset := range solverInstance.Subsets {
+			for _, setIndex := range subset {
+				matrixData = append(matrixData, uint32(setIndex))
+			}
+			matrixData = append(matrixData, sen)
+
+		}
+		matrix, err := makeCompressedColumnMatrix(matrixData)
+		assert.NilError(t, err)
+		result, err := solvers.SolveByBruteForce(solverInstance)
+		assert.NilError(t, err)
+
+		lb, err := CalcScLb(matrix, solverInstance.Costs)
+		assert.NilError(t, err)
+		t.Logf("%f %f", lb, result.Cost)
+		assert.Check(t, lb <= result.Cost)
+		// t.Fatalf("%f %f", lb, result.Cost)
+		// assert.NilError(t, err)
+	}
 }

@@ -32,21 +32,21 @@ import (
 // It returns a subsetsEval with representing the cover found with ExactlyCovered == true found
 // for 1. and ExactlyCovered == false for 2. and 3.
 func makeSolutionFromSubsets(ins instance, subsetIndices []int, best subsetsEval) subsetsEval {
-	coverCounts := make([]int, ins.m)
+	coverCounts := make([]int, ins.M)
 
 	var s subsetsEval
 
-	if ins.m == 0 {
+	if ins.M == 0 {
 		s.ExactlyCovered = true
 		return s
 	}
 
 	for _, subsetIdx := range subsetIndices {
-		for _, elementIdx := range ins.subsets[subsetIdx] {
+		for _, elementIdx := range ins.Subsets[subsetIdx] {
 			coverCounts[elementIdx] += 1
 		}
 
-		s.Cost += ins.costs[subsetIdx]
+		s.Cost += ins.Costs[subsetIdx]
 		// TODO: the use case is find a solution (aka a cover) that is cheaper than
 		// a known solution so we could abort the search if s.cost greater than the cost
 		// of a known cover.
@@ -83,18 +83,18 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int, best subsetsEval
 // the zero value of subsetEval will be returned.
 func SolveByBruteForce(ins instance) (subsetsEval, error) {
 
-	nSubsetsToTry := ins.m
+	nSubsetsToTry := ins.M
 	// At most len(ins.subsets) are needed because each subset has to cover
 	// at least one unique elemnt not covered by the other subsets in an
 	// exact cover.
-	if len(ins.subsets) < ins.m {
-		nSubsetsToTry = len(ins.subsets)
+	if len(ins.Subsets) < ins.M {
+		nSubsetsToTry = len(ins.Subsets)
 	}
 
 	bestSubsetsEval := makeSolutionFromSubsets(ins, nil, subsetsEval{})
 
 	for i := 1; i <= nSubsetsToTry; i++ {
-		combinations := combin.NewCombinationGenerator(len(ins.subsets), i)
+		combinations := combin.NewCombinationGenerator(len(ins.Subsets), i)
 		for combinations.Next() {
 			perm := combinations.Combination(nil)
 			subsetEval := makeSolutionFromSubsets(ins, perm, bestSubsetsEval)

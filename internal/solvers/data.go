@@ -24,17 +24,17 @@ import (
 
 type instance struct {
 	// The number of elements in the set X to be covered, indexed
-	// 0 ... m-1.
-	m int
-	// subsets of X. The inner slices must only contain element indices in
+	// 0 ... M-1.
+	M int
+	// Subsets of X. The inner slices must only contain element indices in
 	// [0, n-1]. The indices must be sorted and each subset must be include
-	// at most once. Empty subsets are not allowed.
-	subsets [][]int
+	// at most once. Empty Subsets are not allowed.
+	Subsets [][]int
 	// The cost of each subset. Each cost must be strictly positive.
-	// The length of subsets and costs must be equal.
-	// The restrictions on the costs reasonable for many problems and
+	// The length of subsets and Costs must be equal.
+	// The restrictions on the Costs reasonable for many problems and
 	// suit certain algorithms.
-	costs []float64
+	Costs []float64
 }
 
 // Make an Instance and check the constraints that an Instance should satisfy.
@@ -102,7 +102,7 @@ func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
 		}
 	}
 
-	return instance{m: m, subsets: subsets, costs: costs}, nil
+	return instance{M: m, Subsets: subsets, Costs: costs}, nil
 }
 
 // Subsets with an evaluation of them w.r.t. some instance.
