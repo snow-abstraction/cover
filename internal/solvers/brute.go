@@ -23,56 +23,56 @@ import (
 	"gonum.org/v1/gonum/stat/combin"
 )
 
-// makeSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
+// updateBestSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
 // one by one (in order listed in subsetIndicies) until one of the three conditions are met:
 // 1. feasible (solution found),
 // 2. infeasible (overcovered or undercovered with no subsets left) or
 // 3. cost is greater or equal to that in the supplied in `best` if `best.ExactlyCovered`.
 //
-// It returns a subsetsEval with representing the cover found with ExactlyCovered == true found
-// for 1. and ExactlyCovered == false for 2. and 3.
-func makeSolutionFromSubsets(ins instance, subsetIndices []int, best subsetsEval) subsetsEval {
-	coverCounts := make([]int, ins.m)
+// If the solution found is cheaper than `best.Cost` then `best` is updated.
+func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsEvalScratch subsetsEval, coverCountsScratch []int, best *subsetsEval) {
 
-	var s subsetsEval
-
-	if ins.m == 0 {
-		s.ExactlyCovered = true
-		return s
+	// reset scratch
+	subsetsEvalScratch.Cost = 0
+	subsetsEvalScratch.ExactlyCovered = false
+	subsetsEvalScratch.SubsetsIndices = subsetsEvalScratch.SubsetsIndices[:0]
+	for i := 0; i < len(coverCountsScratch); i++ {
+		coverCountsScratch[i] = 0
 	}
 
 	for _, subsetIdx := range subsetIndices {
 		for _, elementIdx := range ins.subsets[subsetIdx] {
-			coverCounts[elementIdx] += 1
+			(coverCountsScratch)[elementIdx] += 1
 		}
 
-		s.Cost += ins.costs[subsetIdx]
-		// TODO: the use case is find a solution (aka a cover) that is cheaper than
-		// a known solution so we could abort the search if s.cost greater than the cost
-		// of a known cover.
-		s.SubsetsIndices = append(s.SubsetsIndices, subsetIdx)
+		subsetsEvalScratch.Cost += ins.costs[subsetIdx]
+		if best.ExactlyCovered && subsetsEvalScratch.Cost >= best.Cost {
+			return
+		}
+
+		subsetsEvalScratch.SubsetsIndices = append(subsetsEvalScratch.SubsetsIndices, subsetIdx)
 
 		allConstraintsCoveredExactly := true
-		for _, coverCount := range coverCounts {
+		for _, coverCount := range coverCountsScratch {
 			isOverCovered := coverCount > 1
 			if isOverCovered {
-				return s
+				return
 			} else if coverCount == 0 {
 				allConstraintsCoveredExactly = false
 			}
 		}
 
 		if allConstraintsCoveredExactly {
-			s.ExactlyCovered = true
-			return s
-		}
-
-		if best.ExactlyCovered && best.Cost <= s.Cost {
-			return s
+			if !best.ExactlyCovered || subsetsEvalScratch.Cost < best.Cost {
+				best.Cost = subsetsEvalScratch.Cost
+				best.ExactlyCovered = true
+				best.SubsetsIndices = best.SubsetsIndices[:len(subsetsEvalScratch.SubsetsIndices)]
+				copy(best.SubsetsIndices, subsetsEvalScratch.SubsetsIndices)
+				// cannot improve an exact cover by adding subsets
+				return
+			}
 		}
 	}
-
-	return s
 }
 
 // SolveByBruteForce attempts finds a minimum cost exact cover for
@@ -82,6 +82,11 @@ func makeSolutionFromSubsets(ins instance, subsetIndices []int, best subsetsEval
 // indices to this cover and its exactlyCovered flag will be true. Otherwise,
 // the zero value of subsetEval will be returned.
 func SolveByBruteForce(ins instance) (subsetsEval, error) {
+	if ins.m == 0 {
+		return subsetsEval{
+			ExactlyCovered: true,
+		}, nil
+	}
 
 	nSubsetsToTry := ins.m
 	// At most len(ins.subsets) are needed because each subset has to cover
@@ -91,19 +96,18 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 		nSubsetsToTry = len(ins.subsets)
 	}
 
-	bestSubsetsEval := makeSolutionFromSubsets(ins, nil, subsetsEval{})
+	var subsetsEvalScratch subsetsEval
+	subsetsEvalScratch.SubsetsIndices = make([]int, 0, nSubsetsToTry)
 
+	coverCountsScratch := make([]int, ins.m)
+
+	var bestSubsetsEval subsetsEval
+	bestSubsetsEval.SubsetsIndices = make([]int, 0, nSubsetsToTry)
 	for i := 1; i <= nSubsetsToTry; i++ {
 		combinations := combin.NewCombinationGenerator(len(ins.subsets), i)
 		for combinations.Next() {
 			perm := combinations.Combination(nil)
-			subsetEval := makeSolutionFromSubsets(ins, perm, bestSubsetsEval)
-			if !subsetEval.ExactlyCovered {
-				continue
-			} else if !bestSubsetsEval.ExactlyCovered || subsetEval.Cost < bestSubsetsEval.Cost {
-				bestSubsetsEval = subsetEval
-			}
-
+			updateBestSolutionFromSubsets(ins, perm, subsetsEvalScratch, coverCountsScratch, &bestSubsetsEval)
 		}
 	}
 
