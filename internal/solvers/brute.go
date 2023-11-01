@@ -103,10 +103,12 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 
 	var bestSubsetsEval subsetsEval
 	bestSubsetsEval.SubsetsIndices = make([]int, 0, nSubsetsToTry)
+	perm := make([]int, 0, len(ins.subsets))
 	for i := 1; i <= nSubsetsToTry; i++ {
 		combinations := combin.NewCombinationGenerator(len(ins.subsets), i)
+		perm = perm[:i]
 		for combinations.Next() {
-			perm := combinations.Combination(nil)
+			combinations.Combination(perm)
 			updateBestSolutionFromSubsets(ins, perm, subsetsEvalScratch, coverCountsScratch, &bestSubsetsEval)
 		}
 	}
