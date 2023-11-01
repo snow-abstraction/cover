@@ -148,3 +148,22 @@ func TestRandomInstances(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkRandomInstances(t *testing.B) {
+	// The loops and constants are set up so we only test a few instances.
+	seed := int64(rand.Int63()) // random seed
+
+	m := 5
+	maxN := int(3*math.Exp2(float64(m))) / 4
+	for n := 1; n <= maxN; n++ {
+		// Try a few instances for the dimensions m and n.
+		for j := 0; j < 3; j++ {
+			ins := cover.MakeRandomInstance(m, n, seed)
+			solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+			assert.NilError(t, err)
+			_, err = SolveByBruteForce(solverInstance)
+			assert.NilError(t, err)
+			seed++
+		}
+	}
+}
