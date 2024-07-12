@@ -1,11 +1,28 @@
 # cover
 
-Using the "Set Cover Problem" as a context to play with Go.
+Using the SCP "Set Cover Problem" as a context to play with Go.
 
 The initial plan is to mix some algorithms to build a solver for
 weighted covering problems with strictly positive costs. I haven't
 decided if the focus will be on general covers or exact covers (also known
 as the "set partitioning problem").
+
+# Dev Note
+
+While this is a Go project, the tests rely a Python program. This program
+independently solves SCP instances so we can verify that equally good
+solutions are found by our code. For my Ubuntu system, here is a simple way
+to get started:
+
+```
+cd tools
+sudo apt install libffi-dev # install requirement needed by next line
+pip install -i requirements.txt
+cd ..
+go test ./...
+```
+
+(A less hacky setup would be use a container or Python virtual environment.)
 
 # Project Note
 
