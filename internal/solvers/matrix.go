@@ -20,7 +20,7 @@
 // memory access patterns, etc. However if matrices are banded or mostly
 // banded, this code should decently performant.
 
-package math
+package solvers
 
 import (
 	"errors"
