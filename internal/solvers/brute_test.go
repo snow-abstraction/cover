@@ -21,17 +21,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
-	"math/rand"
 	"os"
-	"os/exec"
-	"strings"
+	"path/filepath"
 	"testing"
 
 	"github.com/snow-abstraction/cover"
 	"gotest.tools/v3/assert"
 )
-
-const solveSCPATH = "../../tools/solve_sc.py"
 
 // Test when all possible sets of subsets result in either some elements not
 // being covered or some elements being overcovered.
@@ -62,42 +58,22 @@ func TestCheaperSolutionFound(t *testing.T) {
 	assert.DeepEqual(t, result, theMinimum)
 }
 
-func solveWithPythonScript(t *testing.T, ins cover.Instance) map[string]interface{} {
-	// Save instance to a temporary file
-	f, err := os.CreateTemp("", "test_instance")
+func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpecification) {
+
+	pythonResultBytes, err := os.ReadFile(filepath.Join("../..", spec.PythonSolutionPath))
 	assert.NilError(t, err)
-	defer os.Remove(f.Name())
-	b, err := json.MarshalIndent(ins, "", "  ")
-	assert.NilError(t, err)
-	err = os.WriteFile(f.Name(), b, 0600)
+	var pythonResult map[string]interface{}
+	err = json.Unmarshal(pythonResultBytes, &pythonResult)
 	assert.NilError(t, err)
 
-	// Solve instance using the python script
-	cmd := exec.Command("python", solveSCPATH, f.Name())
-	stdout, err := cmd.Output()
+	instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
 	assert.NilError(t, err)
-
-	// Extract the result from stdout
-	s := string(stdout)
-	const resultDelimiter = "solve_sc_result:"
-	assert.Assert(t, strings.Contains(s, resultDelimiter))
-	splitOutput := strings.Split(s, resultDelimiter)
-	resultStr := splitOutput[len(splitOutput)-1]
-	var result map[string]interface{}
-	err = json.Unmarshal([]byte(resultStr), &result)
+	var ins cover.Instance
+	err = json.Unmarshal(instanceBytes, &ins)
 	assert.NilError(t, err)
-
-	return result
-
-}
-
-func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
-	ins := cover.MakeRandomInstance(m, n, seed)
-
-	pythonResult := solveWithPythonScript(t, ins)
-
 	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
 	assert.NilError(t, err)
+
 	result, err := SolveByBruteForce(solverInstance)
 	assert.NilError(t, err)
 
@@ -109,9 +85,8 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 		assert.Assert(
 			t,
 			costDiff < 0.000000000001,
-			"brute found an optimal cost %f but %s found an optimal cost %f ",
+			"brute found an optimal cost %f but the Python script found an optimal cost %f ",
 			result.Cost,
-			solveSCPATH,
 			pythonCost,
 		)
 	} else {
@@ -119,51 +94,48 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, m int, n int, seed int64) {
 			t,
 			"infeasible",
 			pythonResult["status"].(string),
-			"was found infeasible by brute but not by %s",
-			solveSCPATH,
+			"was found infeasible by brute but not by the Python script",
 		)
 	}
 
 }
 
-func TestRandomInstances(t *testing.T) {
-	// The loops and constants are set up so we only test a few instances.
-	seed := int64(rand.Int63()) // random seed
-	numberOfElements := []int{1, 2, 3, 4}
+func TestInstances(t *testing.T) {
+	var result []cover.TestInstanceSpecification
+	b, err := os.ReadFile("../../testdata/instance_specifications.json")
+	assert.NilError(t, err)
+	err = json.Unmarshal(b, &result)
+	assert.NilError(t, err)
 
-	for _, m := range numberOfElements {
-		maxN := int(3*math.Exp2(float64(m))) / 4
-		for n := 1; n <= maxN; n++ {
-			// Try a two instances for the dimensions m and n.
-			for j := 0; j < 2; j++ {
-				name := fmt.Sprintf("instance %d, %d, %d", m, n, seed)
-				mNew, nNew, seedNew := m, n, seed // new variables for closure
-				t.Run(name, func(t *testing.T) {
-					t.Parallel()
-					testBruteFindsEquallyGoodSolution(t, mNew, nNew, seedNew)
-				})
+	for _, spec := range result {
+		spec := spec
+		name := fmt.Sprintf("instance %+v", spec)
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+			testBruteFindsEquallyGoodSolution(t, spec)
+		})
 
-				seed++
-			}
-		}
 	}
 }
 
 func BenchmarkRandomInstances(t *testing.B) {
-	// The loops and constants are set up so we only test a few instances.
-	seed := int64(rand.Int63()) // random seed
+	var result []cover.TestInstanceSpecification
+	b, err := os.ReadFile("../../testdata/instance_specifications.json")
+	assert.NilError(t, err)
+	err = json.Unmarshal(b, &result)
+	assert.NilError(t, err)
 
-	m := 5
-	maxN := int(3*math.Exp2(float64(m))) / 4
-	for n := 1; n <= maxN; n++ {
-		// Try a few instances for the dimensions m and n.
-		for j := 0; j < 3; j++ {
-			ins := cover.MakeRandomInstance(m, n, seed)
-			solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
-			assert.NilError(t, err)
-			_, err = SolveByBruteForce(solverInstance)
-			assert.NilError(t, err)
-			seed++
-		}
+	for _, spec := range result {
+		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
+		assert.NilError(t, err)
+		var ins cover.Instance
+		err = json.Unmarshal(instanceBytes, &ins)
+		assert.NilError(t, err)
+		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		assert.NilError(t, err)
+
+		_, err = SolveByBruteForce(solverInstance)
+		assert.NilError(t, err)
 	}
+
 }
