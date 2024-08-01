@@ -90,3 +90,12 @@ func MakeRandomInstance(m int, n int, seed int64) Instance {
 
 	return ins
 }
+
+// For specifying data related to test instances
+type TestInstanceSpecification struct {
+	NumElements        int
+	NumSubSets         int
+	Seed               int64 // random seed used to generate instance
+	InstancePath       string
+	PythonSolutionPath string
+}
