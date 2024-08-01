@@ -9,17 +9,17 @@ as the "set partitioning problem").
 
 # Dev Note
 
-While this is a Go project, the tests rely a Python program. This program
-independently solves SCP instances so we can verify that equally good
-solutions are found by our code. For my Ubuntu system, here is a simple way
-to get started:
+While this is a Go project, a Python program is used to generate test data.
+This program independently solves SCP instances so we can verify that equally
+good solutions are found by our code. For my Ubuntu system, here is a simple
+way to get started:
 
 ```
 cd tools
 sudo apt install libffi-dev # install requirement needed by next line
 pip install -i requirements.txt
 cd ..
-go test ./...
+go run cmd/generate_test_instances_and_solutions/main.go -verbose
 ```
 
 (A less hacky setup would be use a container or Python virtual environment.)
