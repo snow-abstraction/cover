@@ -17,12 +17,58 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package solvers
 
 import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
 	"testing"
+
+	"github.com/snow-abstraction/cover"
+	"gotest.tools/v3/assert"
 )
 
-func Test2(t *testing.T) {
-	subsets := cCSMatrix{0, 1, sen, 1, 2, sen, 0, 1, sen}
-	costs := []float64{1, 2, 3}
+func TestLowerBoundCalcOnInstances(t *testing.T) {
+	instanceSpecifications := loadInstanceSpecifications(t)
 
-	CalcScLb(subsets, costs)
+	for _, spec := range instanceSpecifications {
+		spec := spec
+		name := fmt.Sprintf("instance %+v", spec)
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+			testLowerBound(t, spec)
+		})
+
+	}
+}
+
+func testLowerBound(t *testing.T, spec cover.TestInstanceSpecification) {
+	pythonResultBytes, err := os.ReadFile(filepath.Join("../..", spec.PythonSolutionPath))
+	assert.NilError(t, err)
+	var pythonResult map[string]interface{}
+	err = json.Unmarshal(pythonResultBytes, &pythonResult)
+	assert.NilError(t, err)
+
+	// Only check lower bound for feasible instances
+	if pythonResult["status"].(string) == "infeasible" {
+		return
+	}
+	assert.Equal(t, "optimal", pythonResult["status"].(string))
+
+	instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
+	assert.NilError(t, err)
+	var ins cover.Instance
+	err = json.Unmarshal(instanceBytes, &ins)
+	assert.NilError(t, err)
+
+	m, err := convertSubsetsToMatrix(ins.Subsets)
+	assert.NilError(t, err)
+
+	lowerBound, err := CalcScLb(m, ins.Costs)
+	assert.NilError(t, err)
+
+	pythonCost := pythonResult["cost"].(float64)
+
+	// Due to floating point, use lowerBound-pythonCost <= 1e-10 to check lowerBound <= pythonCost
+	// This is a hack and more sophisticated check might be needed later.
+	assert.Assert(t, lowerBound-pythonCost <= 1e-10, "%f <= %f is false", lowerBound, pythonCost)
 }
