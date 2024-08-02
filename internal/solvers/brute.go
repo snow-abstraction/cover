@@ -30,27 +30,28 @@ import (
 // 3. cost is greater or equal to that in the supplied in `best` if `best.ExactlyCovered`.
 //
 // If the solution found is cheaper than `best.Cost` then `best` is updated.
-func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsEvalScratch subsetsEval, coverCountsScratch []int, best *subsetsEval) {
+//
+// Note: *Scratch arguments are used for performance by avoiding garbage collector work.
+func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsScratch []int, coverCountsScratch []int, best *subsetsEval) {
 
 	// reset scratch
-	subsetsEvalScratch.Cost = 0
-	subsetsEvalScratch.ExactlyCovered = false
-	subsetsEvalScratch.SubsetsIndices = subsetsEvalScratch.SubsetsIndices[:0]
+	subsetsScratch = subsetsScratch[:0]
 	for i := 0; i < len(coverCountsScratch); i++ {
 		coverCountsScratch[i] = 0
 	}
 
+	cost := 0.0
 	for _, subsetIdx := range subsetIndices {
 		for _, elementIdx := range ins.subsets[subsetIdx] {
 			(coverCountsScratch)[elementIdx] += 1
 		}
 
-		subsetsEvalScratch.Cost += ins.costs[subsetIdx]
-		if best.ExactlyCovered && subsetsEvalScratch.Cost >= best.Cost {
+		cost += ins.costs[subsetIdx]
+		if best.ExactlyCovered && cost >= best.Cost {
 			return
 		}
 
-		subsetsEvalScratch.SubsetsIndices = append(subsetsEvalScratch.SubsetsIndices, subsetIdx)
+		subsetsScratch = append(subsetsScratch, subsetIdx)
 
 		allConstraintsCoveredExactly := true
 		for _, coverCount := range coverCountsScratch {
@@ -63,11 +64,11 @@ func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsEva
 		}
 
 		if allConstraintsCoveredExactly {
-			if !best.ExactlyCovered || subsetsEvalScratch.Cost < best.Cost {
-				best.Cost = subsetsEvalScratch.Cost
+			if !best.ExactlyCovered || cost < best.Cost {
+				best.Cost = cost
 				best.ExactlyCovered = true
-				best.SubsetsIndices = best.SubsetsIndices[:len(subsetsEvalScratch.SubsetsIndices)]
-				copy(best.SubsetsIndices, subsetsEvalScratch.SubsetsIndices)
+				best.SubsetsIndices = best.SubsetsIndices[:len(subsetsScratch)]
+				copy(best.SubsetsIndices, subsetsScratch)
 				// cannot improve an exact cover by adding subsets
 				return
 			}
@@ -96,9 +97,7 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 		nSubsetsToTry = len(ins.subsets)
 	}
 
-	var subsetsEvalScratch subsetsEval
-	subsetsEvalScratch.SubsetsIndices = make([]int, 0, nSubsetsToTry)
-
+	subsetsScratch := make([]int, 0, nSubsetsToTry)
 	coverCountsScratch := make([]int, ins.m)
 
 	var bestSubsetsEval subsetsEval
@@ -109,7 +108,7 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 		comb = comb[:i]
 		for combinations.Next() {
 			combinations.Combination(comb)
-			updateBestSolutionFromSubsets(ins, comb, subsetsEvalScratch, coverCountsScratch, &bestSubsetsEval)
+			updateBestSolutionFromSubsets(ins, comb, subsetsScratch, coverCountsScratch, &bestSubsetsEval)
 		}
 	}
 
