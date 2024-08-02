@@ -51,6 +51,7 @@ func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
 
 	}
 
+	// TODO: check for duplicate subsets. They shouldn't be allowed.
 	for i, subset := range subsets {
 		if len(subset) == 0 {
 			return instance{}, fmt.Errorf(
