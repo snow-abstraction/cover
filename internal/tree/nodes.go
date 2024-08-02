@@ -24,40 +24,41 @@ import (
 type NodeKind byte
 
 const (
-	root NodeKind = 0
+	Root NodeKind = 0
 	// In the "both" branch subproblem the two branching
 	// constraints should be covered by the same variable
-	bothBranch = 1
+	BothBranch = 1
 	// In the "diff" branch subproblem the two branching
-	// constrains should be covered by different variables
-	diffBranch = 2
+	// constraints should be covered by different variables
+	DiffBranch = 2
 )
 
-// constraint branch-and-bound node
-// The subproblem the node represents can be calculated by applying
+// constraint branch-and-bound Node
+// The subproblem the Node represents can be calculated by applying
 // the branch type of it and its ancestors.
-type node struct {
-	kind       NodeKind
-	parent     *node // nil if root node
+type Node struct {
+	Kind       NodeKind
+	Parent     *Node // nil if root node
 	lowerBound float64
+	// Elements constrained, depending on NodeKind
 	// The following have no meaning for the root node
-	branchConstraintOne uint32
-	branchConstraintTwo uint32
+	I uint32
+	J uint32
 }
 
-func createRoot() *node {
-	return &node{root, nil, math.MaxFloat64, math.MaxUint32, math.MaxUint32}
+func CreateRoot() *Node {
+	return &Node{Root, nil, math.MaxFloat64, math.MaxUint32, math.MaxUint32}
 }
 
-func CreateInitialNodes() []*node {
-	return []*node{createRoot()}
+func CreateInitialNodes() []*Node {
+	return []*Node{CreateRoot()}
 }
 
 // Branches the parent on the two constrains to create two new Nodes
-func (parent *node) Branch(lowerBound float64, branchConstraintOne uint32,
-	branchConstraintTwo uint32) (*node, *node) {
+func (parent *Node) Branch(lowerBound float64, branchConstraintOne uint32,
+	branchConstraintTwo uint32) (*Node, *Node) {
 
-	return &node{bothBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo},
-		&node{diffBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo}
+	return &Node{BothBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo},
+		&Node{DiffBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo}
 
 }

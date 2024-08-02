@@ -24,7 +24,7 @@ import (
 
 // For printing the implicit tree struct of Nodes
 type printNode struct {
-	referenceNode   *node
+	referenceNode   *Node
 	bothBranchChild *printNode
 	diffBranchChild *printNode
 }
@@ -32,9 +32,9 @@ type printNode struct {
 // For the start node and its ancestors, create corresponding PrintNodes if
 // they are not already in printNodeByNode. And set the links for the PrintNodes
 // from the parent to its children.
-func add(printNodeByNode map[*node]*printNode, start *node) (*printNode, error) {
+func add(printNodeByNode map[*Node]*printNode, start *Node) (*printNode, error) {
 	curr := start // curr = current
-	var prev *node
+	var prev *Node
 
 	var prevPNode *printNode
 	var currPNode *printNode
@@ -51,17 +51,17 @@ func add(printNodeByNode map[*node]*printNode, start *node) (*printNode, error) 
 		}
 
 		if prev != nil {
-			switch prev.kind {
-			case root:
+			switch prev.Kind {
+			case Root:
 				return nil, fmt.Errorf("node of kind root has a non-nil parent %+v", *curr)
-			case bothBranch:
+			case BothBranch:
 				if currPNode.bothBranchChild == nil {
 					currPNode.bothBranchChild = prevPNode
 				} else if currPNode.bothBranchChild != prevPNode {
 					return nil, fmt.Errorf(
 						"bothBranchChild set before to a different node for node %+v", *curr)
 				}
-			case diffBranch:
+			case DiffBranch:
 				if currPNode.diffBranchChild == nil {
 					currPNode.diffBranchChild = prevPNode
 				} else if currPNode.diffBranchChild != prevPNode {
@@ -76,7 +76,7 @@ func add(printNodeByNode map[*node]*printNode, start *node) (*printNode, error) 
 
 		prev = curr
 		prevPNode = currPNode
-		curr = curr.parent
+		curr = curr.Parent
 
 	}
 
@@ -100,13 +100,13 @@ func printImpl(depth int, node *printNode) {
 
 // For the nodes, find all ancestors and print the tree of nodes
 // All the supplied nodes, must have the same root.
-func PrintTree(nodes []*node) error {
+func PrintTree(nodes []*Node) error {
 	if len(nodes) == 0 {
 		return nil
 	}
 
 	var root *printNode
-	m := make(map[*node]*printNode)
+	m := make(map[*Node]*printNode)
 	for _, node := range nodes {
 		r, err := add(m, node)
 		if err != nil {
