@@ -101,13 +101,9 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpec
 }
 
 func TestInstances(t *testing.T) {
-	var result []cover.TestInstanceSpecification
-	b, err := os.ReadFile("../../testdata/instance_specifications.json")
-	assert.NilError(t, err)
-	err = json.Unmarshal(b, &result)
-	assert.NilError(t, err)
+	instanceSpecifications := loadInstanceSpecifications(t)
 
-	for _, spec := range result {
+	for _, spec := range instanceSpecifications {
 		spec := spec
 		name := fmt.Sprintf("instance %+v", spec)
 		t.Run(name, func(t *testing.T) {
@@ -119,14 +115,10 @@ func TestInstances(t *testing.T) {
 }
 
 func BenchmarkRandomInstances(b *testing.B) {
-	var result []cover.TestInstanceSpecification
-	specificationsBytes, err := os.ReadFile("../../testdata/instance_specifications.json")
-	assert.NilError(b, err)
-	err = json.Unmarshal(specificationsBytes, &result)
-	assert.NilError(b, err)
+	instanceSpecifications := loadInstanceSpecifications(b)
 
-	instances := make([]instance, 0, len(result))
-	for _, spec := range result {
+	instances := make([]instance, 0, len(instanceSpecifications))
+	for _, spec := range instanceSpecifications {
 		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
 		assert.NilError(b, err)
 		var ins cover.Instance
@@ -140,7 +132,7 @@ func BenchmarkRandomInstances(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(instances); j++ {
-			_, err = SolveByBruteForce(instances[j])
+			_, err := SolveByBruteForce(instances[j])
 			assert.NilError(b, err)
 		}
 	}
