@@ -47,7 +47,7 @@ func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
 			return instance{}, errors.New(
 				"when the set is empty (n=0), then both subsets and costs must be empty")
 		}
-		return instance{}, nil
+		return instance{m: 0, subsets: [][]int{}, costs: []float64{}}, nil
 
 	}
 
