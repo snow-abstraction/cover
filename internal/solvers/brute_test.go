@@ -118,24 +118,31 @@ func TestInstances(t *testing.T) {
 	}
 }
 
-func BenchmarkRandomInstances(t *testing.B) {
+func BenchmarkRandomInstances(b *testing.B) {
 	var result []cover.TestInstanceSpecification
-	b, err := os.ReadFile("../../testdata/instance_specifications.json")
-	assert.NilError(t, err)
-	err = json.Unmarshal(b, &result)
-	assert.NilError(t, err)
+	specificationsBytes, err := os.ReadFile("../../testdata/instance_specifications.json")
+	assert.NilError(b, err)
+	err = json.Unmarshal(specificationsBytes, &result)
+	assert.NilError(b, err)
 
+	instances := make([]instance, 0, len(result))
 	for _, spec := range result {
 		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-		assert.NilError(t, err)
+		assert.NilError(b, err)
 		var ins cover.Instance
 		err = json.Unmarshal(instanceBytes, &ins)
-		assert.NilError(t, err)
+		assert.NilError(b, err)
 		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
-		assert.NilError(t, err)
+		instances = append(instances, solverInstance)
+		assert.NilError(b, err)
+	}
 
-		_, err = SolveByBruteForce(solverInstance)
-		assert.NilError(t, err)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < len(instances); j++ {
+			_, err = SolveByBruteForce(instances[j])
+			assert.NilError(b, err)
+		}
 	}
 
 }
