@@ -24,7 +24,7 @@ import (
 )
 
 // updateBestSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
-// one by one (in order listed in subsetIndicies) until one of the three conditions are met:
+// one by one (in order listed in subsetIndices) until one of the three conditions are met:
 // 1. feasible (solution found),
 // 2. infeasible (overcovered or undercovered with no subsets left) or
 // 3. cost is greater or equal to that in the supplied in `best` if `best.ExactlyCovered`.
@@ -91,7 +91,7 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 
 	nSubsetsToTry := ins.m
 	// At most len(ins.subsets) are needed because each subset has to cover
-	// at least one unique elemnt not covered by the other subsets in an
+	// at least one unique element not covered by the other subsets in an
 	// exact cover.
 	if len(ins.subsets) < ins.m {
 		nSubsetsToTry = len(ins.subsets)
