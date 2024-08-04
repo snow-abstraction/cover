@@ -66,28 +66,16 @@ func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
 			}
 		}
 
-		usedElements := make(map[int]bool)
-		for _, element := range subset {
-			usedElements[element] = true
-		}
-		if len(subset) > len(usedElements) {
-			return instance{}, fmt.Errorf(
-				"the subset %v with index %d is invalid since it contains duplicate elements",
-				subset, i)
-
-		}
-
 		prevElement := subset[0]
 		for _, element := range subset[1:] {
-			if prevElement > element {
+			if prevElement >= element {
 				return instance{}, fmt.Errorf(
-					"the subset %v with index %d is invalid since it is not sorted",
+					"the subset %v with index %d is invalid since it is not sorted or contains duplicate elements",
 					subset, i)
 
 			}
 			prevElement = element
 		}
-
 	}
 
 	if len(subsets) != len(costs) {
