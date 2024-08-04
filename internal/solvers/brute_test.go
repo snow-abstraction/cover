@@ -50,11 +50,11 @@ func TestEmptyInstance(t *testing.T) {
 }
 
 func TestCheaperSolutionFound(t *testing.T) {
-	ins, err := MakeInstance(2, [][]int{{0, 1}, {0}, {1}, {0}}, []float64{17, 7, 5, 3})
+	ins, err := MakeInstance(3, [][]int{{0, 1, 2}, {0}, {1}, {1, 2}, {0, 2}}, []float64{17, 5, 4, 3, 3})
 	assert.NilError(t, err)
 	result, err := SolveByBruteForce(ins)
 	assert.NilError(t, err)
-	theMinimum := subsetsEval{SubsetsIndices: []int{2, 3}, ExactlyCovered: true, Cost: 5 + 3}
+	theMinimum := subsetsEval{SubsetsIndices: []int{2, 4}, ExactlyCovered: true, Cost: 7}
 	assert.DeepEqual(t, result, theMinimum)
 }
 
