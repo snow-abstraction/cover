@@ -18,20 +18,52 @@
 package solvers
 
 import (
+	"slices"
 	"testing"
 
-	"github.com/snow-abstraction/cover"
+	"gonum.org/v1/gonum/stat/combin"
 	"gotest.tools/v3/assert"
 )
 
-func BenchmarkMakeInstance(b *testing.B) {
-	seed := int64(1)
-	ins := cover.MakeRandomInstance(3000, 20000, seed)
+func TestMakeInstanceWithDuplicateSubsets(t *testing.T) {
+	_, err := MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}, {1, 2}}, []float64{1.0, 1.0, 1.0, 1.0})
+	assert.Assert(t, err != nil)
+}
+
+func TestMakeInstanceSubsetsNotReOrdered(t *testing.T) {
+	subsets := [][]int{{0, 1}, {1, 2}, {0, 2}}
+	ins, err := MakeInstance(3, subsets, []float64{1.0, 1.0, 1.0})
+	assert.NilError(t, err)
+	assert.DeepEqual(t, ins.subsets, [][]int{{0, 1}, {1, 2}, {0, 2}})
+	slices.SortFunc(subsets, slices.Compare)
+	assert.DeepEqual(t, subsets, [][]int{{0, 1}, {0, 2}, {1, 2}})
+}
+
+func BenchmarkCheckSubsetsForDuplicates(b *testing.B) {
+	// The combinations of the first 23 elements are use to get unique subsets.
+	upperBoundElement := 23
+	subsets := combin.Combinations(upperBoundElement, 10)
+	assert.Assert(b, len(subsets) == 1144066) // expected number of combinations
+
+	// Use moreElements to add 100 identical elements to each subset for more
+	// memory traffic. The subsets remain unique from the initial elements from
+	// the combinations.
+	//
+	// Because the sorting used by checkSubsetsForDuplicates presumably
+	// starts comparing subsets at the beginning these subsets are faster to check than
+	// if they had started with identical elements and ended with unique elements.
+	moreElements := make([]int, 100) // 100 because I don't have much free RAM
+	for i := 0; i < len(moreElements); i++ {
+		moreElements[i] = i + upperBoundElement
+	}
+
+	for i := 0; i < len(subsets); i++ {
+		subsets[i] = append(subsets[i], moreElements...)
+	}
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-
-		_, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		err := checkSubsetsForDuplicates(subsets)
 		assert.NilError(b, err)
 	}
 }
