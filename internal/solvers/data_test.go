@@ -18,6 +18,7 @@
 package solvers
 
 import (
+	"math/rand"
 	"slices"
 	"testing"
 
@@ -63,6 +64,10 @@ func BenchmarkCheckSubsetsForDuplicates(b *testing.B) {
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
+		b.StopTimer()
+		// Shuffle to make sure the order of the subsets is not biased.
+		rand.Shuffle(len(subsets), func(i, j int) { subsets[i], subsets[j] = subsets[j], subsets[i] })
+		b.StartTimer()
 		err := checkSubsetsForDuplicates(subsets)
 		assert.NilError(b, err)
 	}
