@@ -85,3 +85,11 @@ func createSubproblem(ins instance, node *tree.Node) *instance {
 	return &instance{m: ins.m, subsets: subsets, costs: costs}
 
 }
+
+func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
+	if ins.m == 0 {
+		return subsetsEval{
+			ExactlyCovered: true,
+		}, nil
+	}
+}
