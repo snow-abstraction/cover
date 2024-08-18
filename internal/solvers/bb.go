@@ -83,5 +83,4 @@ func createSubproblem(ins instance, node *tree.Node) *instance {
 	}
 
 	return &instance{m: ins.m, subsets: subsets, costs: costs}
-
 }
