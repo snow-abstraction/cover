@@ -106,6 +106,9 @@ type subsetsEval struct {
 	ExactlyCovered bool
 	// The sum of the subsets' costs.
 	Cost float64
+	// If the SubsetsIndices constitute a proven optimum. This can only be true if
+	// ExactlyCovered is true.
+	Optimal bool
 }
 
 func checkSubsetsForDuplicates(subsets [][]int) error {

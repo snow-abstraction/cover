@@ -86,6 +86,7 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 	if ins.m == 0 {
 		return subsetsEval{
 			ExactlyCovered: true,
+			Optimal:        true,
 		}, nil
 	}
 
@@ -117,5 +118,6 @@ func SolveByBruteForce(ins instance) (subsetsEval, error) {
 	}
 
 	slices.Sort(bestSubsetsEval.SubsetsIndices)
+	bestSubsetsEval.Optimal = true
 	return bestSubsetsEval, nil
 }

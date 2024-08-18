@@ -19,12 +19,36 @@ package solvers
 
 import "log"
 
+type lagrangianDualResult struct {
+	dualObjectiveValue float64
+	// Subset indices of the cover. It may be be infeasible.
+	primalSolution []int
+	// If the primalSolution is proven to be an optimal solution to the exact
+	// set cover problem.
+	provenOptimalExact bool
+	// Index of element not covered exactly. -1 if all covered exactly.
+	notCoveredExactly int
+}
+
 // Calculate a lower bound for the (non-exact) set covering problem instance specified by
 // the binary matrix aC where element aC_{ij} = 1 iff element i is in subset j.
 //
 // This is done using a subgradient algorithm
 // on the Lagrangian Dual of the ILP (Integer Linear Programming) formulation of
 // the set covering problem.
+func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64, error) {
+	result, err := runDualIterations(aC, costs)
+	if err != nil {
+		return 0, err
+	}
+	return result.dualObjectiveValue, nil
+
+}
+
+// Run a subgradient algorithm
+// on the Lagrangian Dual of the ILP (Integer Linear Programming) formulation of
+// the set covering problem instance specified by
+// the binary matrix aC where element aC_{ij} = 1 iff element i is in subset j.
 //
 // The following is a reminder of the optimization mathematics.
 // First let:
@@ -41,7 +65,8 @@ import "log"
 // max_{u >= 0} (min_{x } cx + u(1 - Ax))
 //
 // TODO: pass in transpose instead of re-calculating on every call
-func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64, error) {
+func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) (lagrangianDualResult, error) {
+
 	var nCols int
 	for i := 0; i < len(aC); i++ {
 		if aC[i] == sen {
@@ -51,7 +76,7 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 
 	aR, err := aC.Convert() // R for row storage
 	if err != nil {
-		return 0, err
+		return lagrangianDualResult{}, err
 	}
 
 	var nRows int
@@ -61,7 +86,9 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 		}
 	}
 
-	// TODO: initialized smart. User instance or previous node
+	// TODO: initialize step length smarter. Scale for costs.
+	// Use instance or previous node. Set a value such some rows will be
+	// cover after a few iterations.
 	initialStepLength := 1.0
 
 	// The primal column vector
@@ -79,7 +106,7 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 
 	// max iterations
 	n := 1000
-	nextLogK := 1
+	nextLogK := 100
 
 	for k := 0; k < n; k++ {
 		// TODO: use a better step length rule
@@ -97,6 +124,7 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 		// with no indices allowed before the initial sentinel and no indices allowed
 		for j := 0; j < len(aR); j++ {
 			if aR[j] != sen {
+				// TODO: think about overflow and precision issues here.
 				u[row] -= step * x[aR[j]] // one nonzero component of Ax from (1 - Ax)
 			} else {
 				u[row] += step // add step*1 where the 1 is the 1 in (1 - Ax) for the row
@@ -128,23 +156,45 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 		}
 	}
 
-	// calculate the lower bound i.e. the Lagrangian Dual objective value
-	objectiveValue := calcObjectiveValue(nCols, costs, x, aR, aRx, nRows, u)
-
-	return objectiveValue, nil
-
+	return calcLagrangianDualResult(nCols, costs, x, aR, aRx, nRows, u), nil
 }
 
-func calcObjectiveValue(n_cols int, costs []float64, x []float64, aR cRSMatrix, aRx []float64,
+func calcObjectiveValue(nCols int, costs []float64, x []float64, aR cRSMatrix, aRx []float64,
 	nRows int, u []float64) float64 {
-	var objectiveValue float64
-	for i := 0; i < n_cols; i++ {
-		objectiveValue += costs[i] * x[i]
+	result := calcLagrangianDualResult(nCols, costs, x, aR, aRx, nRows, u)
+	return result.dualObjectiveValue
+}
+
+func calcLagrangianDualResult(nCols int, costs []float64, x []float64, aR cRSMatrix, aRx []float64,
+	nRows int, u []float64) lagrangianDualResult {
+
+	result := lagrangianDualResult{
+		dualObjectiveValue: 0.0,
+		primalSolution:     make([]int, 0, nRows),
+		provenOptimalExact: true,
+		notCoveredExactly:  -1,
+	}
+
+	for i := 0; i < nCols; i++ {
+		result.dualObjectiveValue += costs[i] * x[i]
+		if x[i] == 1.0 {
+			result.primalSolution = append(result.primalSolution, i)
+		}
 	}
 
 	aR.MatrixVectorMultiply(x, aRx)
 	for j := 0; j < nRows; j++ {
-		objectiveValue += (u[j] * (1 - aRx[j]))
+		g := (1 - aRx[j])
+		result.dualObjectiveValue += (u[j] * g)
+		if g != 0.0 {
+			result.provenOptimalExact = false
+			result.notCoveredExactly = j
+		}
+		// if g_j == 0 then
+		// 1. x is feasible w.r.t. g_j
+		// 2. g_j*u_j == 0 so complementary slackness is fulfilled
+		// 3. element/row is exactly covered
 	}
-	return objectiveValue
+
+	return result
 }
