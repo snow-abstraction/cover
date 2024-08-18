@@ -39,7 +39,7 @@ const (
 type Node struct {
 	Kind       NodeKind
 	Parent     *Node // nil if root node
-	lowerBound float64
+	LowerBound float64
 	// Elements constrained, depending on NodeKind
 	// The following have no meaning for the root node
 	I uint32

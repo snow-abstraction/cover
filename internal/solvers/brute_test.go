@@ -45,7 +45,7 @@ func TestEmptyInstance(t *testing.T) {
 	result, err := SolveByBruteForce(ins)
 	assert.NilError(t, err)
 	//  The result for an empty instance should be a feasible and itself be empty.
-	emptyCover := subsetsEval{ExactlyCovered: true}
+	emptyCover := subsetsEval{ExactlyCovered: true, Optimal: true}
 	assert.DeepEqual(t, result, emptyCover)
 }
 
@@ -54,12 +54,11 @@ func TestCheaperSolutionFound(t *testing.T) {
 	assert.NilError(t, err)
 	result, err := SolveByBruteForce(ins)
 	assert.NilError(t, err)
-	theMinimum := subsetsEval{SubsetsIndices: []int{2, 4}, ExactlyCovered: true, Cost: 7}
+	theMinimum := subsetsEval{SubsetsIndices: []int{2, 4}, ExactlyCovered: true, Cost: 7, Optimal: true}
 	assert.DeepEqual(t, result, theMinimum)
 }
 
 func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpecification) {
-
 	pythonResultBytes, err := os.ReadFile(filepath.Join("../..", spec.PythonSolutionPath))
 	assert.NilError(t, err)
 	var pythonResult map[string]interface{}
@@ -100,7 +99,7 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpec
 
 }
 
-func TestInstances(t *testing.T) {
+func TestBruteOnInstances(t *testing.T) {
 	instanceSpecifications := loadInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {
@@ -114,7 +113,7 @@ func TestInstances(t *testing.T) {
 	}
 }
 
-func BenchmarkRandomInstances(b *testing.B) {
+func BenchmarkBruteOnRandomInstances(b *testing.B) {
 	instanceSpecifications := loadInstanceSpecifications(b)
 
 	instances := make([]instance, 0, len(instanceSpecifications))
@@ -136,5 +135,4 @@ func BenchmarkRandomInstances(b *testing.B) {
 			assert.NilError(b, err)
 		}
 	}
-
 }
