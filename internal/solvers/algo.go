@@ -19,18 +19,33 @@ package solvers
 
 import "log"
 
-// Calculate a lower bound for set covering problem instance specified by
+// Calculate a lower bound for the (non-exact) set covering problem instance specified by
 // the binary matrix aC where element aC_{ij} = 1 iff element i is in subset j.
 //
 // This is done using a subgradient algorithm
-// on the Lagrangian dual of the integer linear programming formulation of
+// on the Lagrangian Dual of the ILP (Integer Linear Programming) formulation of
 // the set covering problem.
-// TODO: pass in transpose instead of re-calculating on every call/
+//
+// The following is a reminder of the optimization mathematics.
+// First let:
+// X := {x | x_i \in {0, 1}, \all i}
+// A := Ac
+//
+// Then this is the ILP formulation of the set covering problem.
+// min_{x \in X} cx
+// s.t. Ax >= 1
+// X := {x | x_i \in {0, 1}, \all i}
+// A := Ac
+//
+// And this is the Lagrangian Dual:
+// max_{u >= 0} (min_{x } cx + u(1 - Ax))
+//
+// TODO: pass in transpose instead of re-calculating on every call
 func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64, error) {
-	var n_cols int
+	var nCols int
 	for i := 0; i < len(aC); i++ {
 		if aC[i] == sen {
-			n_cols++
+			nCols++
 		}
 	}
 
@@ -39,31 +54,37 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 		return 0, err
 	}
 
-	var n_rows int
+	var nRows int
 	for i := 0; i < len(aR); i++ {
 		if aR[i] == sen {
-			n_rows++
+			nRows++
 		}
 	}
 
+	// TODO: initialized smart. User instance or previous node
+	initialStepLength := 1.0
+
 	// The primal column vector
-	x := make([]float64, n_cols)
+	x := make([]float64, nCols)
 
 	// The dual row vector commonly denoted by μ (the Greek "my")
 	// u >= 0
-	u := make([]float64, n_rows)
+	u := make([]float64, nRows)
 
-	// for storing the result of u*a
-	uA := make([]float64, n_cols)
+	// for storing the result of u*aC
+	uaC := make([]float64, nCols)
 
-	// for storing results of a*x
-	ax := make([]float64, n_rows)
+	// for storing results of aR*x
+	aRx := make([]float64, nRows)
 
 	// max iterations
 	n := 1000
+	nextLogK := 1
 
-	step := 0.001
 	for k := 0; k < n; k++ {
+		// TODO: use a better step length rule
+		step := initialStepLength / (1.0 + float64(k))
+
 		// We calc "1. update u" and then "2. find x" since then the values
 		// are useable after the loop to calculate the upper bound
 		// i.e. the Lagrangian Dual objective value
@@ -91,41 +112,39 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 		// 2. find x: given u
 		// that is set x_i such that it is minimizes:
 		// c(x) + u(1 - Ax) = (c - uA)x + u*1
-		aC.VectorMatrixMultiply(u, uA)
-		for i := 0; i < n_cols; i++ {
-			if uA[i] <= costs[i] {
+		aC.VectorMatrixMultiply(u, uaC)
+		for i := 0; i < nCols; i++ {
+			if uaC[i] <= costs[i] {
 				x[i] = 0
 			} else {
 				x[i] = 1
 			}
 		}
 
-		objectiveValue := calcObjectiveValue(n_cols, costs, x, aR, ax, n_rows, u)
-		if k%100 == 0 {
-			log.Printf("Objective value: %f", objectiveValue)
+		if k > nextLogK {
+			nextLogK *= 2
+			objectiveValue := calcObjectiveValue(nCols, costs, x, aR, aRx, nRows, u)
+			log.Printf("Iteration %d Objective value: %f", k, objectiveValue)
 		}
-
-		// TODO: use a better step length rule
-		step = 1.0 / (1.0 + float64(k))
 	}
 
 	// calculate the lower bound i.e. the Lagrangian Dual objective value
-	objectiveValue := calcObjectiveValue(n_cols, costs, x, aR, ax, n_rows, u)
+	objectiveValue := calcObjectiveValue(nCols, costs, x, aR, aRx, nRows, u)
 
 	return objectiveValue, nil
 
 }
 
-func calcObjectiveValue(n_cols int, costs []float64, x []float64, aR cRSMatrix, ax []float64, n_rows int, u []float64) float64 {
-	objectiveValue := 0.0
-
+func calcObjectiveValue(n_cols int, costs []float64, x []float64, aR cRSMatrix, aRx []float64,
+	nRows int, u []float64) float64 {
+	var objectiveValue float64
 	for i := 0; i < n_cols; i++ {
 		objectiveValue += costs[i] * x[i]
 	}
 
-	aR.MatrixVectorMultiply(x, ax)
-	for j := 0; j < n_rows; j++ {
-		objectiveValue += (u[j] * (1 - ax[j]))
+	aR.MatrixVectorMultiply(x, aRx)
+	for j := 0; j < nRows; j++ {
+		objectiveValue += (u[j] * (1 - aRx[j]))
 	}
 	return objectiveValue
 }
