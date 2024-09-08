@@ -22,6 +22,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"log/slog"
 	"math"
 	"os"
 	"os/exec"
@@ -44,28 +45,33 @@ func main() {
 		"output directory for instances and python solution files")
 	specificationsPath := flag.String("specifications", "testdata/instance_specifications.json",
 		"instance specifications file")
-	verbose := flag.Bool("verbose", false, "more verbose logging")
+	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
+
 	flag.Parse()
 
-	if *verbose {
-		log.Println("Running with flags:")
-		flag.VisitAll(func(f *flag.Flag) {
-			log.Printf("%s: %s\n", f.Name, f.Value)
-		})
-	}
+	level := parseLogLevel(*logLevel)
+	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
+		AddSource: true,
+		Level:     level,
+	})))
 
-	specifications := createSpecifications(*outputDir, verbose)
+	slog.Debug("Running with flags:")
+	flag.VisitAll(func(f *flag.Flag) { slog.Debug("flag", f.Name, f.Value) })
+
+	specifications := createSpecifications(*outputDir)
 
 	b, err := json.MarshalIndent(specifications, "", "  ")
 	if err != nil {
-		log.Panic(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 	if err := os.WriteFile(*specificationsPath, b, 0600); err != nil {
-		log.Panic(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	createInstanceFiles(specifications)
-	solveInstances(specifications, *pythonSolverPath, verbose)
+	solveInstances(specifications, *pythonSolverPath)
 }
 
 func usage() {
@@ -87,7 +93,7 @@ Arguments:
 	flag.PrintDefaults()
 }
 
-func createSpecifications(outputDir string, verbose *bool) []cover.TestInstanceSpecification {
+func createSpecifications(outputDir string) []cover.TestInstanceSpecification {
 	specifications := make([]cover.TestInstanceSpecification, 0)
 	var seed int64
 	numberOfElements := []int{1, 2, 3, 4}
@@ -105,10 +111,7 @@ func createSpecifications(outputDir string, verbose *bool) []cover.TestInstanceS
 
 				specifications = append(specifications,
 					cover.TestInstanceSpecification{NumElements: m, NumSubSets: n, Seed: seed, InstancePath: instancePath, PythonSolutionPath: solutionPath})
-				if *verbose {
-					log.Printf("will generated instance using number of elements: %d, number of subsets: %d and random seed: %d\n",
-						m, n, seed)
-				}
+				slog.Debug("generating instance", "elements count", m, "subsets count", n, "random seed", seed)
 				seed++
 			}
 		}
@@ -117,7 +120,7 @@ func createSpecifications(outputDir string, verbose *bool) []cover.TestInstanceS
 }
 
 func createInstanceFiles(specifications []cover.TestInstanceSpecification) {
-	log.Printf("Creating %d test instance files", len(specifications))
+	slog.Info("Creating test instance files", "count", len(specifications))
 	for _, spec := range specifications {
 		ins := cover.MakeRandomInstance(spec.NumElements, spec.NumSubSets, spec.Seed)
 		b, err := json.MarshalIndent(ins, "", "  ")
@@ -132,8 +135,8 @@ func createInstanceFiles(specifications []cover.TestInstanceSpecification) {
 
 // Solve instance using the python script
 // Extract the result from stdout
-func solveInstances(specifications []cover.TestInstanceSpecification, pythonSolverPath string, verbose *bool) {
-	log.Printf("Solving %d test instances", len(specifications))
+func solveInstances(specifications []cover.TestInstanceSpecification, pythonSolverPath string) {
+	slog.Info("Solving test instances", "count", len(specifications))
 	var wg sync.WaitGroup
 	for _, spec := range specifications {
 		wg.Add(1)
@@ -142,10 +145,7 @@ func solveInstances(specifications []cover.TestInstanceSpecification, pythonSolv
 			defer wg.Done()
 
 			cmd := exec.Command("python", pythonSolverPath, instancePath)
-			if *verbose {
-				log.Printf("running %s\n", cmd)
-			}
-
+			slog.Debug("running", "cmd", cmd)
 			stdout, err := cmd.Output()
 			if err != nil {
 				log.Panicf("running '%s' resulted in error '%s'", cmd, err)
@@ -167,4 +167,20 @@ func solveInstances(specifications []cover.TestInstanceSpecification, pythonSolv
 	}
 
 	wg.Wait()
+}
+
+func parseLogLevel(level string) slog.Level {
+	switch level {
+	case "Debug":
+		return slog.LevelDebug
+	case "Info":
+		return slog.LevelInfo
+	case "Warn":
+		return slog.LevelWarn
+	case "Error":
+		return slog.LevelError
+	}
+	slog.Error("unknown log level. defaulting to Info")
+
+	return slog.LevelInfo
 }

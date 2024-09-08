@@ -22,7 +22,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"log"
+	"log/slog"
 	"os"
 
 	"github.com/snow-abstraction/cover"
@@ -46,38 +46,68 @@ Arguments:
 }
 
 func main() {
+
 	flag.Usage = usage
 	filename := flag.String("instance", "", "instance JSON filename")
+	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
 	flag.Parse()
 
+	level := parseLogLevel(*logLevel)
+	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
+		AddSource: true,
+		Level:     level,
+	})))
+
 	if *filename == "" {
-		log.Fatalln("Please supply the instance file name")
+		fmt.Fprintln(os.Stderr, "Please supply the instance file name")
+		os.Exit(1)
 	}
 
 	b, err := os.ReadFile(*filename)
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	var ins cover.Instance
 	err = json.Unmarshal(b, &ins)
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	err = json.Unmarshal(b, &ins)
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	solverInstance, err := solvers.MakeInstance(ins.M, ins.Subsets, ins.Costs)
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 
 	sol, err := solvers.SolveByBranchAndBound(solverInstance)
 	if err != nil {
-		fmt.Printf("failed to optimal solution due to error: %s", err)
+		fmt.Fprintf(os.Stderr, "failed to optimal solution due to error: %s\n", err)
+		os.Exit(1)
 	}
 	fmt.Printf("Solution: %+v\n", sol)
+}
+
+func parseLogLevel(level string) slog.Level {
+	switch level {
+	case "Debug":
+		return slog.LevelDebug
+	case "Info":
+		return slog.LevelInfo
+	case "Warn":
+		return slog.LevelWarn
+	case "Error":
+		return slog.LevelError
+	}
+	slog.Error("unknown log level. defaulting to Info")
+
+	return slog.LevelInfo
 }
