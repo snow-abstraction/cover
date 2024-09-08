@@ -18,6 +18,8 @@
 package tree
 
 import (
+	"fmt"
+	"log/slog"
 	"math"
 )
 
@@ -61,4 +63,12 @@ func (parent *Node) Branch(lowerBound float64, branchConstraintOne uint32,
 	return &Node{BothBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo},
 		&Node{DiffBranch, parent, lowerBound, branchConstraintOne, branchConstraintTwo}
 
+}
+
+func (n *Node) LogValue() slog.Value {
+	if n == nil {
+		return slog.StringValue("nil")
+	}
+
+	return slog.StringValue(fmt.Sprintf("%+v", *n))
 }

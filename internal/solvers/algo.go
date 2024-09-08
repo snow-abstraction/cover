@@ -17,7 +17,7 @@
 
 package solvers
 
-import "log"
+import "log/slog"
 
 type lagrangianDualResult struct {
 	dualObjectiveValue float64
@@ -152,7 +152,7 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 		if k > nextLogK {
 			nextLogK *= 2
 			objectiveValue := calcObjectiveValue(nCols, costs, x, aR, aRx, nRows, u)
-			log.Printf("Iteration %d Objective value: %f", k, objectiveValue)
+			slog.Debug("Iteration status", "i", k, "objective value", objectiveValue)
 		}
 	}
 

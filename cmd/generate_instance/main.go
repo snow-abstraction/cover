@@ -21,7 +21,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/snow-abstraction/cover"
@@ -59,11 +58,13 @@ func main() {
 	flag.Parse()
 
 	if *m < 0 {
-		log.Fatalln("m must be non-negative (0 <= m)")
+		fmt.Fprintln(os.Stderr, "m must be non-negative (0 <= m)")
+		os.Exit(1)
 	}
 
 	if *n < 0 {
-		log.Fatalln("n must be non-negative (0 <= n)")
+		fmt.Fprintln(os.Stderr, "n must be non-negative (0 <= n)")
+		os.Exit(1)
 	}
 
 	if *n > 0 {
@@ -72,8 +73,8 @@ func main() {
 
 	b, err := json.MarshalIndent(ins, "", "  ")
 	if err != nil {
-		log.Fatalln(err)
-
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 	fmt.Println(string(b))
 }

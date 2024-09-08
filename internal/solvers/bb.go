@@ -21,7 +21,7 @@ package solvers
 
 import (
 	"fmt"
-	"log"
+	"log/slog"
 	"slices"
 
 	"github.com/snow-abstraction/cover/internal/tree"
@@ -135,23 +135,23 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 	for len(toFathom) > 0 {
 		node := toFathom[0]
 		toFathom = toFathom[1:]
-		log.Printf("nodes: %d, fathoming %+v", len(toFathom), node)
+		slog.Debug("B&B status", "nodes count", len(toFathom), "node", node)
 
 		if best != nil && best.objectiveValue <= node.LowerBound {
-			log.Printf("discarding node %+v due to best obj val %f", node, best.objectiveValue)
+			slog.Debug("discarding node", "node", node, "best obj val", best.objectiveValue)
 			// discard node due to lower bound
 			continue
 		}
 
 		subInstance := createSubInstance(ins, node)
 		if subInstance == nil {
-			log.Println("sub-instance infeasible")
+			slog.Debug("sub-instance infeasible")
 			continue
 		} else if subInstance.isSolution {
 			cost := sum(subInstance.ins.costs)
 			if best == nil || best.objectiveValue > cost {
-				log.Printf("new best from sub-instance: %+v", best)
 				best = &solution{cost, subInstance.indices}
+				slog.Debug("new best solution from sub-instance", "solution", best)
 			}
 			continue
 		}
@@ -169,21 +169,21 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 			return subsetsEval{}, err
 		}
 		if dualResult.provenOptimalExact {
-			log.Println("pruned by optimal")
+			slog.Debug("pruned by optimal")
 			if best == nil || best.objectiveValue > dualResult.dualObjectiveValue {
 				indices := make([]int, 0, len(dualResult.primalSolution))
 				for _, idx := range dualResult.primalSolution {
 					indices = append(indices, subInstance.indices[idx])
 				}
 				best = &solution{dualResult.dualObjectiveValue, indices}
-				log.Printf("new best: %+v", best)
+				slog.Debug("new best solution", "solution", best)
 			}
 			continue
 		}
 
 		if best != nil && best.objectiveValue <= dualResult.dualObjectiveValue {
 			// We could only do this when getting the node.
-			log.Println("pruned by bound")
+			slog.Debug("pruned by bound", "node", node)
 			continue
 		}
 
@@ -192,7 +192,7 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 			return subsetsEval{}, err
 		}
 
-		log.Printf("branching on %d %d", branchIndices.i, branchIndices.j)
+		slog.Debug("branching on elements", "i", branchIndices.i, "j", branchIndices.j)
 		bothNode, diffNode := node.Branch(dualResult.dualObjectiveValue, branchIndices.i, branchIndices.j)
 		toFathom = append(toFathom, bothNode, diffNode)
 	}
