@@ -30,7 +30,7 @@ func usage() {
 	w := flag.CommandLine.Output()
 	fmt.Fprintf(
 		w,
-		`Usage: %s -seed 1 -m 10 -n 100
+		`Usage: %s -seed 1 -m 10 -n 100 -costScale 1.0
 
 %s outputs a random instance to standard out. The instance generated may be
 infeasible.
@@ -54,6 +54,7 @@ func main() {
 	flag.Usage = usage
 	m := flag.Int("m", 0, "number of sets to be covered")
 	n := flag.Int("n", 0, "number of subsets")
+	scale := flag.Float64("costScale", 1.0, "scale factor for subset costs")
 	seed := flag.Int64("seed", 1, "seed for the random generator")
 	flag.Parse()
 
@@ -67,8 +68,13 @@ func main() {
 		os.Exit(1)
 	}
 
+	if *scale <= 0.0 {
+		fmt.Fprintln(os.Stderr, "costScale must be strictly positive (0.0 < costScale)")
+		os.Exit(1)
+	}
+
 	if *n > 0 {
-		ins = cover.MakeRandomInstance(*m, *n, *seed)
+		ins = cover.MakeRandomInstance(*m, *n, *scale, *seed)
 	}
 
 	b, err := json.MarshalIndent(ins, "", "  ")
