@@ -40,11 +40,12 @@ type Instance struct {
 	Costs []float64
 }
 
-// MakeRandomInstance makes a random Instance with m elements and n subsets using
-// Pseudo-Random generator initialized with the seed.
+// MakeRandomInstance makes a random Instance with m elements and n subsets
+// using a PRG (Pseudo-Random Generator) initialized with the seed. The random
+// cost of each subset is scaled by costScale.
 //
 // Note: as n approaches 2^m, this function will run slowly.
-func MakeRandomInstance(m int, n int, seed int64) Instance {
+func MakeRandomInstance(m int, n int, costScale float64, seed int64) Instance {
 	gen := rand.New(rand.NewSource(seed))
 
 	ins := Instance{M: m, Subsets: make([][]int, 0), Costs: make([]float64, 0)}
@@ -79,13 +80,14 @@ func MakeRandomInstance(m int, n int, seed int64) Instance {
 				ins.Subsets = append(ins.Subsets, make([]int, len(subset)))
 				copy(ins.Subsets[len(ins.Subsets)-1], subset)
 
-				// generate random cost such that 1 < cost <= k^smallSubsetPreference + 1
+				// generate random cost such that:
+				// costScale < cost <= costScale*k^smallSubsetPreference + 1.
 				// This biases instances where optimal solutions
 				// consist of several small subsets.
 				const smallSubsetPreference = 1.1
 				f := math.Pow(float64(k), smallSubsetPreference) + 1
 				s := gen.Float64()
-				ins.Costs = append(ins.Costs, f*(1-s)+s)
+				ins.Costs = append(ins.Costs, costScale*(f*(1-s)+s))
 				break
 			}
 		}
@@ -99,6 +101,7 @@ func MakeRandomInstance(m int, n int, seed int64) Instance {
 type TestInstanceSpecification struct {
 	NumElements        int
 	NumSubSets         int
+	CostScale          float64
 	Seed               int64 // random seed used to generate instance
 	InstancePath       string
 	PythonSolutionPath string

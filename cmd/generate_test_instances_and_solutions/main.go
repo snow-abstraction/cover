@@ -95,24 +95,34 @@ Arguments:
 
 func createSpecifications(outputDir string) []cover.TestInstanceSpecification {
 	specifications := make([]cover.TestInstanceSpecification, 0)
-	var seed int64
 	numberOfElements := []int{1, 2, 3, 4}
+	costScales := []float64{1.0, 1000.0}
 
-	for _, m := range numberOfElements {
-		maxN := int(3*math.Exp2(float64(m))) / 4
-		for n := 1; n <= maxN; n++ {
-			// two instances for every (m, n)
-			for j := 0; j < 2; j++ {
-				instanceName := fmt.Sprintf("instance_%d_%d_%d.json", m, n, seed)
-				instancePath := filepath.Join(outputDir, instanceName)
+	for _, costScale := range costScales {
+		var seed int64
+		for _, m := range numberOfElements {
+			maxN := int(3*math.Exp2(float64(m))) / 4
+			for n := 1; n <= maxN; n++ {
+				// two instances for every (m, n)
+				for j := 0; j < 2; j++ {
+					instanceName := fmt.Sprintf("instance_%d_%d_%d_%d.json", m, n, int(costScale), seed)
+					instancePath := filepath.Join(outputDir, instanceName)
 
-				solutionFileName := fmt.Sprintf("python_solution_%d_%d_%d.json", m, n, seed)
-				solutionPath := filepath.Join(outputDir, solutionFileName)
+					solutionFileName := fmt.Sprintf("python_solution_%d_%d_%d_%d.json", m, n, int(costScale), seed)
+					solutionPath := filepath.Join(outputDir, solutionFileName)
 
-				specifications = append(specifications,
-					cover.TestInstanceSpecification{NumElements: m, NumSubSets: n, Seed: seed, InstancePath: instancePath, PythonSolutionPath: solutionPath})
-				slog.Debug("generating instance", "elements count", m, "subsets count", n, "random seed", seed)
-				seed++
+					specifications = append(specifications,
+						cover.TestInstanceSpecification{
+							NumElements:        m,
+							NumSubSets:         n,
+							CostScale:          costScale,
+							Seed:               seed,
+							InstancePath:       instancePath,
+							PythonSolutionPath: solutionPath,
+						})
+					slog.Debug("generating instance", "elements count", m, "subsets count", n, "random seed", seed)
+					seed++
+				}
 			}
 		}
 	}
@@ -122,7 +132,7 @@ func createSpecifications(outputDir string) []cover.TestInstanceSpecification {
 func createInstanceFiles(specifications []cover.TestInstanceSpecification) {
 	slog.Info("Creating test instance files", "count", len(specifications))
 	for _, spec := range specifications {
-		ins := cover.MakeRandomInstance(spec.NumElements, spec.NumSubSets, spec.Seed)
+		ins := cover.MakeRandomInstance(spec.NumElements, spec.NumSubSets, spec.CostScale, spec.Seed)
 		b, err := json.MarshalIndent(ins, "", "  ")
 		if err != nil {
 			log.Panic(err)
