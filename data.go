@@ -40,6 +40,10 @@ type Instance struct {
 	Costs []float64
 }
 
+// MakeRandomInstance makes a random Instance with m elements and n subsets using
+// Pseudo-Random generator initialized with the seed.
+//
+// Note: as n approaches 2^m, this function will run slowly.
 func MakeRandomInstance(m int, n int, seed int64) Instance {
 	gen := rand.New(rand.NewSource(seed))
 
@@ -62,7 +66,7 @@ func MakeRandomInstance(m int, n int, seed int64) Instance {
 			// only add subset if unique
 			// TODO: This introduces quadratic complexity. Ideally we would
 			// do a binary search or use some hash table to check if the
-			// subset has alredy been added.
+			// subset has already been added.
 			match := false
 			for _, s := range ins.Subsets {
 				if slices.Equal(subset, s) {
@@ -76,7 +80,7 @@ func MakeRandomInstance(m int, n int, seed int64) Instance {
 				copy(ins.Subsets[len(ins.Subsets)-1], subset)
 
 				// generate random cost such that 1 < cost <= k^smallSubsetPreference + 1
-				// This baiases instances where optimal solutions
+				// This biases instances where optimal solutions
 				// consist of several small subsets.
 				const smallSubsetPreference = 1.1
 				f := math.Pow(float64(k), smallSubsetPreference) + 1
