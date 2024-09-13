@@ -137,6 +137,7 @@ func createInstanceFiles(specifications []cover.TestInstanceSpecification) {
 // Extract the result from stdout
 func solveInstances(specifications []cover.TestInstanceSpecification, pythonSolverPath string) {
 	slog.Info("Solving test instances", "count", len(specifications))
+	// TODO: introduce "work pools" so we don't start so many Python processes
 	var wg sync.WaitGroup
 	for _, spec := range specifications {
 		wg.Add(1)
