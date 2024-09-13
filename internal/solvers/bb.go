@@ -37,7 +37,7 @@ type subInstance struct {
 // createSubInstance creates new instance with only the subsets that are allowed by the
 // constraints from the node and its ancestors. If some element is
 // impossible to cover then it returns nil.
-func createSubInstance(ins instance, node *tree.Node) *subInstance {
+func createSubInstance(ins instance, node *tree.Node) (*subInstance, error) {
 
 	type constraint struct {
 		i            uint32
@@ -51,10 +51,21 @@ func createSubInstance(ins instance, node *tree.Node) *subInstance {
 	coverCount := make([]int, ins.m)
 	indices := make([]int, 0, len(ins.subsets))
 
+	branchedIndices := make(map[BranchIndices]struct{})
+
 	constraints := make([]constraint, 0)
 	for nodeI := node; nodeI.Kind != tree.Root; nodeI = nodeI.Parent {
 		isBothBranch := nodeI.Kind == tree.BothBranch
 		c := constraint{i: nodeI.I, j: nodeI.J, isBothBranch: isBothBranch}
+		b := BranchIndices{nodeI.I, nodeI.J}
+		if b.i >= b.j {
+			return nil, fmt.Errorf("should have i < j but %+v", b)
+		}
+		if _, found := branchedIndices[b]; !found {
+			branchedIndices[b] = struct{}{}
+		} else {
+			return nil, fmt.Errorf("already branched on %+v", b)
+		}
 		constraints = append(constraints, c)
 	}
 
@@ -91,7 +102,7 @@ func createSubInstance(ins instance, node *tree.Node) *subInstance {
 	isSolution := true // If the sub-instance is a solution.
 	for _, covered := range coverCount {
 		if covered == 0 {
-			return nil
+			return nil, nil
 		} else if covered > 1 {
 			isSolution = false
 		}
@@ -101,7 +112,7 @@ func createSubInstance(ins instance, node *tree.Node) *subInstance {
 		ins:        instance{m: ins.m, subsets: subsets, costs: costs},
 		indices:    indices,
 		isSolution: isSolution,
-	}
+	}, nil
 
 }
 
@@ -143,7 +154,10 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 			continue
 		}
 
-		subInstance := createSubInstance(ins, node)
+		subInstance, err := createSubInstance(ins, node)
+		if err != nil {
+			return subsetsEval{}, err
+		}
 		if subInstance == nil {
 			slog.Debug("sub-instance infeasible")
 			continue
@@ -216,12 +230,57 @@ type BranchIndices struct {
 	j uint32
 }
 
+// symmetricDifference calculates the set symmetric difference of x and y.
+func symmetricDifference(x, y []int) []int {
+	xSet := make(map[int]struct{}, len(x))
+	for _, e := range x {
+		xSet[e] = struct{}{}
+	}
+	ySet := make(map[int]struct{}, len(y))
+	for _, e := range y {
+		ySet[e] = struct{}{}
+	}
+
+	diffSet := make(map[int]struct{}, len(x)+len(y))
+	for _, e := range x {
+		if _, found := ySet[e]; !found {
+			diffSet[e] = struct{}{}
+		}
+	}
+	for _, e := range y {
+		if _, found := xSet[e]; !found {
+			diffSet[e] = struct{}{}
+		}
+	}
+
+	diff := make([]int, 0, len(diffSet))
+	for k := range diffSet {
+		diff = append(diff, k)
+	}
+	return diff
+}
+
 // findBranchingElements finds a pair of elements (i, j) that are covered both
 // in same subset and different subsets. For instance, if we have subsets
 // [0, 1], [1, 2], [2] then i=1 and j=2 would work.
 //
 // Assume it is possible to branch on the instance, i.e. should not be empty and
-// it is not a solution itself.
+// it is not a solution itself. This means at least one element is in more than
+// one subset.
+//
+// The implementation is unsophisticated but hopefully correct.
+// It finds an element i that in the most subsets. Then it finds first two subsets
+// containing i. Then it determine an element j such that is in only one
+// of these two subsets. This means that these two subsets will be if different
+// branches when branching on i and j.
+//
+// This is unsophisticated because:
+//  1. It does not utilize data from running subgradient algorithm `runDualIterations`.
+//     For example, by creating a branches that would not allowed the solution found
+//     by the subgradient algorithm.
+//  2. It does not try to find (i, j) that would result in smaller sub-instances.
+//  3. When several choices are possible, the first is taken making it sensitive
+//     to the ordering of the input.
 func findBranchingElements(ins instance) (BranchIndices, error) {
 	counts := make([]int, ins.m)
 	for _, subset := range ins.subsets {
@@ -230,7 +289,7 @@ func findBranchingElements(ins instance) (BranchIndices, error) {
 		}
 	}
 
-	// i is the index of the two elements to branch on and is index of the element in the most subsets
+	// i is the first index of the two elements to branch on and is index of the element in the most subsets
 	i := 0
 	for idx, c := range counts {
 		if counts[i] < c {
@@ -243,50 +302,33 @@ func findBranchingElements(ins instance) (BranchIndices, error) {
 			fmt.Errorf("at least one element must be in two subsets to branch on instance %+v", ins)
 	}
 
-	// For each element, count how many subsets does it share with maxIdx
-	sharedCounts := make([]int, ins.m)
+	// find two subsets with element i
+	var subset1WithI []int
+	var subset2WithI []int
 	for _, subset := range ins.subsets {
-		// assume so few elements that faster with linear search
-		if slices.Contains(subset, i) {
-			for _, el := range subset {
-				sharedCounts[el]++
-			}
-		}
-	}
-
-	// assumption checking: it should be possible to branch if guessBranchingElements is called.
-	branchingPossible := false
-	for j, count := range sharedCounts {
-		if j == i {
+		// subset is sorted so we could use binary search
+		if !slices.Contains(subset, i) {
 			continue
 		}
-		if 0 < count && count < sharedCounts[i] {
-			branchingPossible = true
+		if subset1WithI == nil {
+			subset1WithI = subset
+		} else {
+			subset2WithI = subset
+			break
 		}
 	}
 
-	if !branchingPossible {
+	diff := symmetricDifference(subset1WithI, subset2WithI)
+	// The diff should not be empty since the subsets are unique.
+	if len(diff) == 0 {
 		return BranchIndices{},
-			fmt.Errorf(
-				"failed to find other element to branch on with %d for instance %+v",
-				i, ins,
-			)
+			fmt.Errorf("branching failed for instance %+v", ins)
 	}
 
-	var minValue int
-	target := sharedCounts[i] / 2
-	sharedCounts[i] = -1 // prevent choosing minIndex == maxIdx
+	j := diff[0]
 
-	// The idea is select j such that is closer to target for more balanced
-	// subproblems.
-	j := -1
-	for idx, count := range sharedCounts {
-		distFromTarget := count - target
-		distFromTarget = max(distFromTarget, -distFromTarget) //abs
-		if j == -1 || distFromTarget < minValue {
-			j = idx
-			minValue = distFromTarget
-		}
+	if j < i {
+		i, j = j, i
 	}
 
 	// TODO: check casts or remove need

@@ -38,6 +38,7 @@ const (
 // constraint branch-and-bound Node
 // The subproblem the Node represents can be calculated by applying
 // the branch type of it and its ancestors.
+// TODO: enforce I < J
 type Node struct {
 	Kind       NodeKind
 	Parent     *Node // nil if root node
