@@ -36,7 +36,8 @@ import (
 func TestCreateSubInstanceOnEmptyInstance(t *testing.T) {
 	ins, err := MakeInstance(0, [][]int{}, []float64{})
 	assert.NilError(t, err)
-	subproblemIns := createSubInstance(ins, tree.CreateRoot())
+	subproblemIns, err := createSubInstance(ins, tree.CreateRoot())
+	assert.NilError(t, err)
 	assert.DeepEqual(t, subproblemIns.ins, ins, cmp.AllowUnexported(instance{}))
 }
 
@@ -46,7 +47,8 @@ func TestCreateSubInstanceCreatesInfeasibleBranch(t *testing.T) {
 	rootNode := tree.CreateRoot()
 	_, diffNode := rootNode.Branch(0, 0, 1)
 
-	actualDiffIns := createSubInstance(ins, diffNode)
+	actualDiffIns, err := createSubInstance(ins, diffNode)
+	assert.NilError(t, err)
 	assert.Assert(t, actualDiffIns == nil)
 }
 
@@ -56,12 +58,14 @@ func TestCreateSubInstancesSimple(t *testing.T) {
 	rootNode := tree.CreateRoot()
 	bothNode, diffNode := rootNode.Branch(0, 0, 1)
 
-	actualBothIns := createSubInstance(ins, bothNode)
+	actualBothIns, err := createSubInstance(ins, bothNode)
+	assert.NilError(t, err)
 	expectedBothIns, err := MakeInstance(3, [][]int{{0, 1}, {2}}, []float64{1, 4})
 	assert.NilError(t, err)
 	assert.DeepEqual(t, expectedBothIns, actualBothIns.ins, cmp.AllowUnexported(instance{}))
 
-	actualDiffIns := createSubInstance(ins, diffNode)
+	actualDiffIns, err := createSubInstance(ins, diffNode)
+	assert.NilError(t, err)
 	expectedDiffIns, err := MakeInstance(3, [][]int{{0}, {1}, {2}}, []float64{2, 3, 4})
 	assert.NilError(t, err)
 	assert.DeepEqual(t, expectedDiffIns, actualDiffIns.ins, cmp.AllowUnexported(instance{}))
@@ -78,22 +82,26 @@ func TestCreateSubInstancesTricker(t *testing.T) {
 	both01Both12Node, both01Diff12Node := both01Node.Branch(0, 1, 2)
 	diff01both12Node, diff01Diff12Node := diff01Node.Branch(0, 1, 2)
 
-	actualBoth01Both12NodeIns := createSubInstance(ins, both01Both12Node)
+	actualBoth01Both12NodeIns, err := createSubInstance(ins, both01Both12Node)
+	assert.NilError(t, err)
 	expectedBoth01Both12NodeIns, err := MakeInstance(3, [][]int{{0, 1, 2}}, []float64{7})
 	assert.NilError(t, err)
 	assert.DeepEqual(t, expectedBoth01Both12NodeIns, actualBoth01Both12NodeIns.ins, cmp.AllowUnexported(instance{}))
 
-	actualBoth01Diff12NodeIns := createSubInstance(ins, both01Diff12Node)
+	actualBoth01Diff12NodeIns, err := createSubInstance(ins, both01Diff12Node)
+	assert.NilError(t, err)
 	expectedBoth01Diff12NodeIns, err := MakeInstance(3, [][]int{{2}, {0, 1}}, []float64{3, 4})
 	assert.NilError(t, err)
 	assert.DeepEqual(t, expectedBoth01Diff12NodeIns, actualBoth01Diff12NodeIns.ins, cmp.AllowUnexported(instance{}))
 
-	actualDiff01bBoth12NodeIns := createSubInstance(ins, diff01both12Node)
+	actualDiff01bBoth12NodeIns, err := createSubInstance(ins, diff01both12Node)
+	assert.NilError(t, err)
 	expectedDiff01Both12NodeIns, err := MakeInstance(3, [][]int{{0}, {1, 2}}, []float64{1, 6})
 	assert.NilError(t, err)
 	assert.DeepEqual(t, expectedDiff01Both12NodeIns, actualDiff01bBoth12NodeIns.ins, cmp.AllowUnexported(instance{}))
 
-	actualDiff01Diff12NodeIns := createSubInstance(ins, diff01Diff12Node)
+	actualDiff01Diff12NodeIns, err := createSubInstance(ins, diff01Diff12Node)
+	assert.NilError(t, err)
 	expectedDiff01Diff12NodeIns, err := MakeInstance(3, [][]int{{0}, {1}, {2}, {0, 2}}, []float64{1, 2, 3, 5})
 	assert.NilError(t, err)
 	assert.DeepEqual(t, expectedDiff01Diff12NodeIns, actualDiff01Diff12NodeIns.ins, cmp.AllowUnexported(instance{}))
