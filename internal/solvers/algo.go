@@ -102,7 +102,7 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 
 	// max iterations
 	n := 1000
-	nextLogK := 100
+	nextCheckStatus := 1
 
 	for k := 0; k < n; k++ {
 		// TODO: use a better step length rule
@@ -145,8 +145,8 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 			}
 		}
 
-		if k > nextLogK {
-			nextLogK *= 2
+		if k > nextCheckStatus {
+			nextCheckStatus *= 2
 			result := calcLagrangianDualResult(nCols, costs, x, aR, aRx, nRows, u)
 			slog.Debug("Iteration status", "i", k, "objective value", result.dualObjectiveValue)
 			if result.provenOptimalExact {
