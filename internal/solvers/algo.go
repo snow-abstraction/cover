@@ -66,7 +66,6 @@ func CalcScLb(aC cCSMatrix /* C for column storage*/, costs []float64) (float64,
 //
 // TODO: pass in transpose instead of re-calculating on every call
 func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) (lagrangianDualResult, error) {
-
 	var nCols int
 	for i := 0; i < len(aC); i++ {
 		if aC[i] == sen {
@@ -86,10 +85,7 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 		}
 	}
 
-	// TODO: initialize step length smarter. Scale for costs.
-	// Use instance or previous node. Set a value such some rows will be
-	// cover after a few iterations.
-	initialStepLength := 1.0
+	initialStepLength := calcMeanElementCost(aC, costs, nCols)
 
 	// The primal column vector
 	x := make([]float64, nCols)
@@ -161,6 +157,22 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 	}
 
 	return calcLagrangianDualResult(nCols, costs, x, aR, aRx, nRows, u), nil
+}
+
+func calcMeanElementCost(aC cCSMatrix, costs []float64, nCols int) float64 {
+	var meanElementCost float64
+	var colIdx int
+	var nnzInColumn int
+	for i := 0; i < len(aC); i++ {
+		if aC[i] == sen {
+			meanElementCost += costs[colIdx] / (float64(nnzInColumn) * float64(nCols))
+			nnzInColumn = 0
+			colIdx++
+		} else {
+			nnzInColumn++
+		}
+	}
+	return meanElementCost
 }
 
 func calcLagrangianDualResult(nCols int, costs []float64, x []float64, aR cRSMatrix, aRx []float64,
