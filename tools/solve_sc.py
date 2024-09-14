@@ -23,6 +23,7 @@ License:
  You should have received a copy of the GNU Affero General Public License
  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
 import sys
 import json
 import mip
@@ -41,6 +42,13 @@ def convert_optimization_status_to_string(status):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(
+            "error: exactly one programin argument expected specifying the instance file",
+            file=sys.stderr,
+        )
+        exit(1)
+
     with open(sys.argv[1]) as f:
         instance = json.load(f)
 
