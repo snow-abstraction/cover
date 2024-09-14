@@ -177,3 +177,57 @@ func BenchmarkBBOnRandomInstances(b *testing.B) {
 		}
 	}
 }
+
+func BenchmarkBBOnRandomScale1Instances(b *testing.B) {
+	instanceSpecifications := loadInstanceSpecifications(b)
+
+	instances := make([]instance, 0, len(instanceSpecifications))
+	for _, spec := range instanceSpecifications {
+		if spec.CostScale != 1.0 {
+			continue
+		}
+		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
+		assert.NilError(b, err)
+		var ins cover.Instance
+		err = json.Unmarshal(instanceBytes, &ins)
+		assert.NilError(b, err)
+		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		instances = append(instances, solverInstance)
+		assert.NilError(b, err)
+	}
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < len(instances); j++ {
+			_, err := SolveByBranchAndBound(instances[j])
+			assert.NilError(b, err)
+		}
+	}
+}
+
+func BenchmarkBBOnRandomScale1000Instances(b *testing.B) {
+	instanceSpecifications := loadInstanceSpecifications(b)
+
+	instances := make([]instance, 0, len(instanceSpecifications))
+	for _, spec := range instanceSpecifications {
+		if spec.CostScale != 1000.0 {
+			continue
+		}
+		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
+		assert.NilError(b, err)
+		var ins cover.Instance
+		err = json.Unmarshal(instanceBytes, &ins)
+		assert.NilError(b, err)
+		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		instances = append(instances, solverInstance)
+		assert.NilError(b, err)
+	}
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < len(instances); j++ {
+			_, err := SolveByBranchAndBound(instances[j])
+			assert.NilError(b, err)
+		}
+	}
+}
