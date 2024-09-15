@@ -162,6 +162,20 @@ func TestBBOnTinyInstances(t *testing.T) {
 	}
 }
 
+func TestBBOnSmallInstances(t *testing.T) {
+	instanceSpecifications := loadSmallInstanceSpecifications(t)
+
+	for _, spec := range instanceSpecifications {
+		spec := spec
+		name := fmt.Sprintf("instance %+v", spec)
+		t.Run(name, func(t *testing.T) {
+			t.Parallel()
+			testBBFindsEquallyGoodSolution(t, spec)
+		})
+
+	}
+}
+
 func BenchmarkBBOnRandomTinyInstances(b *testing.B) {
 	instanceSpecifications := loadTinyInstanceSpecifications(b)
 
@@ -221,6 +235,30 @@ func BenchmarkBBOnRandomScale1000TinyInstances(b *testing.B) {
 		if spec.CostScale != 1000.0 {
 			continue
 		}
+		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
+		assert.NilError(b, err)
+		var ins cover.Instance
+		err = json.Unmarshal(instanceBytes, &ins)
+		assert.NilError(b, err)
+		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		instances = append(instances, solverInstance)
+		assert.NilError(b, err)
+	}
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for j := 0; j < len(instances); j++ {
+			_, err := SolveByBranchAndBound(instances[j])
+			assert.NilError(b, err)
+		}
+	}
+}
+
+func BenchmarkBBOnRandomSmallInstances(b *testing.B) {
+	instanceSpecifications := loadSmallInstanceSpecifications(b)
+
+	instances := make([]instance, 0, len(instanceSpecifications))
+	for _, spec := range instanceSpecifications {
 		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
 		assert.NilError(b, err)
 		var ins cover.Instance

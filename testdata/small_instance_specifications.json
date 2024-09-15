@@ -1,0 +1,50 @@
+[
+  {
+    "NumElements": 5,
+    "NumSubSets": 25,
+    "CostScale": 1000,
+    "Seed": 0,
+    "InstancePath": "testdata/instances/instance_5_25_1000_0.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_25_1000_0.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 25,
+    "CostScale": 1000,
+    "Seed": 1,
+    "InstancePath": "testdata/instances/instance_5_25_1000_1.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_25_1000_1.json"
+  },
+  {
+    "NumElements": 10,
+    "NumSubSets": 100,
+    "CostScale": 1000,
+    "Seed": 2,
+    "InstancePath": "testdata/instances/instance_10_100_1000_2.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_10_100_1000_2.json"
+  },
+  {
+    "NumElements": 10,
+    "NumSubSets": 100,
+    "CostScale": 1000,
+    "Seed": 3,
+    "InstancePath": "testdata/instances/instance_10_100_1000_3.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_10_100_1000_3.json"
+  },
+  {
+    "NumElements": 15,
+    "NumSubSets": 225,
+    "CostScale": 1000,
+    "Seed": 4,
+    "InstancePath": "testdata/instances/instance_15_225_1000_4.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_15_225_1000_4.json"
+  },
+  {
+    "NumElements": 15,
+    "NumSubSets": 225,
+    "CostScale": 1000,
+    "Seed": 5,
+    "InstancePath": "testdata/instances/instance_15_225_1000_5.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_15_225_1000_5.json"
+  }
+]

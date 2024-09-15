@@ -45,7 +45,7 @@ func main() {
 	pythonSolverPath := flag.String("solver", "tools/solve_sc.py", "python solver path")
 	outputDir := flag.String("output", "testdata/instances",
 		"output directory for instances and python solution files")
-	suite := flag.String("suite", "tiny", "instance suite to generate (tiny)")
+	suite := flag.String("suite", "tiny", "instance suite to generate (tiny, small)")
 	specificationsPath := flag.String("specifications", defaultSpecificationsPath,
 		"instance specifications file")
 	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
@@ -60,11 +60,6 @@ func main() {
 	slog.Debug("Running with flags:")
 	flag.VisitAll(func(f *flag.Flag) { slog.Debug("flag", f.Name, f.Value) })
 
-	if err := checkTestSuiteName(*suite); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-
 	if *specificationsPath == defaultSpecificationsPath {
 		path := "testdata/" + *suite + "_instance_specifications.json"
 		specificationsPath = &path
@@ -75,6 +70,11 @@ func main() {
 	switch *suite {
 	case "tiny":
 		specifications = createTinySpecifications(*outputDir)
+	case "small":
+		specifications = createSmallSpecifications(*outputDir)
+	default:
+		fmt.Fprintf(os.Stderr, "unknown test suite name %s", *suite)
+		os.Exit(1)
 	}
 
 	b, err := json.MarshalIndent(specifications, "", "  ")
@@ -146,6 +146,39 @@ func createTinySpecifications(outputDir string) []cover.TestInstanceSpecificatio
 	return specifications
 }
 
+func createSmallSpecifications(outputDir string) []cover.TestInstanceSpecification {
+	specifications := make([]cover.TestInstanceSpecification, 0)
+	numberOfElements := []int{5, 10, 15}
+	costScale := 1000.0
+
+	var seed int64
+	for _, m := range numberOfElements {
+		n := int(math.Pow(float64(m), 2))
+		// 5 instances for every (m, n)
+		for j := 0; j < 5; j++ {
+			instanceName := fmt.Sprintf("instance_%d_%d_%d_%d.json", m, n, int(costScale), seed)
+			instancePath := filepath.Join(outputDir, instanceName)
+
+			solutionFileName := fmt.Sprintf("python_solution_%d_%d_%d_%d.json", m, n, int(costScale), seed)
+			solutionPath := filepath.Join(outputDir, solutionFileName)
+
+			specifications = append(specifications,
+				cover.TestInstanceSpecification{
+					NumElements:        m,
+					NumSubSets:         n,
+					CostScale:          costScale,
+					Seed:               seed,
+					InstancePath:       instancePath,
+					PythonSolutionPath: solutionPath,
+				})
+			slog.Debug("generating instance", "elements count", m, "subsets count", n, "random seed", seed)
+			seed++
+		}
+	}
+
+	return specifications
+}
+
 func createInstanceFiles(specifications []cover.TestInstanceSpecification) {
 	slog.Info("Creating test instance files", "count", len(specifications))
 	for _, spec := range specifications {
@@ -211,15 +244,4 @@ func parseLogLevel(level string) slog.Level {
 	slog.Error("unknown log level. defaulting to Info")
 
 	return slog.LevelInfo
-}
-
-func checkTestSuiteName(names string) error {
-	suites := []string{"tiny"}
-	for _, s := range suites {
-		if names == s {
-			return nil
-		}
-	}
-
-	return fmt.Errorf("unknown test suite name %s", names)
 }

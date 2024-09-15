@@ -99,7 +99,7 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpec
 
 }
 
-func TestBruteOnInstances(t *testing.T) {
+func TestBruteOnTinyInstances(t *testing.T) {
 	instanceSpecifications := loadTinyInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {
@@ -113,7 +113,7 @@ func TestBruteOnInstances(t *testing.T) {
 	}
 }
 
-func BenchmarkBruteOnRandomInstances(b *testing.B) {
+func BenchmarkBruteOnRandomTinyInstances(b *testing.B) {
 	instanceSpecifications := loadTinyInstanceSpecifications(b)
 
 	instances := make([]instance, 0, len(instanceSpecifications))
