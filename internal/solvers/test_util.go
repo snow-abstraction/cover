@@ -34,3 +34,12 @@ func loadTinyInstanceSpecifications(t testing.TB) []cover.TestInstanceSpecificat
 	assert.NilError(t, err)
 	return result
 }
+
+func loadSmallInstanceSpecifications(t testing.TB) []cover.TestInstanceSpecification {
+	var result []cover.TestInstanceSpecification
+	b, err := os.ReadFile("../../testdata/small_instance_specifications.json")
+	assert.NilError(t, err)
+	err = json.Unmarshal(b, &result)
+	assert.NilError(t, err)
+	return result
+}
