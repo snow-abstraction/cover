@@ -34,19 +34,21 @@ import (
 )
 
 const (
-	resultDelimiter = "solve_sc_result:"
+	resultDelimiter           = "solve_sc_result:"
+	defaultSpecificationsPath = "testdata/[suite_name]_instance_specifications.json"
 )
 
 // main creates some instance test data. See the `func usage()` or run with `-help` for more details.
 func main() {
+
 	flag.Usage = usage
 	pythonSolverPath := flag.String("solver", "tools/solve_sc.py", "python solver path")
 	outputDir := flag.String("output", "testdata/instances",
 		"output directory for instances and python solution files")
-	specificationsPath := flag.String("specifications", "testdata/instance_specifications.json",
+	suite := flag.String("suite", "tiny", "instance suite to generate (tiny)")
+	specificationsPath := flag.String("specifications", defaultSpecificationsPath,
 		"instance specifications file")
 	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
-
 	flag.Parse()
 
 	level := parseLogLevel(*logLevel)
@@ -58,7 +60,22 @@ func main() {
 	slog.Debug("Running with flags:")
 	flag.VisitAll(func(f *flag.Flag) { slog.Debug("flag", f.Name, f.Value) })
 
-	specifications := createSpecifications(*outputDir)
+	if err := checkTestSuiteName(*suite); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+
+	if *specificationsPath == defaultSpecificationsPath {
+		path := "testdata/" + *suite + "_instance_specifications.json"
+		specificationsPath = &path
+		slog.Debug("set specification path", "specificationsPath", *specificationsPath)
+	}
+
+	var specifications []cover.TestInstanceSpecification
+	switch *suite {
+	case "tiny":
+		specifications = createTinySpecifications(*outputDir)
+	}
 
 	b, err := json.MarshalIndent(specifications, "", "  ")
 	if err != nil {
@@ -93,7 +110,7 @@ Arguments:
 	flag.PrintDefaults()
 }
 
-func createSpecifications(outputDir string) []cover.TestInstanceSpecification {
+func createTinySpecifications(outputDir string) []cover.TestInstanceSpecification {
 	specifications := make([]cover.TestInstanceSpecification, 0)
 	numberOfElements := []int{1, 2, 3, 4}
 	costScales := []float64{1.0, 1000.0}
@@ -194,4 +211,15 @@ func parseLogLevel(level string) slog.Level {
 	slog.Error("unknown log level. defaulting to Info")
 
 	return slog.LevelInfo
+}
+
+func checkTestSuiteName(names string) error {
+	suites := []string{"tiny"}
+	for _, s := range suites {
+		if names == s {
+			return nil
+		}
+	}
+
+	return fmt.Errorf("unknown test suite name %s", names)
 }

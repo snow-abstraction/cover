@@ -28,7 +28,7 @@ import (
 )
 
 func TestLowerBoundCalcOnInstances(t *testing.T) {
-	instanceSpecifications := loadInstanceSpecifications(t)
+	instanceSpecifications := loadTinyInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {
 		spec := spec

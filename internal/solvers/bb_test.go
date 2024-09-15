@@ -148,8 +148,8 @@ func testBBFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpecifi
 
 }
 
-func TestBBOnInstances(t *testing.T) {
-	instanceSpecifications := loadInstanceSpecifications(t)
+func TestBBOnTinyInstances(t *testing.T) {
+	instanceSpecifications := loadTinyInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {
 		spec := spec
@@ -162,8 +162,8 @@ func TestBBOnInstances(t *testing.T) {
 	}
 }
 
-func BenchmarkBBOnRandomInstances(b *testing.B) {
-	instanceSpecifications := loadInstanceSpecifications(b)
+func BenchmarkBBOnRandomTinyInstances(b *testing.B) {
+	instanceSpecifications := loadTinyInstanceSpecifications(b)
 
 	instances := make([]instance, 0, len(instanceSpecifications))
 	for _, spec := range instanceSpecifications {
@@ -186,8 +186,8 @@ func BenchmarkBBOnRandomInstances(b *testing.B) {
 	}
 }
 
-func BenchmarkBBOnRandomScale1Instances(b *testing.B) {
-	instanceSpecifications := loadInstanceSpecifications(b)
+func BenchmarkBBOnRandomScale1TinyInstances(b *testing.B) {
+	instanceSpecifications := loadTinyInstanceSpecifications(b)
 
 	instances := make([]instance, 0, len(instanceSpecifications))
 	for _, spec := range instanceSpecifications {
@@ -213,8 +213,8 @@ func BenchmarkBBOnRandomScale1Instances(b *testing.B) {
 	}
 }
 
-func BenchmarkBBOnRandomScale1000Instances(b *testing.B) {
-	instanceSpecifications := loadInstanceSpecifications(b)
+func BenchmarkBBOnRandomScale1000TinyInstances(b *testing.B) {
+	instanceSpecifications := loadTinyInstanceSpecifications(b)
 
 	instances := make([]instance, 0, len(instanceSpecifications))
 	for _, spec := range instanceSpecifications {
