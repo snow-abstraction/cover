@@ -150,7 +150,7 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 			result := calcLagrangianDualResult(nCols, costs, x, aR, aRx, nRows, u)
 			slog.Debug("Iteration status", "i", k, "objective value", result.dualObjectiveValue)
 			if result.provenOptimalExact {
-				slog.Debug("Stop iterating. Prove optimal")
+				slog.Debug("Stop iterating. Proven optimal")
 				return result, nil
 			}
 		}
