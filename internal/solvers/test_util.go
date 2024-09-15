@@ -26,9 +26,9 @@ import (
 	"gotest.tools/v3/assert"
 )
 
-func loadInstanceSpecifications(t testing.TB) []cover.TestInstanceSpecification {
+func loadTinyInstanceSpecifications(t testing.TB) []cover.TestInstanceSpecification {
 	var result []cover.TestInstanceSpecification
-	b, err := os.ReadFile("../../testdata/instance_specifications.json")
+	b, err := os.ReadFile("../../testdata/tiny_instance_specifications.json")
 	assert.NilError(t, err)
 	err = json.Unmarshal(b, &result)
 	assert.NilError(t, err)
