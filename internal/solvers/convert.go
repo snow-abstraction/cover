@@ -20,10 +20,9 @@ package solvers
 func convertSubsetsToMatrix(subsets [][]int) (cCSMatrix, error) {
 	x := make([]uint32, 0)
 
-	for i := 0; i < len(subsets); i++ {
-		subset := subsets[i]
-		for j := 0; j < len(subset); j++ {
-			x = append(x, uint32(subset[j]))
+	for _, subset := range subsets {
+		for _, elementIdx := range subset {
+			x = append(x, uint32(elementIdx))
 		}
 		x = append(x, sen)
 	}
