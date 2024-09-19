@@ -112,7 +112,7 @@ Arguments:
 
 func createTinySpecifications(outputDir string) []cover.TestInstanceSpecification {
 	specifications := make([]cover.TestInstanceSpecification, 0)
-	numberOfElements := []int{1, 2, 3, 4}
+	numberOfElements := []int{1, 2, 3, 4, 5}
 	costScales := []float64{1.0, 1000.0}
 
 	for _, costScale := range costScales {
@@ -120,8 +120,12 @@ func createTinySpecifications(outputDir string) []cover.TestInstanceSpecificatio
 		for _, m := range numberOfElements {
 			maxN := int(3*math.Exp2(float64(m))) / 4
 			for n := 1; n <= maxN; n++ {
-				// two instances for every (m, n)
-				for j := 0; j < 2; j++ {
+				// 5 instances for every (m, n) except m == 1
+				maxJ := 5
+				if m == 1 {
+					maxJ = 2
+				}
+				for j := 0; j < maxJ; j++ {
 					instanceName := fmt.Sprintf("instance_%d_%d_%d_%d.json", m, n, int(costScale), seed)
 					instancePath := filepath.Join(outputDir, instanceName)
 
