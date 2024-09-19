@@ -33,323 +33,1787 @@
   },
   {
     "NumElements": 2,
-    "NumSubSets": 2,
+    "NumSubSets": 1,
     "CostScale": 1,
     "Seed": 4,
-    "InstancePath": "testdata/instances/instance_2_2_1_4.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1_4.json"
+    "InstancePath": "testdata/instances/instance_2_1_1_4.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_1_1_4.json"
+  },
+  {
+    "NumElements": 2,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 5,
+    "InstancePath": "testdata/instances/instance_2_1_1_5.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_1_1_5.json"
+  },
+  {
+    "NumElements": 2,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 6,
+    "InstancePath": "testdata/instances/instance_2_1_1_6.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_1_1_6.json"
   },
   {
     "NumElements": 2,
     "NumSubSets": 2,
     "CostScale": 1,
-    "Seed": 5,
-    "InstancePath": "testdata/instances/instance_2_2_1_5.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1_5.json"
-  },
-  {
-    "NumElements": 2,
-    "NumSubSets": 3,
-    "CostScale": 1,
-    "Seed": 6,
-    "InstancePath": "testdata/instances/instance_2_3_1_6.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1_6.json"
-  },
-  {
-    "NumElements": 2,
-    "NumSubSets": 3,
-    "CostScale": 1,
     "Seed": 7,
-    "InstancePath": "testdata/instances/instance_2_3_1_7.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1_7.json"
+    "InstancePath": "testdata/instances/instance_2_2_1_7.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1_7.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 1,
+    "NumElements": 2,
+    "NumSubSets": 2,
     "CostScale": 1,
     "Seed": 8,
-    "InstancePath": "testdata/instances/instance_3_1_1_8.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1_8.json"
+    "InstancePath": "testdata/instances/instance_2_2_1_8.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1_8.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 1,
+    "NumElements": 2,
+    "NumSubSets": 2,
     "CostScale": 1,
     "Seed": 9,
-    "InstancePath": "testdata/instances/instance_3_1_1_9.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1_9.json"
+    "InstancePath": "testdata/instances/instance_2_2_1_9.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1_9.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 2,
     "CostScale": 1,
     "Seed": 10,
-    "InstancePath": "testdata/instances/instance_3_2_1_10.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1_10.json"
+    "InstancePath": "testdata/instances/instance_2_2_1_10.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1_10.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 2,
     "CostScale": 1,
     "Seed": 11,
-    "InstancePath": "testdata/instances/instance_3_2_1_11.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1_11.json"
+    "InstancePath": "testdata/instances/instance_2_2_1_11.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1_11.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 3,
     "CostScale": 1,
     "Seed": 12,
-    "InstancePath": "testdata/instances/instance_3_3_1_12.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1_12.json"
+    "InstancePath": "testdata/instances/instance_2_3_1_12.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1_12.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 3,
     "CostScale": 1,
     "Seed": 13,
-    "InstancePath": "testdata/instances/instance_3_3_1_13.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1_13.json"
+    "InstancePath": "testdata/instances/instance_2_3_1_13.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1_13.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 4,
+    "NumElements": 2,
+    "NumSubSets": 3,
     "CostScale": 1,
     "Seed": 14,
-    "InstancePath": "testdata/instances/instance_3_4_1_14.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1_14.json"
+    "InstancePath": "testdata/instances/instance_2_3_1_14.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1_14.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 4,
+    "NumElements": 2,
+    "NumSubSets": 3,
     "CostScale": 1,
     "Seed": 15,
-    "InstancePath": "testdata/instances/instance_3_4_1_15.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1_15.json"
+    "InstancePath": "testdata/instances/instance_2_3_1_15.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1_15.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 5,
+    "NumElements": 2,
+    "NumSubSets": 3,
     "CostScale": 1,
     "Seed": 16,
-    "InstancePath": "testdata/instances/instance_3_5_1_16.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1_16.json"
+    "InstancePath": "testdata/instances/instance_2_3_1_16.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1_16.json"
   },
   {
     "NumElements": 3,
-    "NumSubSets": 5,
+    "NumSubSets": 1,
     "CostScale": 1,
     "Seed": 17,
-    "InstancePath": "testdata/instances/instance_3_5_1_17.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1_17.json"
+    "InstancePath": "testdata/instances/instance_3_1_1_17.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1_17.json"
   },
   {
     "NumElements": 3,
-    "NumSubSets": 6,
+    "NumSubSets": 1,
     "CostScale": 1,
     "Seed": 18,
-    "InstancePath": "testdata/instances/instance_3_6_1_18.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1_18.json"
+    "InstancePath": "testdata/instances/instance_3_1_1_18.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1_18.json"
   },
   {
     "NumElements": 3,
-    "NumSubSets": 6,
+    "NumSubSets": 1,
     "CostScale": 1,
     "Seed": 19,
-    "InstancePath": "testdata/instances/instance_3_6_1_19.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1_19.json"
+    "InstancePath": "testdata/instances/instance_3_1_1_19.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1_19.json"
   },
   {
-    "NumElements": 4,
+    "NumElements": 3,
     "NumSubSets": 1,
     "CostScale": 1,
     "Seed": 20,
-    "InstancePath": "testdata/instances/instance_4_1_1_20.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1_20.json"
+    "InstancePath": "testdata/instances/instance_3_1_1_20.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1_20.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 21,
+    "InstancePath": "testdata/instances/instance_3_1_1_21.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1_21.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 22,
+    "InstancePath": "testdata/instances/instance_3_2_1_22.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1_22.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 23,
+    "InstancePath": "testdata/instances/instance_3_2_1_23.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1_23.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 24,
+    "InstancePath": "testdata/instances/instance_3_2_1_24.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1_24.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 25,
+    "InstancePath": "testdata/instances/instance_3_2_1_25.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1_25.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 26,
+    "InstancePath": "testdata/instances/instance_3_2_1_26.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1_26.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 27,
+    "InstancePath": "testdata/instances/instance_3_3_1_27.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1_27.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 28,
+    "InstancePath": "testdata/instances/instance_3_3_1_28.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1_28.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 29,
+    "InstancePath": "testdata/instances/instance_3_3_1_29.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1_29.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 30,
+    "InstancePath": "testdata/instances/instance_3_3_1_30.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1_30.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 31,
+    "InstancePath": "testdata/instances/instance_3_3_1_31.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1_31.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 32,
+    "InstancePath": "testdata/instances/instance_3_4_1_32.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1_32.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 33,
+    "InstancePath": "testdata/instances/instance_3_4_1_33.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1_33.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 34,
+    "InstancePath": "testdata/instances/instance_3_4_1_34.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1_34.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 35,
+    "InstancePath": "testdata/instances/instance_3_4_1_35.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1_35.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 36,
+    "InstancePath": "testdata/instances/instance_3_4_1_36.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1_36.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 37,
+    "InstancePath": "testdata/instances/instance_3_5_1_37.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1_37.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 38,
+    "InstancePath": "testdata/instances/instance_3_5_1_38.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1_38.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 39,
+    "InstancePath": "testdata/instances/instance_3_5_1_39.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1_39.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 40,
+    "InstancePath": "testdata/instances/instance_3_5_1_40.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1_40.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 41,
+    "InstancePath": "testdata/instances/instance_3_5_1_41.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1_41.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 42,
+    "InstancePath": "testdata/instances/instance_3_6_1_42.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1_42.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 43,
+    "InstancePath": "testdata/instances/instance_3_6_1_43.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1_43.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 44,
+    "InstancePath": "testdata/instances/instance_3_6_1_44.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1_44.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 45,
+    "InstancePath": "testdata/instances/instance_3_6_1_45.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1_45.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 46,
+    "InstancePath": "testdata/instances/instance_3_6_1_46.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1_46.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 1,
     "CostScale": 1,
-    "Seed": 21,
-    "InstancePath": "testdata/instances/instance_4_1_1_21.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1_21.json"
+    "Seed": 47,
+    "InstancePath": "testdata/instances/instance_4_1_1_47.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1_47.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 48,
+    "InstancePath": "testdata/instances/instance_4_1_1_48.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1_48.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 49,
+    "InstancePath": "testdata/instances/instance_4_1_1_49.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1_49.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 50,
+    "InstancePath": "testdata/instances/instance_4_1_1_50.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1_50.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 51,
+    "InstancePath": "testdata/instances/instance_4_1_1_51.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1_51.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 2,
     "CostScale": 1,
-    "Seed": 22,
-    "InstancePath": "testdata/instances/instance_4_2_1_22.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1_22.json"
+    "Seed": 52,
+    "InstancePath": "testdata/instances/instance_4_2_1_52.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1_52.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 2,
     "CostScale": 1,
-    "Seed": 23,
-    "InstancePath": "testdata/instances/instance_4_2_1_23.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1_23.json"
+    "Seed": 53,
+    "InstancePath": "testdata/instances/instance_4_2_1_53.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1_53.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 54,
+    "InstancePath": "testdata/instances/instance_4_2_1_54.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1_54.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 55,
+    "InstancePath": "testdata/instances/instance_4_2_1_55.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1_55.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 56,
+    "InstancePath": "testdata/instances/instance_4_2_1_56.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1_56.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 3,
     "CostScale": 1,
-    "Seed": 24,
-    "InstancePath": "testdata/instances/instance_4_3_1_24.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1_24.json"
+    "Seed": 57,
+    "InstancePath": "testdata/instances/instance_4_3_1_57.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1_57.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 3,
     "CostScale": 1,
-    "Seed": 25,
-    "InstancePath": "testdata/instances/instance_4_3_1_25.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1_25.json"
+    "Seed": 58,
+    "InstancePath": "testdata/instances/instance_4_3_1_58.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1_58.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 59,
+    "InstancePath": "testdata/instances/instance_4_3_1_59.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1_59.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 60,
+    "InstancePath": "testdata/instances/instance_4_3_1_60.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1_60.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 61,
+    "InstancePath": "testdata/instances/instance_4_3_1_61.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1_61.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 4,
     "CostScale": 1,
-    "Seed": 26,
-    "InstancePath": "testdata/instances/instance_4_4_1_26.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1_26.json"
+    "Seed": 62,
+    "InstancePath": "testdata/instances/instance_4_4_1_62.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1_62.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 4,
     "CostScale": 1,
-    "Seed": 27,
-    "InstancePath": "testdata/instances/instance_4_4_1_27.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1_27.json"
+    "Seed": 63,
+    "InstancePath": "testdata/instances/instance_4_4_1_63.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1_63.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 64,
+    "InstancePath": "testdata/instances/instance_4_4_1_64.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1_64.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 65,
+    "InstancePath": "testdata/instances/instance_4_4_1_65.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1_65.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 66,
+    "InstancePath": "testdata/instances/instance_4_4_1_66.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1_66.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 5,
     "CostScale": 1,
-    "Seed": 28,
-    "InstancePath": "testdata/instances/instance_4_5_1_28.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1_28.json"
+    "Seed": 67,
+    "InstancePath": "testdata/instances/instance_4_5_1_67.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1_67.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 5,
     "CostScale": 1,
-    "Seed": 29,
-    "InstancePath": "testdata/instances/instance_4_5_1_29.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1_29.json"
+    "Seed": 68,
+    "InstancePath": "testdata/instances/instance_4_5_1_68.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1_68.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 69,
+    "InstancePath": "testdata/instances/instance_4_5_1_69.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1_69.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 70,
+    "InstancePath": "testdata/instances/instance_4_5_1_70.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1_70.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 71,
+    "InstancePath": "testdata/instances/instance_4_5_1_71.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1_71.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 6,
     "CostScale": 1,
-    "Seed": 30,
-    "InstancePath": "testdata/instances/instance_4_6_1_30.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1_30.json"
+    "Seed": 72,
+    "InstancePath": "testdata/instances/instance_4_6_1_72.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1_72.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 6,
     "CostScale": 1,
-    "Seed": 31,
-    "InstancePath": "testdata/instances/instance_4_6_1_31.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1_31.json"
+    "Seed": 73,
+    "InstancePath": "testdata/instances/instance_4_6_1_73.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1_73.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 74,
+    "InstancePath": "testdata/instances/instance_4_6_1_74.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1_74.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 75,
+    "InstancePath": "testdata/instances/instance_4_6_1_75.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1_75.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 76,
+    "InstancePath": "testdata/instances/instance_4_6_1_76.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1_76.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 7,
     "CostScale": 1,
-    "Seed": 32,
-    "InstancePath": "testdata/instances/instance_4_7_1_32.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1_32.json"
+    "Seed": 77,
+    "InstancePath": "testdata/instances/instance_4_7_1_77.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1_77.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 7,
     "CostScale": 1,
-    "Seed": 33,
-    "InstancePath": "testdata/instances/instance_4_7_1_33.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1_33.json"
+    "Seed": 78,
+    "InstancePath": "testdata/instances/instance_4_7_1_78.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1_78.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 79,
+    "InstancePath": "testdata/instances/instance_4_7_1_79.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1_79.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 80,
+    "InstancePath": "testdata/instances/instance_4_7_1_80.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1_80.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 81,
+    "InstancePath": "testdata/instances/instance_4_7_1_81.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1_81.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 8,
     "CostScale": 1,
-    "Seed": 34,
-    "InstancePath": "testdata/instances/instance_4_8_1_34.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1_34.json"
+    "Seed": 82,
+    "InstancePath": "testdata/instances/instance_4_8_1_82.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1_82.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 8,
     "CostScale": 1,
-    "Seed": 35,
-    "InstancePath": "testdata/instances/instance_4_8_1_35.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1_35.json"
+    "Seed": 83,
+    "InstancePath": "testdata/instances/instance_4_8_1_83.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1_83.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 84,
+    "InstancePath": "testdata/instances/instance_4_8_1_84.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1_84.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 85,
+    "InstancePath": "testdata/instances/instance_4_8_1_85.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1_85.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 86,
+    "InstancePath": "testdata/instances/instance_4_8_1_86.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1_86.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 9,
     "CostScale": 1,
-    "Seed": 36,
-    "InstancePath": "testdata/instances/instance_4_9_1_36.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1_36.json"
+    "Seed": 87,
+    "InstancePath": "testdata/instances/instance_4_9_1_87.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1_87.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 9,
     "CostScale": 1,
-    "Seed": 37,
-    "InstancePath": "testdata/instances/instance_4_9_1_37.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1_37.json"
+    "Seed": 88,
+    "InstancePath": "testdata/instances/instance_4_9_1_88.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1_88.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 89,
+    "InstancePath": "testdata/instances/instance_4_9_1_89.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1_89.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 90,
+    "InstancePath": "testdata/instances/instance_4_9_1_90.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1_90.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 91,
+    "InstancePath": "testdata/instances/instance_4_9_1_91.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1_91.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 10,
     "CostScale": 1,
-    "Seed": 38,
-    "InstancePath": "testdata/instances/instance_4_10_1_38.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1_38.json"
+    "Seed": 92,
+    "InstancePath": "testdata/instances/instance_4_10_1_92.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1_92.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 10,
     "CostScale": 1,
-    "Seed": 39,
-    "InstancePath": "testdata/instances/instance_4_10_1_39.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1_39.json"
+    "Seed": 93,
+    "InstancePath": "testdata/instances/instance_4_10_1_93.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1_93.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 94,
+    "InstancePath": "testdata/instances/instance_4_10_1_94.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1_94.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 95,
+    "InstancePath": "testdata/instances/instance_4_10_1_95.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1_95.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 96,
+    "InstancePath": "testdata/instances/instance_4_10_1_96.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1_96.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 11,
     "CostScale": 1,
-    "Seed": 40,
-    "InstancePath": "testdata/instances/instance_4_11_1_40.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1_40.json"
+    "Seed": 97,
+    "InstancePath": "testdata/instances/instance_4_11_1_97.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1_97.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 11,
     "CostScale": 1,
-    "Seed": 41,
-    "InstancePath": "testdata/instances/instance_4_11_1_41.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1_41.json"
+    "Seed": 98,
+    "InstancePath": "testdata/instances/instance_4_11_1_98.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1_98.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 99,
+    "InstancePath": "testdata/instances/instance_4_11_1_99.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1_99.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 100,
+    "InstancePath": "testdata/instances/instance_4_11_1_100.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1_100.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 101,
+    "InstancePath": "testdata/instances/instance_4_11_1_101.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1_101.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 12,
     "CostScale": 1,
-    "Seed": 42,
-    "InstancePath": "testdata/instances/instance_4_12_1_42.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1_42.json"
+    "Seed": 102,
+    "InstancePath": "testdata/instances/instance_4_12_1_102.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1_102.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 12,
     "CostScale": 1,
-    "Seed": 43,
-    "InstancePath": "testdata/instances/instance_4_12_1_43.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1_43.json"
+    "Seed": 103,
+    "InstancePath": "testdata/instances/instance_4_12_1_103.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1_103.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 104,
+    "InstancePath": "testdata/instances/instance_4_12_1_104.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1_104.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 105,
+    "InstancePath": "testdata/instances/instance_4_12_1_105.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1_105.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 106,
+    "InstancePath": "testdata/instances/instance_4_12_1_106.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1_106.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 107,
+    "InstancePath": "testdata/instances/instance_5_1_1_107.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1_107.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 108,
+    "InstancePath": "testdata/instances/instance_5_1_1_108.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1_108.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 109,
+    "InstancePath": "testdata/instances/instance_5_1_1_109.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1_109.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 110,
+    "InstancePath": "testdata/instances/instance_5_1_1_110.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1_110.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1,
+    "Seed": 111,
+    "InstancePath": "testdata/instances/instance_5_1_1_111.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1_111.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 112,
+    "InstancePath": "testdata/instances/instance_5_2_1_112.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1_112.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 113,
+    "InstancePath": "testdata/instances/instance_5_2_1_113.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1_113.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 114,
+    "InstancePath": "testdata/instances/instance_5_2_1_114.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1_114.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 115,
+    "InstancePath": "testdata/instances/instance_5_2_1_115.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1_115.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1,
+    "Seed": 116,
+    "InstancePath": "testdata/instances/instance_5_2_1_116.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1_116.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 117,
+    "InstancePath": "testdata/instances/instance_5_3_1_117.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1_117.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 118,
+    "InstancePath": "testdata/instances/instance_5_3_1_118.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1_118.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 119,
+    "InstancePath": "testdata/instances/instance_5_3_1_119.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1_119.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 120,
+    "InstancePath": "testdata/instances/instance_5_3_1_120.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1_120.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1,
+    "Seed": 121,
+    "InstancePath": "testdata/instances/instance_5_3_1_121.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1_121.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 122,
+    "InstancePath": "testdata/instances/instance_5_4_1_122.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1_122.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 123,
+    "InstancePath": "testdata/instances/instance_5_4_1_123.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1_123.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 124,
+    "InstancePath": "testdata/instances/instance_5_4_1_124.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1_124.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 125,
+    "InstancePath": "testdata/instances/instance_5_4_1_125.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1_125.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1,
+    "Seed": 126,
+    "InstancePath": "testdata/instances/instance_5_4_1_126.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1_126.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 127,
+    "InstancePath": "testdata/instances/instance_5_5_1_127.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1_127.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 128,
+    "InstancePath": "testdata/instances/instance_5_5_1_128.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1_128.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 129,
+    "InstancePath": "testdata/instances/instance_5_5_1_129.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1_129.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 130,
+    "InstancePath": "testdata/instances/instance_5_5_1_130.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1_130.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1,
+    "Seed": 131,
+    "InstancePath": "testdata/instances/instance_5_5_1_131.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1_131.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 132,
+    "InstancePath": "testdata/instances/instance_5_6_1_132.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1_132.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 133,
+    "InstancePath": "testdata/instances/instance_5_6_1_133.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1_133.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 134,
+    "InstancePath": "testdata/instances/instance_5_6_1_134.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1_134.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 135,
+    "InstancePath": "testdata/instances/instance_5_6_1_135.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1_135.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1,
+    "Seed": 136,
+    "InstancePath": "testdata/instances/instance_5_6_1_136.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1_136.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 137,
+    "InstancePath": "testdata/instances/instance_5_7_1_137.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1_137.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 138,
+    "InstancePath": "testdata/instances/instance_5_7_1_138.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1_138.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 139,
+    "InstancePath": "testdata/instances/instance_5_7_1_139.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1_139.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 140,
+    "InstancePath": "testdata/instances/instance_5_7_1_140.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1_140.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1,
+    "Seed": 141,
+    "InstancePath": "testdata/instances/instance_5_7_1_141.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1_141.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 142,
+    "InstancePath": "testdata/instances/instance_5_8_1_142.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1_142.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 143,
+    "InstancePath": "testdata/instances/instance_5_8_1_143.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1_143.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 144,
+    "InstancePath": "testdata/instances/instance_5_8_1_144.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1_144.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 145,
+    "InstancePath": "testdata/instances/instance_5_8_1_145.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1_145.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1,
+    "Seed": 146,
+    "InstancePath": "testdata/instances/instance_5_8_1_146.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1_146.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 147,
+    "InstancePath": "testdata/instances/instance_5_9_1_147.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1_147.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 148,
+    "InstancePath": "testdata/instances/instance_5_9_1_148.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1_148.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 149,
+    "InstancePath": "testdata/instances/instance_5_9_1_149.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1_149.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 150,
+    "InstancePath": "testdata/instances/instance_5_9_1_150.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1_150.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1,
+    "Seed": 151,
+    "InstancePath": "testdata/instances/instance_5_9_1_151.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1_151.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 152,
+    "InstancePath": "testdata/instances/instance_5_10_1_152.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1_152.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 153,
+    "InstancePath": "testdata/instances/instance_5_10_1_153.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1_153.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 154,
+    "InstancePath": "testdata/instances/instance_5_10_1_154.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1_154.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 155,
+    "InstancePath": "testdata/instances/instance_5_10_1_155.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1_155.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1,
+    "Seed": 156,
+    "InstancePath": "testdata/instances/instance_5_10_1_156.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1_156.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 157,
+    "InstancePath": "testdata/instances/instance_5_11_1_157.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1_157.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 158,
+    "InstancePath": "testdata/instances/instance_5_11_1_158.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1_158.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 159,
+    "InstancePath": "testdata/instances/instance_5_11_1_159.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1_159.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 160,
+    "InstancePath": "testdata/instances/instance_5_11_1_160.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1_160.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1,
+    "Seed": 161,
+    "InstancePath": "testdata/instances/instance_5_11_1_161.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1_161.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 162,
+    "InstancePath": "testdata/instances/instance_5_12_1_162.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1_162.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 163,
+    "InstancePath": "testdata/instances/instance_5_12_1_163.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1_163.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 164,
+    "InstancePath": "testdata/instances/instance_5_12_1_164.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1_164.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 165,
+    "InstancePath": "testdata/instances/instance_5_12_1_165.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1_165.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1,
+    "Seed": 166,
+    "InstancePath": "testdata/instances/instance_5_12_1_166.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1_166.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1,
+    "Seed": 167,
+    "InstancePath": "testdata/instances/instance_5_13_1_167.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1_167.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1,
+    "Seed": 168,
+    "InstancePath": "testdata/instances/instance_5_13_1_168.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1_168.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1,
+    "Seed": 169,
+    "InstancePath": "testdata/instances/instance_5_13_1_169.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1_169.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1,
+    "Seed": 170,
+    "InstancePath": "testdata/instances/instance_5_13_1_170.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1_170.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1,
+    "Seed": 171,
+    "InstancePath": "testdata/instances/instance_5_13_1_171.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1_171.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1,
+    "Seed": 172,
+    "InstancePath": "testdata/instances/instance_5_14_1_172.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1_172.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1,
+    "Seed": 173,
+    "InstancePath": "testdata/instances/instance_5_14_1_173.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1_173.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1,
+    "Seed": 174,
+    "InstancePath": "testdata/instances/instance_5_14_1_174.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1_174.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1,
+    "Seed": 175,
+    "InstancePath": "testdata/instances/instance_5_14_1_175.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1_175.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1,
+    "Seed": 176,
+    "InstancePath": "testdata/instances/instance_5_14_1_176.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1_176.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1,
+    "Seed": 177,
+    "InstancePath": "testdata/instances/instance_5_15_1_177.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1_177.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1,
+    "Seed": 178,
+    "InstancePath": "testdata/instances/instance_5_15_1_178.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1_178.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1,
+    "Seed": 179,
+    "InstancePath": "testdata/instances/instance_5_15_1_179.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1_179.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1,
+    "Seed": 180,
+    "InstancePath": "testdata/instances/instance_5_15_1_180.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1_180.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1,
+    "Seed": 181,
+    "InstancePath": "testdata/instances/instance_5_15_1_181.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1_181.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1,
+    "Seed": 182,
+    "InstancePath": "testdata/instances/instance_5_16_1_182.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1_182.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1,
+    "Seed": 183,
+    "InstancePath": "testdata/instances/instance_5_16_1_183.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1_183.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1,
+    "Seed": 184,
+    "InstancePath": "testdata/instances/instance_5_16_1_184.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1_184.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1,
+    "Seed": 185,
+    "InstancePath": "testdata/instances/instance_5_16_1_185.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1_185.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1,
+    "Seed": 186,
+    "InstancePath": "testdata/instances/instance_5_16_1_186.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1_186.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1,
+    "Seed": 187,
+    "InstancePath": "testdata/instances/instance_5_17_1_187.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1_187.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1,
+    "Seed": 188,
+    "InstancePath": "testdata/instances/instance_5_17_1_188.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1_188.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1,
+    "Seed": 189,
+    "InstancePath": "testdata/instances/instance_5_17_1_189.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1_189.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1,
+    "Seed": 190,
+    "InstancePath": "testdata/instances/instance_5_17_1_190.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1_190.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1,
+    "Seed": 191,
+    "InstancePath": "testdata/instances/instance_5_17_1_191.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1_191.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1,
+    "Seed": 192,
+    "InstancePath": "testdata/instances/instance_5_18_1_192.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1_192.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1,
+    "Seed": 193,
+    "InstancePath": "testdata/instances/instance_5_18_1_193.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1_193.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1,
+    "Seed": 194,
+    "InstancePath": "testdata/instances/instance_5_18_1_194.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1_194.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1,
+    "Seed": 195,
+    "InstancePath": "testdata/instances/instance_5_18_1_195.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1_195.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1,
+    "Seed": 196,
+    "InstancePath": "testdata/instances/instance_5_18_1_196.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1_196.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1,
+    "Seed": 197,
+    "InstancePath": "testdata/instances/instance_5_19_1_197.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1_197.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1,
+    "Seed": 198,
+    "InstancePath": "testdata/instances/instance_5_19_1_198.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1_198.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1,
+    "Seed": 199,
+    "InstancePath": "testdata/instances/instance_5_19_1_199.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1_199.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1,
+    "Seed": 200,
+    "InstancePath": "testdata/instances/instance_5_19_1_200.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1_200.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1,
+    "Seed": 201,
+    "InstancePath": "testdata/instances/instance_5_19_1_201.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1_201.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1,
+    "Seed": 202,
+    "InstancePath": "testdata/instances/instance_5_20_1_202.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1_202.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1,
+    "Seed": 203,
+    "InstancePath": "testdata/instances/instance_5_20_1_203.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1_203.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1,
+    "Seed": 204,
+    "InstancePath": "testdata/instances/instance_5_20_1_204.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1_204.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1,
+    "Seed": 205,
+    "InstancePath": "testdata/instances/instance_5_20_1_205.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1_205.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1,
+    "Seed": 206,
+    "InstancePath": "testdata/instances/instance_5_20_1_206.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1_206.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1,
+    "Seed": 207,
+    "InstancePath": "testdata/instances/instance_5_21_1_207.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1_207.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1,
+    "Seed": 208,
+    "InstancePath": "testdata/instances/instance_5_21_1_208.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1_208.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1,
+    "Seed": 209,
+    "InstancePath": "testdata/instances/instance_5_21_1_209.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1_209.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1,
+    "Seed": 210,
+    "InstancePath": "testdata/instances/instance_5_21_1_210.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1_210.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1,
+    "Seed": 211,
+    "InstancePath": "testdata/instances/instance_5_21_1_211.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1_211.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1,
+    "Seed": 212,
+    "InstancePath": "testdata/instances/instance_5_22_1_212.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1_212.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1,
+    "Seed": 213,
+    "InstancePath": "testdata/instances/instance_5_22_1_213.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1_213.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1,
+    "Seed": 214,
+    "InstancePath": "testdata/instances/instance_5_22_1_214.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1_214.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1,
+    "Seed": 215,
+    "InstancePath": "testdata/instances/instance_5_22_1_215.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1_215.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1,
+    "Seed": 216,
+    "InstancePath": "testdata/instances/instance_5_22_1_216.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1_216.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1,
+    "Seed": 217,
+    "InstancePath": "testdata/instances/instance_5_23_1_217.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1_217.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1,
+    "Seed": 218,
+    "InstancePath": "testdata/instances/instance_5_23_1_218.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1_218.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1,
+    "Seed": 219,
+    "InstancePath": "testdata/instances/instance_5_23_1_219.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1_219.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1,
+    "Seed": 220,
+    "InstancePath": "testdata/instances/instance_5_23_1_220.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1_220.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1,
+    "Seed": 221,
+    "InstancePath": "testdata/instances/instance_5_23_1_221.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1_221.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1,
+    "Seed": 222,
+    "InstancePath": "testdata/instances/instance_5_24_1_222.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1_222.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1,
+    "Seed": 223,
+    "InstancePath": "testdata/instances/instance_5_24_1_223.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1_223.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1,
+    "Seed": 224,
+    "InstancePath": "testdata/instances/instance_5_24_1_224.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1_224.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1,
+    "Seed": 225,
+    "InstancePath": "testdata/instances/instance_5_24_1_225.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1_225.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1,
+    "Seed": 226,
+    "InstancePath": "testdata/instances/instance_5_24_1_226.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1_226.json"
   },
   {
     "NumElements": 1,
@@ -385,322 +1849,1786 @@
   },
   {
     "NumElements": 2,
-    "NumSubSets": 2,
+    "NumSubSets": 1,
     "CostScale": 1000,
     "Seed": 4,
-    "InstancePath": "testdata/instances/instance_2_2_1000_4.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1000_4.json"
+    "InstancePath": "testdata/instances/instance_2_1_1000_4.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_1_1000_4.json"
+  },
+  {
+    "NumElements": 2,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 5,
+    "InstancePath": "testdata/instances/instance_2_1_1000_5.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_1_1000_5.json"
+  },
+  {
+    "NumElements": 2,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 6,
+    "InstancePath": "testdata/instances/instance_2_1_1000_6.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_1_1000_6.json"
   },
   {
     "NumElements": 2,
     "NumSubSets": 2,
     "CostScale": 1000,
-    "Seed": 5,
-    "InstancePath": "testdata/instances/instance_2_2_1000_5.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1000_5.json"
-  },
-  {
-    "NumElements": 2,
-    "NumSubSets": 3,
-    "CostScale": 1000,
-    "Seed": 6,
-    "InstancePath": "testdata/instances/instance_2_3_1000_6.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1000_6.json"
-  },
-  {
-    "NumElements": 2,
-    "NumSubSets": 3,
-    "CostScale": 1000,
     "Seed": 7,
-    "InstancePath": "testdata/instances/instance_2_3_1000_7.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1000_7.json"
+    "InstancePath": "testdata/instances/instance_2_2_1000_7.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1000_7.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 1,
+    "NumElements": 2,
+    "NumSubSets": 2,
     "CostScale": 1000,
     "Seed": 8,
-    "InstancePath": "testdata/instances/instance_3_1_1000_8.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1000_8.json"
+    "InstancePath": "testdata/instances/instance_2_2_1000_8.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1000_8.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 1,
+    "NumElements": 2,
+    "NumSubSets": 2,
     "CostScale": 1000,
     "Seed": 9,
-    "InstancePath": "testdata/instances/instance_3_1_1000_9.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1000_9.json"
+    "InstancePath": "testdata/instances/instance_2_2_1000_9.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1000_9.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 2,
     "CostScale": 1000,
     "Seed": 10,
-    "InstancePath": "testdata/instances/instance_3_2_1000_10.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1000_10.json"
+    "InstancePath": "testdata/instances/instance_2_2_1000_10.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1000_10.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 2,
     "CostScale": 1000,
     "Seed": 11,
-    "InstancePath": "testdata/instances/instance_3_2_1000_11.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1000_11.json"
+    "InstancePath": "testdata/instances/instance_2_2_1000_11.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_2_1000_11.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 3,
     "CostScale": 1000,
     "Seed": 12,
-    "InstancePath": "testdata/instances/instance_3_3_1000_12.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1000_12.json"
+    "InstancePath": "testdata/instances/instance_2_3_1000_12.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1000_12.json"
   },
   {
-    "NumElements": 3,
+    "NumElements": 2,
     "NumSubSets": 3,
     "CostScale": 1000,
     "Seed": 13,
-    "InstancePath": "testdata/instances/instance_3_3_1000_13.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1000_13.json"
+    "InstancePath": "testdata/instances/instance_2_3_1000_13.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1000_13.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 4,
+    "NumElements": 2,
+    "NumSubSets": 3,
     "CostScale": 1000,
     "Seed": 14,
-    "InstancePath": "testdata/instances/instance_3_4_1000_14.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1000_14.json"
+    "InstancePath": "testdata/instances/instance_2_3_1000_14.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1000_14.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 4,
+    "NumElements": 2,
+    "NumSubSets": 3,
     "CostScale": 1000,
     "Seed": 15,
-    "InstancePath": "testdata/instances/instance_3_4_1000_15.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1000_15.json"
+    "InstancePath": "testdata/instances/instance_2_3_1000_15.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1000_15.json"
   },
   {
-    "NumElements": 3,
-    "NumSubSets": 5,
+    "NumElements": 2,
+    "NumSubSets": 3,
     "CostScale": 1000,
     "Seed": 16,
-    "InstancePath": "testdata/instances/instance_3_5_1000_16.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1000_16.json"
+    "InstancePath": "testdata/instances/instance_2_3_1000_16.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_2_3_1000_16.json"
   },
   {
     "NumElements": 3,
-    "NumSubSets": 5,
+    "NumSubSets": 1,
     "CostScale": 1000,
     "Seed": 17,
-    "InstancePath": "testdata/instances/instance_3_5_1000_17.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1000_17.json"
+    "InstancePath": "testdata/instances/instance_3_1_1000_17.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1000_17.json"
   },
   {
     "NumElements": 3,
-    "NumSubSets": 6,
+    "NumSubSets": 1,
     "CostScale": 1000,
     "Seed": 18,
-    "InstancePath": "testdata/instances/instance_3_6_1000_18.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1000_18.json"
+    "InstancePath": "testdata/instances/instance_3_1_1000_18.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1000_18.json"
   },
   {
     "NumElements": 3,
-    "NumSubSets": 6,
+    "NumSubSets": 1,
     "CostScale": 1000,
     "Seed": 19,
-    "InstancePath": "testdata/instances/instance_3_6_1000_19.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1000_19.json"
+    "InstancePath": "testdata/instances/instance_3_1_1000_19.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1000_19.json"
   },
   {
-    "NumElements": 4,
+    "NumElements": 3,
     "NumSubSets": 1,
     "CostScale": 1000,
     "Seed": 20,
-    "InstancePath": "testdata/instances/instance_4_1_1000_20.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1000_20.json"
+    "InstancePath": "testdata/instances/instance_3_1_1000_20.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1000_20.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 21,
+    "InstancePath": "testdata/instances/instance_3_1_1000_21.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_1_1000_21.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 22,
+    "InstancePath": "testdata/instances/instance_3_2_1000_22.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1000_22.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 23,
+    "InstancePath": "testdata/instances/instance_3_2_1000_23.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1000_23.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 24,
+    "InstancePath": "testdata/instances/instance_3_2_1000_24.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1000_24.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 25,
+    "InstancePath": "testdata/instances/instance_3_2_1000_25.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1000_25.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 26,
+    "InstancePath": "testdata/instances/instance_3_2_1000_26.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_2_1000_26.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 27,
+    "InstancePath": "testdata/instances/instance_3_3_1000_27.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1000_27.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 28,
+    "InstancePath": "testdata/instances/instance_3_3_1000_28.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1000_28.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 29,
+    "InstancePath": "testdata/instances/instance_3_3_1000_29.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1000_29.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 30,
+    "InstancePath": "testdata/instances/instance_3_3_1000_30.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1000_30.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 31,
+    "InstancePath": "testdata/instances/instance_3_3_1000_31.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_3_1000_31.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 32,
+    "InstancePath": "testdata/instances/instance_3_4_1000_32.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1000_32.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 33,
+    "InstancePath": "testdata/instances/instance_3_4_1000_33.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1000_33.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 34,
+    "InstancePath": "testdata/instances/instance_3_4_1000_34.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1000_34.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 35,
+    "InstancePath": "testdata/instances/instance_3_4_1000_35.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1000_35.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 36,
+    "InstancePath": "testdata/instances/instance_3_4_1000_36.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_4_1000_36.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 37,
+    "InstancePath": "testdata/instances/instance_3_5_1000_37.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1000_37.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 38,
+    "InstancePath": "testdata/instances/instance_3_5_1000_38.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1000_38.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 39,
+    "InstancePath": "testdata/instances/instance_3_5_1000_39.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1000_39.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 40,
+    "InstancePath": "testdata/instances/instance_3_5_1000_40.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1000_40.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 41,
+    "InstancePath": "testdata/instances/instance_3_5_1000_41.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_5_1000_41.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 42,
+    "InstancePath": "testdata/instances/instance_3_6_1000_42.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1000_42.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 43,
+    "InstancePath": "testdata/instances/instance_3_6_1000_43.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1000_43.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 44,
+    "InstancePath": "testdata/instances/instance_3_6_1000_44.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1000_44.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 45,
+    "InstancePath": "testdata/instances/instance_3_6_1000_45.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1000_45.json"
+  },
+  {
+    "NumElements": 3,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 46,
+    "InstancePath": "testdata/instances/instance_3_6_1000_46.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_3_6_1000_46.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 1,
     "CostScale": 1000,
-    "Seed": 21,
-    "InstancePath": "testdata/instances/instance_4_1_1000_21.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1000_21.json"
+    "Seed": 47,
+    "InstancePath": "testdata/instances/instance_4_1_1000_47.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1000_47.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 48,
+    "InstancePath": "testdata/instances/instance_4_1_1000_48.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1000_48.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 49,
+    "InstancePath": "testdata/instances/instance_4_1_1000_49.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1000_49.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 50,
+    "InstancePath": "testdata/instances/instance_4_1_1000_50.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1000_50.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 51,
+    "InstancePath": "testdata/instances/instance_4_1_1000_51.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_1_1000_51.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 2,
     "CostScale": 1000,
-    "Seed": 22,
-    "InstancePath": "testdata/instances/instance_4_2_1000_22.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1000_22.json"
+    "Seed": 52,
+    "InstancePath": "testdata/instances/instance_4_2_1000_52.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1000_52.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 2,
     "CostScale": 1000,
-    "Seed": 23,
-    "InstancePath": "testdata/instances/instance_4_2_1000_23.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1000_23.json"
+    "Seed": 53,
+    "InstancePath": "testdata/instances/instance_4_2_1000_53.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1000_53.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 54,
+    "InstancePath": "testdata/instances/instance_4_2_1000_54.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1000_54.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 55,
+    "InstancePath": "testdata/instances/instance_4_2_1000_55.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1000_55.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 56,
+    "InstancePath": "testdata/instances/instance_4_2_1000_56.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_2_1000_56.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 3,
     "CostScale": 1000,
-    "Seed": 24,
-    "InstancePath": "testdata/instances/instance_4_3_1000_24.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1000_24.json"
+    "Seed": 57,
+    "InstancePath": "testdata/instances/instance_4_3_1000_57.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1000_57.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 3,
     "CostScale": 1000,
-    "Seed": 25,
-    "InstancePath": "testdata/instances/instance_4_3_1000_25.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1000_25.json"
+    "Seed": 58,
+    "InstancePath": "testdata/instances/instance_4_3_1000_58.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1000_58.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 59,
+    "InstancePath": "testdata/instances/instance_4_3_1000_59.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1000_59.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 60,
+    "InstancePath": "testdata/instances/instance_4_3_1000_60.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1000_60.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 61,
+    "InstancePath": "testdata/instances/instance_4_3_1000_61.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_3_1000_61.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 4,
     "CostScale": 1000,
-    "Seed": 26,
-    "InstancePath": "testdata/instances/instance_4_4_1000_26.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1000_26.json"
+    "Seed": 62,
+    "InstancePath": "testdata/instances/instance_4_4_1000_62.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1000_62.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 4,
     "CostScale": 1000,
-    "Seed": 27,
-    "InstancePath": "testdata/instances/instance_4_4_1000_27.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1000_27.json"
+    "Seed": 63,
+    "InstancePath": "testdata/instances/instance_4_4_1000_63.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1000_63.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 64,
+    "InstancePath": "testdata/instances/instance_4_4_1000_64.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1000_64.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 65,
+    "InstancePath": "testdata/instances/instance_4_4_1000_65.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1000_65.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 66,
+    "InstancePath": "testdata/instances/instance_4_4_1000_66.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_4_1000_66.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 5,
     "CostScale": 1000,
-    "Seed": 28,
-    "InstancePath": "testdata/instances/instance_4_5_1000_28.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1000_28.json"
+    "Seed": 67,
+    "InstancePath": "testdata/instances/instance_4_5_1000_67.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1000_67.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 5,
     "CostScale": 1000,
-    "Seed": 29,
-    "InstancePath": "testdata/instances/instance_4_5_1000_29.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1000_29.json"
+    "Seed": 68,
+    "InstancePath": "testdata/instances/instance_4_5_1000_68.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1000_68.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 69,
+    "InstancePath": "testdata/instances/instance_4_5_1000_69.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1000_69.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 70,
+    "InstancePath": "testdata/instances/instance_4_5_1000_70.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1000_70.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 71,
+    "InstancePath": "testdata/instances/instance_4_5_1000_71.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_5_1000_71.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 6,
     "CostScale": 1000,
-    "Seed": 30,
-    "InstancePath": "testdata/instances/instance_4_6_1000_30.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1000_30.json"
+    "Seed": 72,
+    "InstancePath": "testdata/instances/instance_4_6_1000_72.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1000_72.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 6,
     "CostScale": 1000,
-    "Seed": 31,
-    "InstancePath": "testdata/instances/instance_4_6_1000_31.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1000_31.json"
+    "Seed": 73,
+    "InstancePath": "testdata/instances/instance_4_6_1000_73.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1000_73.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 74,
+    "InstancePath": "testdata/instances/instance_4_6_1000_74.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1000_74.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 75,
+    "InstancePath": "testdata/instances/instance_4_6_1000_75.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1000_75.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 76,
+    "InstancePath": "testdata/instances/instance_4_6_1000_76.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_6_1000_76.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 7,
     "CostScale": 1000,
-    "Seed": 32,
-    "InstancePath": "testdata/instances/instance_4_7_1000_32.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1000_32.json"
+    "Seed": 77,
+    "InstancePath": "testdata/instances/instance_4_7_1000_77.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1000_77.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 7,
     "CostScale": 1000,
-    "Seed": 33,
-    "InstancePath": "testdata/instances/instance_4_7_1000_33.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1000_33.json"
+    "Seed": 78,
+    "InstancePath": "testdata/instances/instance_4_7_1000_78.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1000_78.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 79,
+    "InstancePath": "testdata/instances/instance_4_7_1000_79.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1000_79.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 80,
+    "InstancePath": "testdata/instances/instance_4_7_1000_80.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1000_80.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 81,
+    "InstancePath": "testdata/instances/instance_4_7_1000_81.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_7_1000_81.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 8,
     "CostScale": 1000,
-    "Seed": 34,
-    "InstancePath": "testdata/instances/instance_4_8_1000_34.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1000_34.json"
+    "Seed": 82,
+    "InstancePath": "testdata/instances/instance_4_8_1000_82.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1000_82.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 8,
     "CostScale": 1000,
-    "Seed": 35,
-    "InstancePath": "testdata/instances/instance_4_8_1000_35.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1000_35.json"
+    "Seed": 83,
+    "InstancePath": "testdata/instances/instance_4_8_1000_83.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1000_83.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 84,
+    "InstancePath": "testdata/instances/instance_4_8_1000_84.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1000_84.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 85,
+    "InstancePath": "testdata/instances/instance_4_8_1000_85.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1000_85.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 86,
+    "InstancePath": "testdata/instances/instance_4_8_1000_86.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_8_1000_86.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 9,
     "CostScale": 1000,
-    "Seed": 36,
-    "InstancePath": "testdata/instances/instance_4_9_1000_36.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1000_36.json"
+    "Seed": 87,
+    "InstancePath": "testdata/instances/instance_4_9_1000_87.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1000_87.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 9,
     "CostScale": 1000,
-    "Seed": 37,
-    "InstancePath": "testdata/instances/instance_4_9_1000_37.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1000_37.json"
+    "Seed": 88,
+    "InstancePath": "testdata/instances/instance_4_9_1000_88.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1000_88.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 89,
+    "InstancePath": "testdata/instances/instance_4_9_1000_89.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1000_89.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 90,
+    "InstancePath": "testdata/instances/instance_4_9_1000_90.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1000_90.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 91,
+    "InstancePath": "testdata/instances/instance_4_9_1000_91.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_9_1000_91.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 10,
     "CostScale": 1000,
-    "Seed": 38,
-    "InstancePath": "testdata/instances/instance_4_10_1000_38.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1000_38.json"
+    "Seed": 92,
+    "InstancePath": "testdata/instances/instance_4_10_1000_92.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1000_92.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 10,
     "CostScale": 1000,
-    "Seed": 39,
-    "InstancePath": "testdata/instances/instance_4_10_1000_39.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1000_39.json"
+    "Seed": 93,
+    "InstancePath": "testdata/instances/instance_4_10_1000_93.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1000_93.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 94,
+    "InstancePath": "testdata/instances/instance_4_10_1000_94.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1000_94.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 95,
+    "InstancePath": "testdata/instances/instance_4_10_1000_95.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1000_95.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 96,
+    "InstancePath": "testdata/instances/instance_4_10_1000_96.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_10_1000_96.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 11,
     "CostScale": 1000,
-    "Seed": 40,
-    "InstancePath": "testdata/instances/instance_4_11_1000_40.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1000_40.json"
+    "Seed": 97,
+    "InstancePath": "testdata/instances/instance_4_11_1000_97.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1000_97.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 11,
     "CostScale": 1000,
-    "Seed": 41,
-    "InstancePath": "testdata/instances/instance_4_11_1000_41.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1000_41.json"
+    "Seed": 98,
+    "InstancePath": "testdata/instances/instance_4_11_1000_98.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1000_98.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 99,
+    "InstancePath": "testdata/instances/instance_4_11_1000_99.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1000_99.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 100,
+    "InstancePath": "testdata/instances/instance_4_11_1000_100.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1000_100.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 101,
+    "InstancePath": "testdata/instances/instance_4_11_1000_101.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_11_1000_101.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 12,
     "CostScale": 1000,
-    "Seed": 42,
-    "InstancePath": "testdata/instances/instance_4_12_1000_42.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1000_42.json"
+    "Seed": 102,
+    "InstancePath": "testdata/instances/instance_4_12_1000_102.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1000_102.json"
   },
   {
     "NumElements": 4,
     "NumSubSets": 12,
     "CostScale": 1000,
-    "Seed": 43,
-    "InstancePath": "testdata/instances/instance_4_12_1000_43.json",
-    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1000_43.json"
+    "Seed": 103,
+    "InstancePath": "testdata/instances/instance_4_12_1000_103.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1000_103.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 104,
+    "InstancePath": "testdata/instances/instance_4_12_1000_104.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1000_104.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 105,
+    "InstancePath": "testdata/instances/instance_4_12_1000_105.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1000_105.json"
+  },
+  {
+    "NumElements": 4,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 106,
+    "InstancePath": "testdata/instances/instance_4_12_1000_106.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_4_12_1000_106.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 107,
+    "InstancePath": "testdata/instances/instance_5_1_1000_107.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1000_107.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 108,
+    "InstancePath": "testdata/instances/instance_5_1_1000_108.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1000_108.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 109,
+    "InstancePath": "testdata/instances/instance_5_1_1000_109.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1000_109.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 110,
+    "InstancePath": "testdata/instances/instance_5_1_1000_110.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1000_110.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 1,
+    "CostScale": 1000,
+    "Seed": 111,
+    "InstancePath": "testdata/instances/instance_5_1_1000_111.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_1_1000_111.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 112,
+    "InstancePath": "testdata/instances/instance_5_2_1000_112.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1000_112.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 113,
+    "InstancePath": "testdata/instances/instance_5_2_1000_113.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1000_113.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 114,
+    "InstancePath": "testdata/instances/instance_5_2_1000_114.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1000_114.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 115,
+    "InstancePath": "testdata/instances/instance_5_2_1000_115.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1000_115.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 2,
+    "CostScale": 1000,
+    "Seed": 116,
+    "InstancePath": "testdata/instances/instance_5_2_1000_116.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_2_1000_116.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 117,
+    "InstancePath": "testdata/instances/instance_5_3_1000_117.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1000_117.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 118,
+    "InstancePath": "testdata/instances/instance_5_3_1000_118.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1000_118.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 119,
+    "InstancePath": "testdata/instances/instance_5_3_1000_119.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1000_119.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 120,
+    "InstancePath": "testdata/instances/instance_5_3_1000_120.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1000_120.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 3,
+    "CostScale": 1000,
+    "Seed": 121,
+    "InstancePath": "testdata/instances/instance_5_3_1000_121.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_3_1000_121.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 122,
+    "InstancePath": "testdata/instances/instance_5_4_1000_122.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1000_122.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 123,
+    "InstancePath": "testdata/instances/instance_5_4_1000_123.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1000_123.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 124,
+    "InstancePath": "testdata/instances/instance_5_4_1000_124.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1000_124.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 125,
+    "InstancePath": "testdata/instances/instance_5_4_1000_125.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1000_125.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 4,
+    "CostScale": 1000,
+    "Seed": 126,
+    "InstancePath": "testdata/instances/instance_5_4_1000_126.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_4_1000_126.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 127,
+    "InstancePath": "testdata/instances/instance_5_5_1000_127.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1000_127.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 128,
+    "InstancePath": "testdata/instances/instance_5_5_1000_128.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1000_128.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 129,
+    "InstancePath": "testdata/instances/instance_5_5_1000_129.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1000_129.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 130,
+    "InstancePath": "testdata/instances/instance_5_5_1000_130.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1000_130.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 5,
+    "CostScale": 1000,
+    "Seed": 131,
+    "InstancePath": "testdata/instances/instance_5_5_1000_131.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_5_1000_131.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 132,
+    "InstancePath": "testdata/instances/instance_5_6_1000_132.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1000_132.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 133,
+    "InstancePath": "testdata/instances/instance_5_6_1000_133.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1000_133.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 134,
+    "InstancePath": "testdata/instances/instance_5_6_1000_134.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1000_134.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 135,
+    "InstancePath": "testdata/instances/instance_5_6_1000_135.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1000_135.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 6,
+    "CostScale": 1000,
+    "Seed": 136,
+    "InstancePath": "testdata/instances/instance_5_6_1000_136.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_6_1000_136.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 137,
+    "InstancePath": "testdata/instances/instance_5_7_1000_137.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1000_137.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 138,
+    "InstancePath": "testdata/instances/instance_5_7_1000_138.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1000_138.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 139,
+    "InstancePath": "testdata/instances/instance_5_7_1000_139.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1000_139.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 140,
+    "InstancePath": "testdata/instances/instance_5_7_1000_140.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1000_140.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 7,
+    "CostScale": 1000,
+    "Seed": 141,
+    "InstancePath": "testdata/instances/instance_5_7_1000_141.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_7_1000_141.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 142,
+    "InstancePath": "testdata/instances/instance_5_8_1000_142.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1000_142.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 143,
+    "InstancePath": "testdata/instances/instance_5_8_1000_143.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1000_143.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 144,
+    "InstancePath": "testdata/instances/instance_5_8_1000_144.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1000_144.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 145,
+    "InstancePath": "testdata/instances/instance_5_8_1000_145.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1000_145.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 8,
+    "CostScale": 1000,
+    "Seed": 146,
+    "InstancePath": "testdata/instances/instance_5_8_1000_146.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_8_1000_146.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 147,
+    "InstancePath": "testdata/instances/instance_5_9_1000_147.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1000_147.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 148,
+    "InstancePath": "testdata/instances/instance_5_9_1000_148.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1000_148.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 149,
+    "InstancePath": "testdata/instances/instance_5_9_1000_149.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1000_149.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 150,
+    "InstancePath": "testdata/instances/instance_5_9_1000_150.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1000_150.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 9,
+    "CostScale": 1000,
+    "Seed": 151,
+    "InstancePath": "testdata/instances/instance_5_9_1000_151.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_9_1000_151.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 152,
+    "InstancePath": "testdata/instances/instance_5_10_1000_152.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1000_152.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 153,
+    "InstancePath": "testdata/instances/instance_5_10_1000_153.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1000_153.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 154,
+    "InstancePath": "testdata/instances/instance_5_10_1000_154.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1000_154.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 155,
+    "InstancePath": "testdata/instances/instance_5_10_1000_155.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1000_155.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 10,
+    "CostScale": 1000,
+    "Seed": 156,
+    "InstancePath": "testdata/instances/instance_5_10_1000_156.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_10_1000_156.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 157,
+    "InstancePath": "testdata/instances/instance_5_11_1000_157.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1000_157.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 158,
+    "InstancePath": "testdata/instances/instance_5_11_1000_158.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1000_158.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 159,
+    "InstancePath": "testdata/instances/instance_5_11_1000_159.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1000_159.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 160,
+    "InstancePath": "testdata/instances/instance_5_11_1000_160.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1000_160.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 11,
+    "CostScale": 1000,
+    "Seed": 161,
+    "InstancePath": "testdata/instances/instance_5_11_1000_161.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_11_1000_161.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 162,
+    "InstancePath": "testdata/instances/instance_5_12_1000_162.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1000_162.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 163,
+    "InstancePath": "testdata/instances/instance_5_12_1000_163.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1000_163.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 164,
+    "InstancePath": "testdata/instances/instance_5_12_1000_164.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1000_164.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 165,
+    "InstancePath": "testdata/instances/instance_5_12_1000_165.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1000_165.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 12,
+    "CostScale": 1000,
+    "Seed": 166,
+    "InstancePath": "testdata/instances/instance_5_12_1000_166.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_12_1000_166.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1000,
+    "Seed": 167,
+    "InstancePath": "testdata/instances/instance_5_13_1000_167.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1000_167.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1000,
+    "Seed": 168,
+    "InstancePath": "testdata/instances/instance_5_13_1000_168.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1000_168.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1000,
+    "Seed": 169,
+    "InstancePath": "testdata/instances/instance_5_13_1000_169.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1000_169.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1000,
+    "Seed": 170,
+    "InstancePath": "testdata/instances/instance_5_13_1000_170.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1000_170.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 13,
+    "CostScale": 1000,
+    "Seed": 171,
+    "InstancePath": "testdata/instances/instance_5_13_1000_171.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_13_1000_171.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1000,
+    "Seed": 172,
+    "InstancePath": "testdata/instances/instance_5_14_1000_172.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1000_172.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1000,
+    "Seed": 173,
+    "InstancePath": "testdata/instances/instance_5_14_1000_173.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1000_173.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1000,
+    "Seed": 174,
+    "InstancePath": "testdata/instances/instance_5_14_1000_174.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1000_174.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1000,
+    "Seed": 175,
+    "InstancePath": "testdata/instances/instance_5_14_1000_175.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1000_175.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 14,
+    "CostScale": 1000,
+    "Seed": 176,
+    "InstancePath": "testdata/instances/instance_5_14_1000_176.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_14_1000_176.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1000,
+    "Seed": 177,
+    "InstancePath": "testdata/instances/instance_5_15_1000_177.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1000_177.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1000,
+    "Seed": 178,
+    "InstancePath": "testdata/instances/instance_5_15_1000_178.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1000_178.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1000,
+    "Seed": 179,
+    "InstancePath": "testdata/instances/instance_5_15_1000_179.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1000_179.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1000,
+    "Seed": 180,
+    "InstancePath": "testdata/instances/instance_5_15_1000_180.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1000_180.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 15,
+    "CostScale": 1000,
+    "Seed": 181,
+    "InstancePath": "testdata/instances/instance_5_15_1000_181.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_15_1000_181.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1000,
+    "Seed": 182,
+    "InstancePath": "testdata/instances/instance_5_16_1000_182.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1000_182.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1000,
+    "Seed": 183,
+    "InstancePath": "testdata/instances/instance_5_16_1000_183.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1000_183.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1000,
+    "Seed": 184,
+    "InstancePath": "testdata/instances/instance_5_16_1000_184.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1000_184.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1000,
+    "Seed": 185,
+    "InstancePath": "testdata/instances/instance_5_16_1000_185.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1000_185.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 16,
+    "CostScale": 1000,
+    "Seed": 186,
+    "InstancePath": "testdata/instances/instance_5_16_1000_186.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_16_1000_186.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1000,
+    "Seed": 187,
+    "InstancePath": "testdata/instances/instance_5_17_1000_187.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1000_187.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1000,
+    "Seed": 188,
+    "InstancePath": "testdata/instances/instance_5_17_1000_188.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1000_188.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1000,
+    "Seed": 189,
+    "InstancePath": "testdata/instances/instance_5_17_1000_189.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1000_189.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1000,
+    "Seed": 190,
+    "InstancePath": "testdata/instances/instance_5_17_1000_190.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1000_190.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 17,
+    "CostScale": 1000,
+    "Seed": 191,
+    "InstancePath": "testdata/instances/instance_5_17_1000_191.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_17_1000_191.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1000,
+    "Seed": 192,
+    "InstancePath": "testdata/instances/instance_5_18_1000_192.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1000_192.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1000,
+    "Seed": 193,
+    "InstancePath": "testdata/instances/instance_5_18_1000_193.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1000_193.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1000,
+    "Seed": 194,
+    "InstancePath": "testdata/instances/instance_5_18_1000_194.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1000_194.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1000,
+    "Seed": 195,
+    "InstancePath": "testdata/instances/instance_5_18_1000_195.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1000_195.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 18,
+    "CostScale": 1000,
+    "Seed": 196,
+    "InstancePath": "testdata/instances/instance_5_18_1000_196.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_18_1000_196.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1000,
+    "Seed": 197,
+    "InstancePath": "testdata/instances/instance_5_19_1000_197.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1000_197.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1000,
+    "Seed": 198,
+    "InstancePath": "testdata/instances/instance_5_19_1000_198.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1000_198.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1000,
+    "Seed": 199,
+    "InstancePath": "testdata/instances/instance_5_19_1000_199.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1000_199.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1000,
+    "Seed": 200,
+    "InstancePath": "testdata/instances/instance_5_19_1000_200.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1000_200.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 19,
+    "CostScale": 1000,
+    "Seed": 201,
+    "InstancePath": "testdata/instances/instance_5_19_1000_201.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_19_1000_201.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1000,
+    "Seed": 202,
+    "InstancePath": "testdata/instances/instance_5_20_1000_202.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1000_202.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1000,
+    "Seed": 203,
+    "InstancePath": "testdata/instances/instance_5_20_1000_203.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1000_203.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1000,
+    "Seed": 204,
+    "InstancePath": "testdata/instances/instance_5_20_1000_204.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1000_204.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1000,
+    "Seed": 205,
+    "InstancePath": "testdata/instances/instance_5_20_1000_205.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1000_205.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 20,
+    "CostScale": 1000,
+    "Seed": 206,
+    "InstancePath": "testdata/instances/instance_5_20_1000_206.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_20_1000_206.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1000,
+    "Seed": 207,
+    "InstancePath": "testdata/instances/instance_5_21_1000_207.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1000_207.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1000,
+    "Seed": 208,
+    "InstancePath": "testdata/instances/instance_5_21_1000_208.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1000_208.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1000,
+    "Seed": 209,
+    "InstancePath": "testdata/instances/instance_5_21_1000_209.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1000_209.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1000,
+    "Seed": 210,
+    "InstancePath": "testdata/instances/instance_5_21_1000_210.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1000_210.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 21,
+    "CostScale": 1000,
+    "Seed": 211,
+    "InstancePath": "testdata/instances/instance_5_21_1000_211.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_21_1000_211.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1000,
+    "Seed": 212,
+    "InstancePath": "testdata/instances/instance_5_22_1000_212.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1000_212.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1000,
+    "Seed": 213,
+    "InstancePath": "testdata/instances/instance_5_22_1000_213.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1000_213.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1000,
+    "Seed": 214,
+    "InstancePath": "testdata/instances/instance_5_22_1000_214.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1000_214.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1000,
+    "Seed": 215,
+    "InstancePath": "testdata/instances/instance_5_22_1000_215.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1000_215.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 22,
+    "CostScale": 1000,
+    "Seed": 216,
+    "InstancePath": "testdata/instances/instance_5_22_1000_216.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_22_1000_216.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1000,
+    "Seed": 217,
+    "InstancePath": "testdata/instances/instance_5_23_1000_217.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1000_217.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1000,
+    "Seed": 218,
+    "InstancePath": "testdata/instances/instance_5_23_1000_218.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1000_218.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1000,
+    "Seed": 219,
+    "InstancePath": "testdata/instances/instance_5_23_1000_219.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1000_219.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1000,
+    "Seed": 220,
+    "InstancePath": "testdata/instances/instance_5_23_1000_220.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1000_220.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 23,
+    "CostScale": 1000,
+    "Seed": 221,
+    "InstancePath": "testdata/instances/instance_5_23_1000_221.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_23_1000_221.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1000,
+    "Seed": 222,
+    "InstancePath": "testdata/instances/instance_5_24_1000_222.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1000_222.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1000,
+    "Seed": 223,
+    "InstancePath": "testdata/instances/instance_5_24_1000_223.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1000_223.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1000,
+    "Seed": 224,
+    "InstancePath": "testdata/instances/instance_5_24_1000_224.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1000_224.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1000,
+    "Seed": 225,
+    "InstancePath": "testdata/instances/instance_5_24_1000_225.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1000_225.json"
+  },
+  {
+    "NumElements": 5,
+    "NumSubSets": 24,
+    "CostScale": 1000,
+    "Seed": 226,
+    "InstancePath": "testdata/instances/instance_5_24_1000_226.json",
+    "PythonSolutionPath": "testdata/instances/python_solution_5_24_1000_226.json"
   }
 ]
