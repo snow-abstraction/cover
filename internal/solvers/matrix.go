@@ -164,9 +164,9 @@ func multiply(a []uint32, x []float64, result []float64) {
 	// major as in row-major order or column-major order
 	majorPos := 0
 	result[majorPos] = 0
-	for i := 0; i < len(a); i++ {
-		if a[i] != sen {
-			result[majorPos] += x[a[i]]
+	for _, el := range a {
+		if el != sen {
+			result[majorPos] += x[el]
 		} else {
 			majorPos++
 			if majorPos < len(result) {
