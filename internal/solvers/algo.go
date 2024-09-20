@@ -118,10 +118,10 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 		/// the loop repeats code. See multiple function as well.
 		// One idea is to use an initial sentinel and final sentinel,
 		// with no indices allowed before the initial sentinel and no indices allowed
-		for j := 0; j < len(aR); j++ {
-			if aR[j] != sen {
+		for _, colIdx := range aR {
+			if colIdx != sen {
 				// TODO: think about overflow and precision issues here.
-				u[row] -= step * x[aR[j]] // one nonzero component of Ax from (1 - Ax)
+				u[row] -= step * x[colIdx] // one nonzero component of Ax from (1 - Ax)
 			} else {
 				u[row] += step // add step*1 where the 1 is the 1 in (1 - Ax) for the row
 				// project u
@@ -163,8 +163,8 @@ func calcMeanElementCost(aC cCSMatrix, costs []float64, nCols int) float64 {
 	var meanElementCost float64
 	var colIdx int
 	var nnzInColumn int
-	for i := 0; i < len(aC); i++ {
-		if aC[i] == sen {
+	for _, rowIdx := range aC {
+		if rowIdx == sen {
 			meanElementCost += costs[colIdx] / (float64(nnzInColumn) * float64(nCols))
 			nnzInColumn = 0
 			colIdx++
