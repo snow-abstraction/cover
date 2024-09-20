@@ -118,6 +118,7 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 		/// the loop repeats code. See multiple function as well.
 		// One idea is to use an initial sentinel and final sentinel,
 		// with no indices allowed before the initial sentinel and no indices allowed
+		isSubgradientZero := true
 		aContrib := 0.0
 		for _, colIdx := range aR {
 			if colIdx != sen {
@@ -127,6 +128,9 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 				// TODO: think about overflow and precision issues here.
 				//u[row] -= step * x[colIdx] // one nonzero component of Ax from (1 - Ax)
 			} else {
+				if aContrib != 1.0 {
+					isSubgradientZero = false
+				}
 				u[row] += step * (1.0 - aContrib) // add step*1 where the 1 is the 1 in (1 - Ax) for the row
 				aContrib = 0
 				// project u
@@ -136,6 +140,12 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 
 				row++
 			}
+		}
+
+		if isSubgradientZero {
+			result := calcLagrangianDualResult(nCols, costs, x, aR, aRx, nRows, u)
+			slog.Debug("Stop iterating. Subgradient zero")
+			return result, nil
 		}
 
 		// 2. find x: given u
