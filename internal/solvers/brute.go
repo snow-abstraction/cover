@@ -19,7 +19,8 @@
 package solvers
 
 import (
-	"golang.org/x/exp/slices"
+	"slices"
+
 	"gonum.org/v1/gonum/stat/combin"
 )
 

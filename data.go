@@ -20,9 +20,8 @@ package cover
 import (
 	"math"
 	"math/rand"
+	"slices"
 	"sort"
-
-	"golang.org/x/exp/slices"
 )
 
 type Instance struct {
