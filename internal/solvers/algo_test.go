@@ -27,7 +27,7 @@ import (
 	"gotest.tools/v3/assert"
 )
 
-func TestLowerBoundCalcOnInstances(t *testing.T) {
+func TestLowerBoundCalcOnTinyInstances(t *testing.T) {
 	instanceSpecifications := loadTinyInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {
