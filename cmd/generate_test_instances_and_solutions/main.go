@@ -28,7 +28,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
-	"sync"
 
 	"github.com/snow-abstraction/cover"
 )
@@ -46,6 +45,7 @@ func main() {
 	outputDir := flag.String("output", "testdata/instances",
 		"output directory for instances and python solution files")
 	suite := flag.String("suite", "tiny", "instance suite to generate (tiny, small)")
+	workersCount := flag.Int("workers", 4, "number of instances to solve concurrently")
 	specificationsPath := flag.String("specifications", defaultSpecificationsPath,
 		"instance specifications file")
 	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
@@ -60,9 +60,14 @@ func main() {
 	slog.Debug("Running with flags:")
 	flag.VisitAll(func(f *flag.Flag) { slog.Debug("flag", f.Name, f.Value) })
 
+	if *workersCount <= 0 {
+		fmt.Fprintln(os.Stderr, "works must be greater than 0")
+		os.Exit(1)
+	}
+
 	specifications := createSpecifications(specificationsPath, suite, outputDir)
 	createInstanceFiles(specifications)
-	solveInstances(specifications, *pythonSolverPath)
+	solveInstances(specifications, *pythonSolverPath, *workersCount)
 }
 
 func usage() {
@@ -206,41 +211,66 @@ func createInstanceFiles(specifications []cover.TestInstanceSpecification) {
 	}
 }
 
+// pythonSolverWorker is a worker for running python solver in the
+// context of using "worker pools" for limiting concurrency.
+func pythonSolverWorker(
+	workerId int,
+	pythonSolverPath string,
+	specifications <-chan cover.TestInstanceSpecification,
+	done chan<- int,
+) {
+	for spec := range specifications {
+		instancePath, solutionPath := spec.InstancePath, spec.PythonSolutionPath
+		cmd := exec.Command("python", pythonSolverPath, instancePath)
+		slog.Debug("running", "worker", workerId, "cmd", cmd)
+		stdout, err := cmd.Output()
+		if err != nil {
+			log.Panicf("running '%s' resulted in error '%s'", cmd, err)
+		}
+
+		s := string(stdout)
+		if !strings.Contains(s, resultDelimiter) {
+			log.Panicf("output from running %s is missing the result delimiter %s",
+				pythonSolverPath, resultDelimiter)
+
+		}
+		splitOutput := strings.Split(s, resultDelimiter)
+		resultStr := splitOutput[len(splitOutput)-1]
+
+		if err := os.WriteFile(solutionPath, []byte(resultStr), 0600); err != nil {
+			log.Panic(err)
+		}
+		done <- workerId
+	}
+}
+
 // Solve instance using the python script
 // Extract the result from stdout
-func solveInstances(specifications []cover.TestInstanceSpecification, pythonSolverPath string) {
+func solveInstances(
+	specifications []cover.TestInstanceSpecification,
+	pythonSolverPath string,
+	workersCount int,
+) {
 	slog.Info("Solving test instances", "count", len(specifications))
-	// TODO: introduce "work pools" so we don't start so many Python processes
-	var wg sync.WaitGroup
-	for _, spec := range specifications {
-		wg.Add(1)
-		instancePath, solutionPath := spec.InstancePath, spec.PythonSolutionPath
-		go func() {
-			defer wg.Done()
 
-			cmd := exec.Command("python", pythonSolverPath, instancePath)
-			slog.Debug("running", "cmd", cmd)
-			stdout, err := cmd.Output()
-			if err != nil {
-				log.Panicf("running '%s' resulted in error '%s'", cmd, err)
-			}
+	jobs := make(chan cover.TestInstanceSpecification, len(specifications))
+	results := make(chan int, len(specifications))
 
-			s := string(stdout)
-			if !strings.Contains(s, resultDelimiter) {
-				log.Panicf("output from running %s is missing the result delimiter %s",
-					pythonSolverPath, resultDelimiter)
-
-			}
-			splitOutput := strings.Split(s, resultDelimiter)
-			resultStr := splitOutput[len(splitOutput)-1]
-
-			if err := os.WriteFile(solutionPath, []byte(resultStr), 0600); err != nil {
-				log.Panic(err)
-			}
-		}()
+	// launch workers
+	for workerId := 0; workerId < workersCount; workerId++ {
+		go pythonSolverWorker(workerId, pythonSolverPath, jobs, results)
 	}
 
-	wg.Wait()
+	// submit specifications to workers
+	for _, spec := range specifications {
+		jobs <- spec
+	}
+	close(jobs)
+
+	// wait for all specifications to be solved
+	for i := 0; i < len(specifications); i++ {
+		<-results
+	}
 }
 
 func parseLogLevel(level string) slog.Level {
