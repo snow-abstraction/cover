@@ -60,11 +60,35 @@ func main() {
 	slog.Debug("Running with flags:")
 	flag.VisitAll(func(f *flag.Flag) { slog.Debug("flag", f.Name, f.Value) })
 
-	if *specificationsPath == defaultSpecificationsPath {
-		path := "testdata/" + *suite + "_instance_specifications.json"
-		specificationsPath = &path
-		slog.Debug("set specification path", "specificationsPath", *specificationsPath)
-	}
+	specifications := createSpecifications(specificationsPath, suite, outputDir)
+	createInstanceFiles(specifications)
+	solveInstances(specifications, *pythonSolverPath)
+}
+
+func usage() {
+	w := flag.CommandLine.Output()
+	fmt.Fprintf(
+		w,
+		`Usage: %s -verbose
+
+%s creates some instance test data. Specifically it:
+1. generates some set covering instances
+2. these instances are saved as JSON
+3. these instances are solved using t independent solver and solutions are saved as JSON
+4. JSON information about all these instances and solutions are saved to the specifications file
+
+Arguments:
+`,
+		os.Args[0],
+		os.Args[0])
+	flag.PrintDefaults()
+}
+
+func createSpecifications(
+	specificationsPath *string,
+	suite *string,
+	outputDir *string,
+) []cover.TestInstanceSpecification {
 
 	var specifications []cover.TestInstanceSpecification
 	switch *suite {
@@ -82,32 +106,17 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
+	if *specificationsPath == defaultSpecificationsPath {
+		path := "testdata/" + *suite + "_instance_specifications.json"
+		specificationsPath = &path
+		slog.Debug("set specification path", "specificationsPath", *specificationsPath)
+	}
 	if err := os.WriteFile(*specificationsPath, b, 0600); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 
-	createInstanceFiles(specifications)
-	solveInstances(specifications, *pythonSolverPath)
-}
-
-func usage() {
-	w := flag.CommandLine.Output()
-	fmt.Fprintf(
-		w,
-		`Usage: %s -verbose
-
-%s creates some instance test data. Specifically it:
-1. generates some set covering instances
-2. these instances are saved as JSON
-3. these instances are solved using an independent solver and solutions are saved as JSON
-4. JSON information about all these instances and solutions are saved to the specifications file
-
-Arguments:
-`,
-		os.Args[0],
-		os.Args[0])
-	flag.PrintDefaults()
+	return specifications
 }
 
 func createTinySpecifications(outputDir string) []cover.TestInstanceSpecification {
