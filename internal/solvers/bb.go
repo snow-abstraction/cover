@@ -24,6 +24,7 @@ import (
 	"log/slog"
 	"slices"
 
+	"github.com/snow-abstraction/cover/internal/solvers/queue"
 	"github.com/snow-abstraction/cover/internal/tree"
 )
 
@@ -139,14 +140,13 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 	}
 
 	var best *solution
-	toFathom := make([]*tree.Node, 0)
+	toFathom := queue.MakeQueue()
 	root := tree.CreateRoot()
-	toFathom = append(toFathom, root)
+	toFathom.Push(root)
 
-	for len(toFathom) > 0 {
-		node := toFathom[0]
-		toFathom = toFathom[1:]
-		slog.Debug("B&B status", "nodes count", len(toFathom), "node", node)
+	for toFathom.Len() > 0 {
+		node := toFathom.Pop()
+		slog.Debug("B&B status", "nodes count", toFathom.Len(), "node", node)
 
 		if best != nil && best.objectiveValue <= node.LowerBound {
 			slog.Debug("discarding node", "node", node, "best obj val", best.objectiveValue)
@@ -208,11 +208,13 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 
 		slog.Debug("branching on elements", "i", branchIndices.i, "j", branchIndices.j)
 		bothNode, diffNode := node.Branch(dualResult.dualObjectiveValue, branchIndices.i, branchIndices.j)
-		toFathom = append(toFathom, bothNode, diffNode)
+		toFathom.Push(bothNode)
+		toFathom.Push(diffNode)
+
 	}
 
 	// TODO: return non-optimal solutions
-	if best == nil || len(toFathom) != 0 {
+	if best == nil || toFathom.Len() != 0 {
 		return subsetsEval{}, nil
 	}
 
