@@ -24,6 +24,8 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"path/filepath"
+	"strings"
 
 	"github.com/snow-abstraction/cover"
 	"github.com/snow-abstraction/cover/internal/solvers"
@@ -48,7 +50,8 @@ Arguments:
 func main() {
 
 	flag.Usage = usage
-	filename := flag.String("instance", "", "instance JSON filename")
+	filename := flag.String("instance", "",
+		"instance filename. The file should end in .json (or .JSON) or .mps (or .MPS). MPS support is experimental.")
 	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
 	flag.Parse()
 
@@ -63,16 +66,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	b, err := os.ReadFile(*filename)
+	ins, err := readInstance(filename)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-
-	var ins cover.Instance
-	err = json.Unmarshal(b, &ins)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintf(os.Stderr, "failed to read instance due to error: %s\n", err)
 		os.Exit(1)
 	}
 
@@ -88,6 +84,34 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Printf("Solution: %+v\n", sol)
+}
+
+func readInstance(filename *string) (*cover.Instance, error) {
+	ext := filepath.Ext(*filename)
+	lowerExt := strings.ToLower(ext)
+	switch lowerExt {
+	case ".json":
+		return readJsonInstance(filename)
+	case ".mps":
+		return cover.ReadMPSInstance(filename)
+	}
+
+	return nil, fmt.Errorf(
+		"the file extension should be .JSON, .json, .MPS or .mps and not %s", ext)
+
+}
+
+func readJsonInstance(filename *string) (*cover.Instance, error) {
+	b, err := os.ReadFile(*filename)
+	if err != nil {
+		return nil, err
+	}
+
+	var ins *cover.Instance
+	if err := json.Unmarshal(b, ins); err != nil {
+		return nil, err
+	}
+	return ins, nil
 }
 
 func parseLogLevel(level string) slog.Level {
