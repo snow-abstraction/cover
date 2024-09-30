@@ -20,6 +20,7 @@
 package solvers
 
 import (
+	"cmp"
 	"fmt"
 	"log/slog"
 	"slices"
@@ -39,7 +40,6 @@ type subInstance struct {
 // constraints from the node and its ancestors. If some element is
 // impossible to cover then it returns nil.
 func createSubInstance(ins instance, node *tree.Node) (*subInstance, error) {
-
 	type constraint struct {
 		i            uint32
 		j            uint32
@@ -130,6 +130,49 @@ func sum(xs []float64) float64 {
 	return total
 }
 
+// removeMoreExpensiveDuplicates returns a copy of instance ins
+// with more expensive duplicates removed and originalIndexMap []int
+// that maps indices of the new instance back ins. That is:
+// ins.subset[originalIndexMap[i[]] == insCopy.subset[i].
+func removeMoreExpensiveDuplicates(ins instance) (instance, []int) {
+	type SubsetCostIndex struct {
+		subset []int
+		cost   float64
+		index  int
+	}
+
+	temp := make([]SubsetCostIndex, 0, len(ins.subsets))
+	for i := 0; i < len(ins.subsets); i++ {
+		temp = append(temp, SubsetCostIndex{ins.subsets[i], ins.costs[i], i})
+	}
+
+	slices.SortFunc(temp, func(lhs, rhs SubsetCostIndex) int {
+		if c := slices.Compare(lhs.subset, rhs.subset); c != 0 {
+			return c
+		}
+		// Make lowest cost duplicate subset is first.
+		return cmp.Compare(lhs.cost, rhs.cost)
+	})
+
+	ins.subsets = make([][]int, 0, len(ins.subsets))
+	ins.costs = make([]float64, 0, len(ins.costs))
+	originalIndexMap := make([]int, 0, len(ins.subsets))
+
+	for i := 0; i < len(temp); {
+		x := temp[i]
+		ins.subsets = append(ins.subsets, x.subset)
+		ins.costs = append(ins.costs, x.cost)
+		originalIndexMap = append(originalIndexMap, x.index)
+
+		i++
+		for i < len(temp) && slices.Equal(x.subset, temp[i].subset) {
+			i++
+		}
+	}
+
+	return ins, originalIndexMap
+}
+
 // WIP
 func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 	if ins.m == 0 {
@@ -138,6 +181,10 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 			Optimal:        true,
 		}, nil
 	}
+
+	// More expensive duplicates should never been in an optima and branching
+	// scheme does not support duplicates.
+	ins, originalIndexMap := removeMoreExpensiveDuplicates(ins)
 
 	var best *solution
 	toFathom := queue.MakeQueue()
@@ -185,6 +232,7 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 		if dualResult.provenOptimalExact {
 			slog.Debug("pruned by optimal")
 			if best == nil || best.objectiveValue > dualResult.dualObjectiveValue {
+				// TODO: use mapIndices
 				indices := make([]int, 0, len(dualResult.primalSolution))
 				for _, idx := range dualResult.primalSolution {
 					indices = append(indices, subInstance.indices[idx])
@@ -218,12 +266,23 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 		return subsetsEval{}, nil
 	}
 
+	// map indices back original instance indices
+	indices := mapIndices(best.subsetIndices, originalIndexMap)
+
 	return subsetsEval{
-		SubsetsIndices: best.subsetIndices,
+		SubsetsIndices: indices,
 		ExactlyCovered: true,
 		Cost:           best.objectiveValue,
 		Optimal:        true,
 	}, nil
+}
+
+func mapIndices(indices []int, indexMap []int) []int {
+	mappedIndices := make([]int, 0, len(indices))
+	for _, idx := range indices {
+		mappedIndices = append(mappedIndices, indexMap[idx])
+	}
+	return mappedIndices
 }
 
 type BranchIndices struct {

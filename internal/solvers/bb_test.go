@@ -33,6 +33,20 @@ import (
 	"gotest.tools/v3/assert"
 )
 
+func TestRemoveMoreExpensiveDuplicatesTrivial(t *testing.T) {
+	input := instance{1, [][]int{{0}, {0}, {0}}, []float64{3, 2, 1}}
+	output, indices := removeMoreExpensiveDuplicates(input)
+	assert.DeepEqual(t, instance{1, [][]int{{0}}, []float64{1}}, output, cmp.AllowUnexported(instance{}))
+	assert.DeepEqual(t, []int{2}, indices)
+}
+
+func TestRemoveMoreExpensiveDuplicatesSmall(t *testing.T) {
+	input := instance{2, [][]int{{0, 1}, {0}, {1}, {1}, {0}, {0, 1}}, []float64{13, 11, 7, 5, 3, 2}}
+	output, indices := removeMoreExpensiveDuplicates(input)
+	assert.DeepEqual(t, instance{2, [][]int{{0}, {0, 1}, {1}}, []float64{3, 2, 5}}, output, cmp.AllowUnexported(instance{}))
+	assert.DeepEqual(t, []int{4, 5, 3}, indices)
+}
+
 func TestCreateSubInstanceOnEmptyInstance(t *testing.T) {
 	ins, err := MakeInstance(0, [][]int{}, []float64{})
 	assert.NilError(t, err)
@@ -151,7 +165,6 @@ func TestBBOnTinyInstances(t *testing.T) {
 			t.Parallel()
 			testBBFindsEquallyGoodSolution(t, spec)
 		})
-
 	}
 }
 

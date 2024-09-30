@@ -20,7 +20,6 @@ package solvers
 import (
 	"errors"
 	"fmt"
-	"slices"
 )
 
 type instance struct {
@@ -78,10 +77,6 @@ func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
 		}
 	}
 
-	if err := checkSubsetsForDuplicates(subsets); err != nil {
-		return instance{}, err
-	}
-
 	if len(subsets) != len(costs) {
 		return instance{}, errors.New("there must be exactly one cost per subset")
 	}
@@ -109,21 +104,4 @@ type subsetsEval struct {
 	// If the SubsetsIndices constitute a proven optimum. This can only be true if
 	// ExactlyCovered is true.
 	Optimal bool
-}
-
-func checkSubsetsForDuplicates(subsets [][]int) error {
-	subsetsCopy := make([][]int, len(subsets))
-	// This copy could be omitted if it is ok to change the order of subsets
-	copy(subsetsCopy, subsets)
-	slices.SortFunc(subsetsCopy, slices.Compare)
-	prevSubset := subsetsCopy[0]
-	for _, subset := range subsetsCopy[1:] {
-		if slices.Equal(prevSubset, subset) {
-			return fmt.Errorf(
-				"duplicate subsets are not allowed. The subset %v was found twice",
-				subset)
-		}
-		prevSubset = subset
-	}
-	return nil
 }
