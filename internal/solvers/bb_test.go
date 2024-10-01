@@ -113,15 +113,7 @@ func testBBFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpecifi
 	var pythonResult map[string]interface{}
 	err = json.Unmarshal(pythonResultBytes, &pythonResult)
 	assert.NilError(t, err)
-
-	instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-	assert.NilError(t, err)
-	var ins cover.Instance
-	err = json.Unmarshal(instanceBytes, &ins)
-	assert.NilError(t, err)
-	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
-	assert.NilError(t, err)
-
+	solverInstance := loadSolverInstance(t, filepath.Join("../..", spec.InstancePath))
 	result, err := SolveByBranchAndBound(solverInstance)
 	assert.NilError(t, err)
 
@@ -181,14 +173,8 @@ func BenchmarkBBOnRandomTinyInstances(b *testing.B) {
 
 	instances := make([]instance, 0, len(instanceSpecifications))
 	for _, spec := range instanceSpecifications {
-		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-		assert.NilError(b, err)
-		var ins cover.Instance
-		err = json.Unmarshal(instanceBytes, &ins)
-		assert.NilError(b, err)
-		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		solverInstance := loadSolverInstance(b, filepath.Join("../..", spec.InstancePath))
 		instances = append(instances, solverInstance)
-		assert.NilError(b, err)
 	}
 
 	b.ResetTimer()
@@ -208,14 +194,8 @@ func BenchmarkBBOnRandomScale1TinyInstances(b *testing.B) {
 		if spec.CostScale != 1.0 {
 			continue
 		}
-		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-		assert.NilError(b, err)
-		var ins cover.Instance
-		err = json.Unmarshal(instanceBytes, &ins)
-		assert.NilError(b, err)
-		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		solverInstance := loadSolverInstance(b, filepath.Join("../..", spec.InstancePath))
 		instances = append(instances, solverInstance)
-		assert.NilError(b, err)
 	}
 
 	b.ResetTimer()
@@ -235,14 +215,8 @@ func BenchmarkBBOnRandomScale1000TinyInstances(b *testing.B) {
 		if spec.CostScale != 1000.0 {
 			continue
 		}
-		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-		assert.NilError(b, err)
-		var ins cover.Instance
-		err = json.Unmarshal(instanceBytes, &ins)
-		assert.NilError(b, err)
-		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		solverInstance := loadSolverInstance(b, filepath.Join("../..", spec.InstancePath))
 		instances = append(instances, solverInstance)
-		assert.NilError(b, err)
 	}
 
 	b.ResetTimer()
@@ -259,14 +233,8 @@ func BenchmarkBBOnRandomSmallInstances(b *testing.B) {
 
 	instances := make([]instance, 0, len(instanceSpecifications))
 	for _, spec := range instanceSpecifications {
-		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-		assert.NilError(b, err)
-		var ins cover.Instance
-		err = json.Unmarshal(instanceBytes, &ins)
-		assert.NilError(b, err)
-		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		solverInstance := loadSolverInstance(b, filepath.Join("../..", spec.InstancePath))
 		instances = append(instances, solverInstance)
-		assert.NilError(b, err)
 	}
 
 	b.ResetTimer()

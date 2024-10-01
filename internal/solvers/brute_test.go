@@ -115,17 +115,10 @@ func TestBruteOnTinyInstances(t *testing.T) {
 
 func BenchmarkBruteOnRandomTinyInstances(b *testing.B) {
 	instanceSpecifications := loadTinyInstanceSpecifications(b)
-
 	instances := make([]instance, 0, len(instanceSpecifications))
 	for _, spec := range instanceSpecifications {
-		instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-		assert.NilError(b, err)
-		var ins cover.Instance
-		err = json.Unmarshal(instanceBytes, &ins)
-		assert.NilError(b, err)
-		solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+		solverInstance := loadSolverInstance(b, filepath.Join("../..", spec.InstancePath))
 		instances = append(instances, solverInstance)
-		assert.NilError(b, err)
 	}
 
 	b.ResetTimer()
