@@ -141,6 +141,7 @@ func testBBFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpecifi
 }
 
 func TestBBOnTinyInstances(t *testing.T) {
+	t.Parallel()
 	instanceSpecifications := loadTinyInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {
@@ -155,6 +156,7 @@ func TestBBOnTinyInstances(t *testing.T) {
 }
 
 func TestBBOnSmallInstances(t *testing.T) {
+	t.Parallel()
 	instanceSpecifications := loadSmallInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {

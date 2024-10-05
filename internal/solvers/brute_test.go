@@ -100,6 +100,7 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpec
 }
 
 func TestBruteOnTinyInstances(t *testing.T) {
+	t.Parallel()
 	instanceSpecifications := loadTinyInstanceSpecifications(t)
 
 	for _, spec := range instanceSpecifications {
