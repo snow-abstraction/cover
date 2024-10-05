@@ -76,12 +76,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	err = json.Unmarshal(b, &ins)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-
 	solverInstance, err := solvers.MakeInstance(ins.M, ins.Subsets, ins.Costs)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
