@@ -232,12 +232,8 @@ func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
 		if dualResult.provenOptimalExact {
 			slog.Debug("pruned by optimal")
 			if best == nil || best.objectiveValue > dualResult.dualObjectiveValue {
-				// TODO: use mapIndices
-				indices := make([]int, 0, len(dualResult.primalSolution))
-				for _, idx := range dualResult.primalSolution {
-					indices = append(indices, subInstance.indices[idx])
-				}
-				best = &solution{dualResult.dualObjectiveValue, indices}
+				best = &solution{dualResult.dualObjectiveValue,
+					mapIndices(dualResult.primalSolution, subInstance.indices)}
 				slog.Debug("new best solution", "solution", best)
 			}
 			continue
