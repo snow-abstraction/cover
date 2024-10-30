@@ -37,7 +37,7 @@ func usage() {
 		w,
 		`Usage: %s -instance instance.json
 
-%s reads in a problem instance JSON file, solves it and outputs a solution
+%s reads in a problem instance JSON or MPS file, solves it and outputs a solution
 to standard out.
 
 Arguments:
