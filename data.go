@@ -96,6 +96,19 @@ func MakeRandomInstance(m int, n int, costScale float64, seed int64) Instance {
 	return ins
 }
 
+// Subsets with an evaluation of them w.r.t. some instance.
+type SubsetsEval struct {
+	SubsetsIndices []int
+	// For the instance, do the subsets exactly cover each element.
+	// If false, the subsets either undercover or overcover the set.
+	ExactlyCovered bool
+	// The sum of the subsets' costs.
+	Cost float64
+	// If the SubsetsIndices constitute a proven optimum. This can only be true if
+	// ExactlyCovered is true.
+	Optimal bool
+}
+
 // For specifying data related to test instances
 type TestInstanceSpecification struct {
 	NumElements        int

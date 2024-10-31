@@ -26,7 +26,7 @@ import (
 	"os"
 
 	"github.com/snow-abstraction/cover"
-	"github.com/snow-abstraction/cover/internal/solvers"
+	"github.com/snow-abstraction/cover/solvers"
 )
 
 func usage() {
@@ -65,17 +65,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	err = json.Unmarshal(b, &ins)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	solverInstance, err := solvers.MakeInstance(ins.M, ins.Subsets, ins.Costs)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	sol, err := solvers.SolveByBruteForce(solverInstance)
+	sol, err := solvers.SolveByBruteForce(ins)
 	if err != nil {
 		fmt.Printf("failed to optimal solution due to error: %s", err)
 	}

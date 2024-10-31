@@ -128,7 +128,7 @@ func testBBFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpecifi
 	err = json.Unmarshal(pythonResultBytes, &pythonResult)
 	assert.NilError(t, err)
 	solverInstance := loadSolverInstance(t, filepath.Join("../..", spec.InstancePath))
-	result, err := SolveByBranchAndBound(solverInstance)
+	result, err := SolveByBranchAndBoundInternal(solverInstance)
 	assert.NilError(t, err)
 
 	// This is tightly coupled to JSON format of tools/solve_sc.py.
@@ -195,7 +195,7 @@ func BenchmarkBBOnRandomTinyInstances(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(instances); j++ {
-			_, err := SolveByBranchAndBound(instances[j])
+			_, err := SolveByBranchAndBoundInternal(instances[j])
 			assert.NilError(b, err)
 		}
 	}
@@ -216,7 +216,7 @@ func BenchmarkBBOnRandomScale1TinyInstances(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(instances); j++ {
-			_, err := SolveByBranchAndBound(instances[j])
+			_, err := SolveByBranchAndBoundInternal(instances[j])
 			assert.NilError(b, err)
 		}
 	}
@@ -237,7 +237,7 @@ func BenchmarkBBOnRandomScale1000TinyInstances(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(instances); j++ {
-			_, err := SolveByBranchAndBound(instances[j])
+			_, err := SolveByBranchAndBoundInternal(instances[j])
 			assert.NilError(b, err)
 		}
 	}
@@ -255,7 +255,7 @@ func BenchmarkBBOnRandomSmallInstances(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(instances); j++ {
-			_, err := SolveByBranchAndBound(instances[j])
+			_, err := SolveByBranchAndBoundInternal(instances[j])
 			assert.NilError(b, err)
 		}
 	}

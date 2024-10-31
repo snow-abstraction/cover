@@ -7,6 +7,15 @@ weighted covering problems with strictly positive costs. I haven't
 decided if the focus will be on general covers or exact covers (also known
 as the "set partitioning problem").
 
+# Example
+
+
+
+```go
+
+
+```
+
 # Dev Note
 
 While this is a Go project, a Python program is used to generate test data.
@@ -30,6 +39,9 @@ As of August 2023, I have focused little on Go and thus I am unsure of the
 point of this project since then. The primary reason for this project was to
 become better at Go for a project at work. But that project has been paused
 and my focus returned a Java code base.
+
+Both algorithm and software engineering choices are motivated mainly
+by what is fun as a hobby project for me.
 
 # License
 

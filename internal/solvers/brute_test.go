@@ -34,7 +34,7 @@ import (
 func TestInfeasible(t *testing.T) {
 	ins, err := MakeInstance(3, [][]int{{0, 1}, {1, 2}, {0, 2}}, []float64{1.0, 1.0, 1.0})
 	assert.NilError(t, err)
-	result, err := SolveByBruteForce(ins)
+	result, err := SolveByBruteForceInternal(ins)
 	assert.NilError(t, err)
 	assert.Assert(t, !result.ExactlyCovered, "should be infeasible")
 }
@@ -42,7 +42,7 @@ func TestInfeasible(t *testing.T) {
 func TestEmptyInstance(t *testing.T) {
 	ins, err := MakeInstance(0, [][]int{}, []float64{})
 	assert.NilError(t, err)
-	result, err := SolveByBruteForce(ins)
+	result, err := SolveByBruteForceInternal(ins)
 	assert.NilError(t, err)
 	//  The result for an empty instance should be a feasible and itself be empty.
 	emptyCover := subsetsEval{ExactlyCovered: true, Optimal: true}
@@ -52,7 +52,7 @@ func TestEmptyInstance(t *testing.T) {
 func TestCheaperSolutionFound(t *testing.T) {
 	ins, err := MakeInstance(3, [][]int{{0, 1, 2}, {0}, {1}, {1, 2}, {0, 2}}, []float64{17, 5, 4, 3, 3})
 	assert.NilError(t, err)
-	result, err := SolveByBruteForce(ins)
+	result, err := SolveByBruteForceInternal(ins)
 	assert.NilError(t, err)
 	theMinimum := subsetsEval{SubsetsIndices: []int{2, 4}, ExactlyCovered: true, Cost: 7, Optimal: true}
 	assert.DeepEqual(t, result, theMinimum)
@@ -73,7 +73,7 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpec
 	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
 	assert.NilError(t, err)
 
-	result, err := SolveByBruteForce(solverInstance)
+	result, err := SolveByBruteForceInternal(solverInstance)
 	assert.NilError(t, err)
 
 	// This is tightly coupled to JSON format of tools/solve_sc.py.
@@ -125,7 +125,7 @@ func BenchmarkBruteOnRandomTinyInstances(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < len(instances); j++ {
-			_, err := SolveByBruteForce(instances[j])
+			_, err := SolveByBruteForceInternal(instances[j])
 			assert.NilError(b, err)
 		}
 	}

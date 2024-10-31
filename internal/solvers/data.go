@@ -20,6 +20,8 @@ package solvers
 import (
 	"errors"
 	"fmt"
+
+	"github.com/snow-abstraction/cover"
 )
 
 type instance struct {
@@ -36,6 +38,8 @@ type instance struct {
 	// suit certain algorithms.
 	costs []float64
 }
+
+type subsetsEval cover.SubsetsEval
 
 // Make an Instance and check the constraints that an Instance should satisfy.
 func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
@@ -91,17 +95,4 @@ func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
 	}
 
 	return instance{m: m, subsets: subsets, costs: costs}, nil
-}
-
-// Subsets with an evaluation of them w.r.t. some instance.
-type subsetsEval struct {
-	SubsetsIndices []int
-	// For the instance, do the subsets exactly cover each element.
-	// If false, the subsets either undercover or overcover the set.
-	ExactlyCovered bool
-	// The sum of the subsets' costs.
-	Cost float64
-	// If the SubsetsIndices constitute a proven optimum. This can only be true if
-	// ExactlyCovered is true.
-	Optimal bool
 }
