@@ -107,11 +107,11 @@ func readJsonInstance(filename *string) (*cover.Instance, error) {
 		return nil, err
 	}
 
-	var ins *cover.Instance
-	if err := json.Unmarshal(b, ins); err != nil {
+	var ins cover.Instance
+	if err := json.Unmarshal(b, &ins); err != nil {
 		return nil, err
 	}
-	return ins, nil
+	return &ins, nil
 }
 
 func parseLogLevel(level string) slog.Level {
