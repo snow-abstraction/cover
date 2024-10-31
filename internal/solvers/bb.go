@@ -174,7 +174,7 @@ func removeMoreExpensiveDuplicates(ins instance) (instance, []int) {
 }
 
 // WIP
-func SolveByBranchAndBound(ins instance) (subsetsEval, error) {
+func SolveByBranchAndBoundInternal(ins instance) (subsetsEval, error) {
 	if ins.m == 0 {
 		return subsetsEval{
 			ExactlyCovered: true,

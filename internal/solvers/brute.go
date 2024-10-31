@@ -77,13 +77,13 @@ func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsScr
 	}
 }
 
-// SolveByBruteForce attempts finds a minimum cost exact cover for
-// an instance.
+// SolveByBruteForceInternal attempts finds a minimum cost exact cover for
+// an instance by evaluating all possible selections of the subsets.
 //
 // If a minimum cost exact cover exists, the returned subsetsEval will contain
 // indices to this cover and its exactlyCovered flag will be true. Otherwise,
 // the zero value of subsetEval will be returned.
-func SolveByBruteForce(ins instance) (subsetsEval, error) {
+func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
 	if ins.m == 0 {
 		return subsetsEval{
 			ExactlyCovered: true,

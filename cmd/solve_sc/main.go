@@ -72,13 +72,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	solverInstance, err := solvers.MakeInstance(ins.M, ins.Subsets, ins.Costs)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-
-	sol, err := solvers.SolveByBranchAndBound(solverInstance)
+	sol, err := solvers.SolveByBranchAndBound(*ins)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to optimal solution due to error: %s\n", err)
 		os.Exit(1)
