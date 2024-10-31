@@ -18,8 +18,10 @@
 package cover
 
 import (
+	"encoding/json"
 	"math"
 	"math/rand"
+	"os"
 	"slices"
 	"sort"
 )
@@ -94,6 +96,19 @@ func MakeRandomInstance(m int, n int, costScale float64, seed int64) Instance {
 	}
 
 	return ins
+}
+
+func ReadJsonInstance(filename string) (*Instance, error) {
+	b, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	var ins Instance
+	if err := json.Unmarshal(b, &ins); err != nil {
+		return nil, err
+	}
+	return &ins, nil
 }
 
 // Subsets with an evaluation of them w.r.t. some instance.

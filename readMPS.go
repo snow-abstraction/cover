@@ -42,8 +42,8 @@ const (
 // ReadMPSInstance has neither been tested systematically or programmatically.
 // It has been tested successfully on a few exact cover (i.e. setting partition)
 // files from the miplib2003 and miplip2010 problem collections.
-func ReadMPSInstance(filename *string) (*Instance, error) {
-	file, err := os.Open(*filename)
+func ReadMPSInstance(filename string) (*Instance, error) {
+	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
 	}

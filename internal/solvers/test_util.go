@@ -45,10 +45,7 @@ func loadSmallInstanceSpecifications(t testing.TB) []cover.TestInstanceSpecifica
 }
 
 func loadSolverInstance(t testing.TB, jsonInstancePath string) instance {
-	instanceBytes, err := os.ReadFile(jsonInstancePath)
-	assert.NilError(t, err)
-	var ins cover.Instance
-	err = json.Unmarshal(instanceBytes, &ins)
+	ins, err := cover.ReadJsonInstance(jsonInstancePath)
 	assert.NilError(t, err)
 	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
 	assert.NilError(t, err)

@@ -19,7 +19,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -54,18 +53,12 @@ func main() {
 		log.Fatalln("Please supply the instance file name")
 	}
 
-	b, err := os.ReadFile(*filename)
+	ins, err := cover.ReadJsonInstance(*filename)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	var ins cover.Instance
-	err = json.Unmarshal(b, &ins)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	sol, err := solvers.SolveByBruteForce(ins)
+	sol, err := solvers.SolveByBruteForce(*ins)
 	if err != nil {
 		fmt.Printf("failed to optimal solution due to error: %s", err)
 	}
