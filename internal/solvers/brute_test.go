@@ -65,15 +65,11 @@ func testBruteFindsEquallyGoodSolution(t *testing.T, spec cover.TestInstanceSpec
 	err = json.Unmarshal(pythonResultBytes, &pythonResult)
 	assert.NilError(t, err)
 
-	instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-	assert.NilError(t, err)
-	var ins cover.Instance
-	err = json.Unmarshal(instanceBytes, &ins)
-	assert.NilError(t, err)
-	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+	instancePath := filepath.Join("../..", spec.InstancePath)
+	ins, err := cover.ReadJsonInstance(instancePath)
 	assert.NilError(t, err)
 
-	result, err := SolveByBruteForceInternal(solverInstance)
+	result, err := SolveByBruteForce(*ins)
 	assert.NilError(t, err)
 
 	// This is tightly coupled to JSON format of tools/solve_sc.py.

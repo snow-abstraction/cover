@@ -54,10 +54,8 @@ func testLowerBound(t *testing.T, spec cover.TestInstanceSpecification) {
 	}
 	assert.Equal(t, "optimal", pythonResult["status"].(string))
 
-	instanceBytes, err := os.ReadFile(filepath.Join("../..", spec.InstancePath))
-	assert.NilError(t, err)
-	var ins cover.Instance
-	err = json.Unmarshal(instanceBytes, &ins)
+	instanceFile := filepath.Join("../..", spec.InstancePath)
+	ins, err := cover.ReadJsonInstance(instanceFile)
 	assert.NilError(t, err)
 
 	m, err := convertSubsetsToMatrix(ins.Subsets)

@@ -19,7 +19,6 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"log/slog"
@@ -66,7 +65,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	ins, err := readInstance(filename)
+	ins, err := readInstance(*filename)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to read instance due to error: %s\n", err)
 		os.Exit(1)
@@ -80,12 +79,12 @@ func main() {
 	fmt.Printf("Solution: %+v\n", sol)
 }
 
-func readInstance(filename *string) (*cover.Instance, error) {
-	ext := filepath.Ext(*filename)
+func readInstance(filename string) (*cover.Instance, error) {
+	ext := filepath.Ext(filename)
 	lowerExt := strings.ToLower(ext)
 	switch lowerExt {
 	case ".json":
-		return readJsonInstance(filename)
+		return cover.ReadJsonInstance(filename)
 	case ".mps":
 		return cover.ReadMPSInstance(filename)
 	}
@@ -93,19 +92,6 @@ func readInstance(filename *string) (*cover.Instance, error) {
 	return nil, fmt.Errorf(
 		"the file extension should be .JSON, .json, .MPS or .mps and not %s", ext)
 
-}
-
-func readJsonInstance(filename *string) (*cover.Instance, error) {
-	b, err := os.ReadFile(*filename)
-	if err != nil {
-		return nil, err
-	}
-
-	var ins cover.Instance
-	if err := json.Unmarshal(b, &ins); err != nil {
-		return nil, err
-	}
-	return &ins, nil
 }
 
 func parseLogLevel(level string) slog.Level {
