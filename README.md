@@ -7,6 +7,10 @@ weighted covering problems with strictly positive costs. I haven't
 decided if the focus will be on general covers or exact covers (also known
 as the "set partitioning problem").
 
+# License
+
+This project is under [AGPL-3.0-only](LICENSE) license.
+
 # Example
 
 
@@ -65,7 +69,3 @@ and my focus returned a Java code base.
 
 Both algorithm and software engineering choices are motivated mainly
 by what is fun as a hobby project for me.
-
-# License
-
-This project is under [AGPL-3.0-only](LICENSE) license.
