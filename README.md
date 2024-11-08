@@ -60,6 +60,22 @@ go run cmd/generate_test_instances_and_solutions/main.go -verbose
 
 (A less hacky setup would be use a container or Python virtual environment.)
 
+# Bigger TODOs / Project Ideas
+
+- [ ] better branching
+- [ ] better step length, use some upper bound to calculate?
+- [ ] smart subgradient iteration termination criteria instead of only detecting zero
+      subgradient or fixed iteration limit
+- [ ] parallelization
+- [ ] smart warm starts. Naive warm starts did not improve performance. 
+      These warmed started using the last dual vector found from the previously
+	  processed node. Maybe the result would be better if the dual vector was
+	  from a close ancestor node.
+- [ ] in the Lagrangian relaxation, exploit that only m columns can be chosen
+      in a primal feasible solution
+- [ ] visualize the branch-and-bound tree
+- [ ] support relative and absolute optimality gap termination criteria
+
 # Project Note
 
 As of August 2023, I have focused little on Go and thus I am unsure of the
