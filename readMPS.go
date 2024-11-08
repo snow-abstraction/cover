@@ -98,7 +98,7 @@ func ReadMPSInstance(filename string) (*Instance, error) {
 				return nil, fmt.Errorf("ROW name '%s' duplicated", fields[0])
 			}
 			rows[fields[1]] = len(rows)
-			ins.M++
+			ins.ElementCount++
 		case MPS_SECTION_COLUMNS:
 			if !foundCostRow {
 				return nil, fmt.Errorf("expected cost row to be found before COLUMN section")
@@ -211,8 +211,8 @@ func ReadMPSInstance(filename string) (*Instance, error) {
 	if err := scanner.Err(); err != nil {
 		return nil, err
 	}
-	if rhsCount != ins.M {
-		return nil, fmt.Errorf("rhsCount (%d) != ins.m (%d)", rhsCount, ins.M)
+	if rhsCount != ins.ElementCount {
+		return nil, fmt.Errorf("rhsCount (%d) != ins.m (%d)", rhsCount, ins.ElementCount)
 	}
 	if upperBoundCount != len(ins.Subsets) {
 		return nil, fmt.Errorf("upperBoundCount (%d) != len(ins.Subsets) (%d)", upperBoundCount, len(ins.Subsets))

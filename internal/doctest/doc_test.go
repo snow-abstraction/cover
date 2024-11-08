@@ -29,9 +29,9 @@ import (
 
 func TestReadMeExample(t *testing.T) {
 	instance := cover.Instance{
-		M:       4,
-		Subsets: [][]int{{0}, {0, 1}, {1, 2}, {1}, {0, 1, 2, 3}, {2, 3}, {0, 1, 3}, {2}},
-		Costs:   []float64{1.8, 1.7, 2.4, 1.4, 5.4, 2.7, 1.9, 1.6}}
+		ElementCount: 4, // This means set of elements to cover is {0, 1, 2 and 3}
+		Subsets:      [][]int{{0}, {0, 1}, {1, 2}, {1}, {0, 1, 2, 3}, {2, 3}, {0, 1, 3}, {2}},
+		Costs:        []float64{1.8, 1.7, 2.4, 1.4, 5.4, 2.7, 1.9, 1.6}}
 
 	result, err := solvers.SolveByBranchAndBound(instance)
 	assert.NilError(t, err)
