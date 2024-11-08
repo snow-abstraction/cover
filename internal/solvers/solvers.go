@@ -22,7 +22,7 @@ import "github.com/snow-abstraction/cover"
 // SolveByBranchAndBound exposes an internal method without the suffix `Internal“
 // and takes and returns exported types.
 func SolveByBranchAndBound(ins cover.Instance) (cover.SubsetsEval, error) {
-	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+	solverInstance, err := MakeInstance(ins.ElementCount, ins.Subsets, ins.Costs)
 	if err != nil {
 		return cover.SubsetsEval{}, err
 	}
@@ -34,7 +34,7 @@ func SolveByBranchAndBound(ins cover.Instance) (cover.SubsetsEval, error) {
 // SolveByBruteForce exposes an internal method without the suffix `Internal“
 // and takes and returns exported types.
 func SolveByBruteForce(ins cover.Instance) (cover.SubsetsEval, error) {
-	solverInstance, err := MakeInstance(ins.M, ins.Subsets, ins.Costs)
+	solverInstance, err := MakeInstance(ins.ElementCount, ins.Subsets, ins.Costs)
 	if err != nil {
 		return cover.SubsetsEval{}, err
 	}
