@@ -62,10 +62,11 @@ go run cmd/generate_test_instances_and_solutions/main.go -verbose
 
 # Bigger TODOs / Project Ideas
 
-- [ ] better branching
+- [ ] generally better branching
+- [ ] "dive heuristic" for branching to find primal solutions earlier
 - [ ] better step length, use some upper bound to calculate?
-- [ ] smart subgradient iteration termination criteria instead of only detecting zero
-      subgradient or fixed iteration limit
+- [ ] smart subgradient iteration termination criteria instead of only
+      detecting zero subgradient or fixed iteration limit
 - [ ] parallelization
 - [ ] smart warm starts. Naive warm starts did not improve performance. 
       These warmed started using the last dual vector found from the previously
