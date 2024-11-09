@@ -51,3 +51,7 @@ func loadSolverInstance(t testing.TB, jsonInstancePath string) instance {
 	assert.NilError(t, err)
 	return solverInstance
 }
+
+func createTestBranchAndBoundConfig() branchAndBoundConfig {
+	return branchAndBoundConfig{WorkersCount: 1}
+}

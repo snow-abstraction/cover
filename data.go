@@ -41,6 +41,13 @@ type Instance struct {
 	Costs []float64
 }
 
+type BranchAndBoundConfig struct {
+	// The number of concurrent workers processing branch-and-bound nodes.
+	// It should be number greater or equal to 1.
+	// TODO: support 0 indicating that the solver is allowed to choose.
+	WorkersCount int
+}
+
 // MakeRandomInstance makes a random Instance with m elements and n subsets
 // using a PRG (Pseudo-Random Generator) initialized with the seed. The random
 // cost of each subset is scaled by costScale.

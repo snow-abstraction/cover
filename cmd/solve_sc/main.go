@@ -71,7 +71,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	sol, err := solvers.SolveByBranchAndBound(*ins)
+	// TODO: support WorkCount cmd argument
+	sol, err := solvers.SolveByBranchAndBound(*ins, cover.BranchAndBoundConfig{WorkersCount: 1})
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to optimal solution due to error: %s\n", err)
 		os.Exit(1)

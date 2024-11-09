@@ -40,6 +40,7 @@ type instance struct {
 }
 
 type subsetsEval cover.SubsetsEval
+type branchAndBoundConfig cover.BranchAndBoundConfig
 
 // Make an Instance and check the constraints that an Instance should satisfy.
 func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
@@ -95,4 +96,14 @@ func MakeInstance(m int, subsets [][]int, costs []float64) (instance, error) {
 	}
 
 	return instance{m: m, subsets: subsets, costs: costs}, nil
+}
+
+func MakeConfig(config cover.BranchAndBoundConfig) (branchAndBoundConfig, error) {
+	if config.WorkersCount < 1 {
+		return branchAndBoundConfig{},
+			fmt.Errorf("invalid %#v, WorkersCount must be greater or equal to 1",
+				config)
+	}
+
+	return branchAndBoundConfig(config), nil
 }

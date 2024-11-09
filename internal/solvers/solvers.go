@@ -17,17 +17,25 @@
 
 package solvers
 
-import "github.com/snow-abstraction/cover"
+import (
+	"github.com/snow-abstraction/cover"
+)
 
 // SolveByBranchAndBound exposes an internal method without the suffix `Internal“
 // and takes and returns exported types.
-func SolveByBranchAndBound(ins cover.Instance) (cover.SubsetsEval, error) {
+func SolveByBranchAndBound(
+	ins cover.Instance,
+	config cover.BranchAndBoundConfig) (cover.SubsetsEval, error) {
 	solverInstance, err := MakeInstance(ins.ElementCount, ins.Subsets, ins.Costs)
 	if err != nil {
 		return cover.SubsetsEval{}, err
 	}
+	solverConfig, err := MakeConfig(config)
+	if err != nil {
+		return cover.SubsetsEval{}, err
+	}
 
-	sol, err := SolveByBranchAndBoundInternal(solverInstance)
+	sol, err := SolveByBranchAndBoundInternal(solverInstance, solverConfig)
 	return cover.SubsetsEval(sol), err
 }
 

@@ -29,7 +29,15 @@ import (
 // indices to this cover and its exactlyCovered flag will be true. Otherwise,
 // the zero value of subsetEval will be returned.
 func SolveByBranchAndBound(ins cover.Instance) (cover.SubsetsEval, error) {
-	return solvers.SolveByBranchAndBound(ins)
+	return solvers.SolveByBranchAndBound(ins, cover.BranchAndBoundConfig{WorkersCount: 1})
+}
+
+// SolveByBranchAndBoundWithConfig does what SolveByBranchAndBound does
+// except that the extra configuration argument configures the solver.
+func SolveByBranchAndBoundWithConfig(
+	ins cover.Instance,
+	config cover.BranchAndBoundConfig) (cover.SubsetsEval, error) {
+	return solvers.SolveByBranchAndBound(ins, config)
 }
 
 // SolveByBruteForce attempts finds a minimum cost exact cover for
