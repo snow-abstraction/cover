@@ -44,7 +44,7 @@ def convert_optimization_status_to_string(status):
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print(
-            "error: exactly one programin argument expected specifying the instance file",
+            "error: exactly one program argument expected specifying the instance file",
             file=sys.stderr,
         )
         exit(1)
