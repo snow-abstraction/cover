@@ -126,3 +126,46 @@ func BenchmarkBruteOnRandomTinyInstances(b *testing.B) {
 		}
 	}
 }
+
+func TestComb5_3(t *testing.T) {
+	expected := [][]int{
+		{0, 1, 2},
+		{0, 1, 3},
+		{0, 1, 4},
+		{0, 2, 3},
+		{0, 2, 4},
+		{0, 3, 4},
+		{1, 2, 3},
+		{1, 2, 4},
+		{1, 3, 4},
+		{2, 3, 4}}
+
+	actual := make([][]int, 0, len(expected))
+	generator := newCombinationGenerator(5, 3)
+
+	for generator.Next() {
+		comb := make([]int, len(generator.combination))
+		copy(comb, generator.combination)
+		actual = append(actual, comb)
+	}
+	assert.DeepEqual(t, expected, actual)
+}
+
+func TestComb4_4(t *testing.T) {
+	expected := [][]int{{0, 1, 2, 3}}
+
+	actual := make([][]int, 0, len(expected))
+	generator := newCombinationGenerator(4, 4)
+
+	for generator.Next() {
+		comb := make([]int, len(generator.combination))
+		copy(comb, generator.combination)
+		actual = append(actual, comb)
+	}
+	assert.DeepEqual(t, expected, actual)
+}
+
+func TestComb0_0(t *testing.T) {
+	c := newCombinationGenerator(0, 0)
+	assert.Assert(t, !c.Next())
+}
