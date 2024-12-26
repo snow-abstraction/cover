@@ -20,8 +20,6 @@ package solvers
 
 import (
 	"slices"
-
-	"gonum.org/v1/gonum/stat/combin"
 )
 
 // updateBestSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
@@ -104,13 +102,10 @@ func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
 
 	var bestSubsetsEval subsetsEval
 	bestSubsetsEval.SubsetsIndices = make([]int, 0, nSubsetsToTry)
-	comb := make([]int, 0, len(ins.subsets))
 	for i := 1; i <= nSubsetsToTry; i++ {
-		combinations := combin.NewCombinationGenerator(len(ins.subsets), i)
-		comb = comb[:i]
+		combinations := newCombinationGenerator(len(ins.subsets), i)
 		for combinations.Next() {
-			combinations.Combination(comb)
-			updateBestSolutionFromSubsets(ins, comb, subsetsScratch, coverCountsScratch, &bestSubsetsEval)
+			updateBestSolutionFromSubsets(ins, combinations.combination, subsetsScratch, coverCountsScratch, &bestSubsetsEval)
 		}
 	}
 
@@ -121,4 +116,45 @@ func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
 	slices.Sort(bestSubsetsEval.SubsetsIndices)
 	bestSubsetsEval.Optimal = true
 	return bestSubsetsEval, nil
+}
+
+type CombinationGenerator struct {
+	n           int
+	k           int
+	combination []int
+}
+
+// Make a generator generating 0-indexed (n, k) combinations in lexicographical order starting with
+// 0, 1, ..., k-1 and ending with n - k, ..., n -1
+func newCombinationGenerator(n, k int) *CombinationGenerator {
+	return &CombinationGenerator{n, k, nil}
+}
+
+func (c *CombinationGenerator) Next() bool {
+	if c.combination == nil {
+		if c.n < 1 || c.k < 1 {
+			return false
+		}
+		if c.n < c.k {
+			return false
+		}
+		initialCombination := make([]int, c.k)
+		for i := 0; i < c.k; i++ {
+			initialCombination[i] = i
+		}
+		c.combination = initialCombination
+		return true
+	}
+
+	for i := c.k - 1; i >= 0; i-- {
+		if c.combination[i] < c.n-c.k+i {
+			c.combination[i]++
+			for j := i + 1; j < c.k; j++ {
+				c.combination[j] = c.combination[j-1] + 1
+			}
+			return true
+		}
+	}
+	return false
+
 }
