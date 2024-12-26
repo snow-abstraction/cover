@@ -19,9 +19,8 @@
 package solvers
 
 import (
+	"fmt"
 	"slices"
-
-	"gonum.org/v1/gonum/stat/combin"
 )
 
 // updateBestSolutionFromSubsets attempts to make an exact cover by adding the candidates (subsets)
@@ -33,7 +32,7 @@ import (
 // If the solution found is cheaper than `best.Cost` then `best` is updated.
 //
 // Note: *Scratch arguments are used for performance by avoiding garbage collector work.
-func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsScratch []int, coverCountsScratch []int, best *subsetsEval) {
+func updateBestSolutionFromSubsets(ins instance, combin uint32, subsetsScratch []int, coverCountsScratch []int, best *subsetsEval) {
 
 	// reset scratch
 	subsetsScratch = subsetsScratch[:0]
@@ -42,7 +41,11 @@ func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsScr
 	}
 
 	cost := 0.0
-	for _, subsetIdx := range subsetIndices {
+	for subsetIdx := range len(ins.subsets) {
+		if (combin & (uint32(1) << subsetIdx)) == 0 {
+			continue
+		}
+
 		for _, elementIdx := range ins.subsets[subsetIdx] {
 			(coverCountsScratch)[elementIdx] += 1
 		}
@@ -53,7 +56,6 @@ func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsScr
 		}
 
 		subsetsScratch = append(subsetsScratch, subsetIdx)
-
 		allConstraintsCoveredExactly := true
 		for _, coverCount := range coverCountsScratch {
 			isOverCovered := coverCount > 1
@@ -83,7 +85,16 @@ func updateBestSolutionFromSubsets(ins instance, subsetIndices []int, subsetsScr
 // If a minimum cost exact cover exists, the returned subsetsEval will contain
 // indices to this cover and its exactlyCovered flag will be true. Otherwise,
 // the zero value of subsetEval will be returned.
+//
+// Note: we resist implementing performing improving optimizations to stick
+// a simple brute force implementation. The slow implementation means that
+// uint32 is sufficient for representing solutions.
 func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
+	n := len(ins.subsets)
+	if n > 32 {
+		return subsetsEval{}, fmt.Errorf("the instance has %d subsets but the brute solver supports at most 32", n)
+	}
+
 	if ins.m == 0 {
 		return subsetsEval{
 			ExactlyCovered: true,
@@ -95,8 +106,8 @@ func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
 	// At most len(ins.subsets) are needed because each subset has to cover
 	// at least one unique element not covered by the other subsets in an
 	// exact cover.
-	if len(ins.subsets) < ins.m {
-		nSubsetsToTry = len(ins.subsets)
+	if n < ins.m {
+		nSubsetsToTry = n
 	}
 
 	subsetsScratch := make([]int, 0, nSubsetsToTry)
@@ -104,14 +115,23 @@ func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
 
 	var bestSubsetsEval subsetsEval
 	bestSubsetsEval.SubsetsIndices = make([]int, 0, nSubsetsToTry)
-	comb := make([]int, 0, len(ins.subsets))
-	for i := 1; i <= nSubsetsToTry; i++ {
-		combinations := combin.NewCombinationGenerator(len(ins.subsets), i)
-		comb = comb[:i]
-		for combinations.Next() {
-			combinations.Combination(comb)
-			updateBestSolutionFromSubsets(ins, comb, subsetsScratch, coverCountsScratch, &bestSubsetsEval)
+
+	// comb is short for combination and is bitset representing
+	// which subsets are chosen. Initially subset 0 is chosen.
+	comb := uint32(1)
+	// last is the last bit to try and represents choosing all subsets.
+	var last uint32
+	for i := 0; i < n; i += 1 {
+		last |= (uint32(1) << i)
+	}
+
+	// the form of the loop is prevent overflow
+	for {
+		updateBestSolutionFromSubsets(ins, comb, subsetsScratch, coverCountsScratch, &bestSubsetsEval)
+		if comb == last {
+			break
 		}
+		comb += 1
 	}
 
 	if !bestSubsetsEval.ExactlyCovered {

@@ -39,6 +39,21 @@ func TestInfeasible(t *testing.T) {
 	assert.Assert(t, !result.ExactlyCovered, "should be infeasible")
 }
 
+func TestTooBigForBrute(t *testing.T) {
+	costs := make([]float64, 0)
+	subsets := make([][]int, 0)
+	n := 33
+	for i := 0; i < n; i += 1 {
+		costs = append(costs, 1.0)
+		subsets = append(subsets, []int{i})
+	}
+
+	ins, err := MakeInstance(n, subsets, costs)
+	assert.NilError(t, err)
+	_, err = SolveByBruteForceInternal(ins)
+	assert.ErrorContains(t, err, "subsets but the brute solver supports at most 32")
+}
+
 func TestEmptyInstance(t *testing.T) {
 	ins, err := MakeInstance(0, [][]int{}, []float64{})
 	assert.NilError(t, err)
