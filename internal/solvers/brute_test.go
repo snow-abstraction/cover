@@ -143,7 +143,7 @@ func TestComb5_3(t *testing.T) {
 	actual := make([][]int, 0, len(expected))
 	generator := newCombinationGenerator(5, 3)
 
-	for generator.Next() {
+	for generator.next() {
 		comb := make([]int, len(generator.combination))
 		copy(comb, generator.combination)
 		actual = append(actual, comb)
@@ -157,7 +157,7 @@ func TestComb4_4(t *testing.T) {
 	actual := make([][]int, 0, len(expected))
 	generator := newCombinationGenerator(4, 4)
 
-	for generator.Next() {
+	for generator.next() {
 		comb := make([]int, len(generator.combination))
 		copy(comb, generator.combination)
 		actual = append(actual, comb)
@@ -167,5 +167,5 @@ func TestComb4_4(t *testing.T) {
 
 func TestComb0_0(t *testing.T) {
 	c := newCombinationGenerator(0, 0)
-	assert.Assert(t, !c.Next())
+	assert.Assert(t, !c.next())
 }
