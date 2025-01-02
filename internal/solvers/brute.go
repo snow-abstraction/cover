@@ -104,7 +104,7 @@ func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
 	bestSubsetsEval.SubsetsIndices = make([]int, 0, nSubsetsToTry)
 	for i := 1; i <= nSubsetsToTry; i++ {
 		combinations := newCombinationGenerator(len(ins.subsets), i)
-		for combinations.Next() {
+		for combinations.next() {
 			updateBestSolutionFromSubsets(ins, combinations.combination, subsetsScratch, coverCountsScratch, &bestSubsetsEval)
 		}
 	}
@@ -118,7 +118,7 @@ func SolveByBruteForceInternal(ins instance) (subsetsEval, error) {
 	return bestSubsetsEval, nil
 }
 
-type CombinationGenerator struct {
+type combinationGenerator struct {
 	n           int
 	k           int
 	combination []int
@@ -126,11 +126,11 @@ type CombinationGenerator struct {
 
 // Make a generator generating 0-indexed (n, k) combinations in lexicographical order starting with
 // 0, 1, ..., k-1 and ending with n - k, ..., n -1
-func newCombinationGenerator(n, k int) *CombinationGenerator {
-	return &CombinationGenerator{n, k, nil}
+func newCombinationGenerator(n, k int) *combinationGenerator {
+	return &combinationGenerator{n, k, nil}
 }
 
-func (c *CombinationGenerator) Next() bool {
+func (c *combinationGenerator) next() bool {
 	if c.combination == nil {
 		if c.n < 1 || c.k < 1 {
 			return false
