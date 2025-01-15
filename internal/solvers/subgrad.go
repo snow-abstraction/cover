@@ -114,10 +114,6 @@ func runDualIterations(aC cCSMatrix /* C for column storage*/, costs []float64) 
 
 		// 1. update u: given x, take step following the subgradient (1 - Ax)
 		row := 0
-		// TODO: this special handling of the first row/col outside (before and after)
-		/// the loop repeats code. See multiple function as well.
-		// One idea is to use an initial sentinel and final sentinel,
-		// with no indices allowed before the initial sentinel and no indices allowed
 		isSubgradientZero := true
 		aContrib := 0.0
 		for _, colIdx := range aR {
