@@ -28,27 +28,17 @@ import (
 
 	"github.com/snow-abstraction/cover"
 	"github.com/snow-abstraction/cover/internal/solvers"
+	"github.com/snow-abstraction/cover/internal/util"
 )
 
-func usage() {
-	w := flag.CommandLine.Output()
-	fmt.Fprintf(
-		w,
-		`Usage: %s -instance instance.json
+func main() {
+	flag.Usage = util.CreateUsageFunc(`Usage: %s -instance instance.json
 
 %s reads in a problem instance JSON or MPS file, solves it and outputs a solution
 to standard out.
 
 Arguments:
-`,
-		os.Args[0],
-		os.Args[0])
-	flag.PrintDefaults()
-}
-
-func main() {
-
-	flag.Usage = usage
+`)
 	filename := flag.String("instance", "",
 		"instance filename. The file should end in .json (or .JSON) or .mps (or .MPS). MPS support is experimental.")
 	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
