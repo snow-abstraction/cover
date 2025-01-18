@@ -60,7 +60,7 @@ if __name__ == "__main__":
         for cost in instance["Costs"]
     ]
 
-    constraints = [[] for _ in range(instance["M"])]
+    constraints = [[] for _ in range(instance["ElementCount"])]
     for var_index, subset in enumerate(instance["Subsets"]):
         for constr_index in subset:
             constraints[constr_index].append(x_vars[var_index])
