@@ -19,7 +19,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log"
 
@@ -29,15 +28,15 @@ import (
 )
 
 func main() {
-	flag.Usage = util.CreateUsageFunc(`Usage: %s -instance instance.json
+	flags := util.NewFlagSet(`Usage: %s -instance instance.json
 
 %s reads in a problem instance JSON file, solves it and outputs a solution
 to standard out.
 
 Arguments:
 `)
-	filename := flag.String("instance", "", "instance JSON filename")
-	flag.Parse()
+	filename := flags.String("instance", "", "instance JSON filename")
+	flags.Parse()
 
 	if *filename == "" {
 		log.Fatalln("Please supply the instance file name")

@@ -17,7 +17,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log/slog"
 	"os"
@@ -30,17 +29,17 @@ import (
 
 func main() {
 
-	flag.Usage = util.CreateUsageFunc(`Usage: %s -instance instance.json
+	flags := util.NewFlagSet(`Usage: %s -instance instance.json
 
 %s reads in a problem instance JSON or MPS file and outputs it to standard out using
 Go debug formatting.
 
 Arguments:
 `)
-	filename := flag.String("instance", "",
+	filename := flags.String("instance", "",
 		"instance filename. The file should end in .json (or .JSON) or .mps (or .MPS). MPS support is experimental.")
-	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
-	flag.Parse()
+	logLevel := flags.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
+	flags.Parse()
 
 	level := parseLogLevel(*logLevel)
 	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
