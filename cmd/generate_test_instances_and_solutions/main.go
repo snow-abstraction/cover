@@ -30,6 +30,7 @@ import (
 	"strings"
 
 	"github.com/snow-abstraction/cover"
+	"github.com/snow-abstraction/cover/internal/util"
 )
 
 const (
@@ -39,8 +40,16 @@ const (
 
 // main creates some instance test data. See the `func usage()` or run with `-help` for more details.
 func main() {
+	flag.Usage = util.CreateUsageFunc(`Usage: %s -verbose
 
-	flag.Usage = usage
+%s creates some instance test data. Specifically it:
+1. generates some set covering instances
+2. these instances are saved as JSON
+3. these instances are solved using t independent solver and solutions are saved as JSON
+4. JSON information about all these instances and solutions are saved to the specifications file
+
+Arguments:
+`)
 	pythonSolverPath := flag.String("solver", "tools/solve_sc.py", "python solver path")
 	outputDir := flag.String("output", "testdata/instances",
 		"output directory for instances and python solution files")
@@ -68,25 +77,6 @@ func main() {
 	specifications := createSpecifications(specificationsPath, suite, outputDir)
 	createInstanceFiles(specifications)
 	solveInstances(specifications, *pythonSolverPath, *workersCount)
-}
-
-func usage() {
-	w := flag.CommandLine.Output()
-	fmt.Fprintf(
-		w,
-		`Usage: %s -verbose
-
-%s creates some instance test data. Specifically it:
-1. generates some set covering instances
-2. these instances are saved as JSON
-3. these instances are solved using t independent solver and solutions are saved as JSON
-4. JSON information about all these instances and solutions are saved to the specifications file
-
-Arguments:
-`,
-		os.Args[0],
-		os.Args[0])
-	flag.PrintDefaults()
 }
 
 func createSpecifications(

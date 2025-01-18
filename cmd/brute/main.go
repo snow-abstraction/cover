@@ -22,30 +22,20 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/snow-abstraction/cover"
+	"github.com/snow-abstraction/cover/internal/util"
 	"github.com/snow-abstraction/cover/solvers"
 )
 
-func usage() {
-	w := flag.CommandLine.Output()
-	fmt.Fprintf(
-		w,
-		`Usage: %s -instance instance.json
+func main() {
+	flag.Usage = util.CreateUsageFunc(`Usage: %s -instance instance.json
 
 %s reads in a problem instance JSON file, solves it and outputs a solution
 to standard out.
 
 Arguments:
-`,
-		os.Args[0],
-		os.Args[0])
-	flag.PrintDefaults()
-}
-
-func main() {
-	flag.Usage = usage
+`)
 	filename := flag.String("instance", "", "instance JSON filename")
 	flag.Parse()
 

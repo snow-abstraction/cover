@@ -24,13 +24,14 @@ import (
 	"os"
 
 	"github.com/snow-abstraction/cover"
+	"github.com/snow-abstraction/cover/internal/util"
 )
 
-func usage() {
-	w := flag.CommandLine.Output()
-	fmt.Fprintf(
-		w,
-		`Usage: %s -seed 1 -m 10 -n 100 -costScale 1.0
+func main() {
+	// add empty lists to avoid "Null" text in JSON for zero Instance.
+	ins := cover.Instance{Subsets: make([][]int, 0), Costs: make([]float64, 0)}
+
+	flag.Usage = util.CreateUsageFunc(`Usage: %s -seed 1 -m 10 -n 100 -costScale 1.0
 
 %s outputs a random instance to standard out. The instance generated may be
 infeasible.
@@ -41,17 +42,7 @@ possible nonempty subsets (2^m-1) is less than n then the program will never
 terminate.
 		
 Arguments:
-`,
-		os.Args[0],
-		os.Args[0])
-	flag.PrintDefaults()
-}
-
-func main() {
-	// add empty lists to avoid "Null" text in JSON for zero Instance.
-	ins := cover.Instance{Subsets: make([][]int, 0), Costs: make([]float64, 0)}
-
-	flag.Usage = usage
+`)
 	m := flag.Int("m", 0, "number of sets to be covered")
 	n := flag.Int("n", 0, "number of subsets")
 	scale := flag.Float64("costScale", 1.0, "scale factor for subset costs")
