@@ -19,7 +19,6 @@ package main
 
 import (
 	"encoding/json"
-	"flag"
 	"fmt"
 	"os"
 
@@ -31,7 +30,7 @@ func main() {
 	// add empty lists to avoid "Null" text in JSON for zero Instance.
 	ins := cover.Instance{Subsets: make([][]int, 0), Costs: make([]float64, 0)}
 
-	flag.Usage = util.CreateUsageFunc(`Usage: %s -seed 1 -m 10 -n 100 -costScale 1.0
+	flags := util.NewFlagSet(`Usage: %s -seed 1 -m 10 -n 100 -costScale 1.0
 
 %s outputs a random instance to standard out. The instance generated may be
 infeasible.
@@ -43,11 +42,11 @@ terminate.
 		
 Arguments:
 `)
-	m := flag.Int("m", 0, "number of sets to be covered")
-	n := flag.Int("n", 0, "number of subsets")
-	scale := flag.Float64("costScale", 1.0, "scale factor for subset costs")
-	seed := flag.Int64("seed", 1, "seed for the random generator")
-	flag.Parse()
+	m := flags.Int("m", 0, "number of sets to be covered")
+	n := flags.Int("n", 0, "number of subsets")
+	scale := flags.Float64("costScale", 1.0, "scale factor for subset costs")
+	seed := flags.Int64("seed", 1, "seed for the random generator")
+	flags.Parse()
 
 	if *m < 0 {
 		fmt.Fprintln(os.Stderr, "m must be non-negative (0 <= m)")

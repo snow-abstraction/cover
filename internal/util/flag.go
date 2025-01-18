@@ -23,7 +23,14 @@ import (
 	"os"
 )
 
-// createUsageFunc creates a usage function for the flag.Usage.
+// Embedding of flag.FlatSet to have a connivent Parse()
+// receiver.
+type FlagSet struct {
+	*flag.FlagSet
+}
+
+// createUsageFunc creates a new *Flagset using the supplied usage string.
+//
 // The usage string should contain exactly 2 "%s" for the command name. Example:
 // `Usage: %s -instance instance.json
 //
@@ -32,14 +39,23 @@ import (
 //
 // Arguments:
 // `
-func CreateUsageFunc(usage string) func() {
-	w := flag.CommandLine.Output()
-	return func() {
+func NewFlagSet(usage string) *FlagSet {
+	fs := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
+	fs.Usage = func() {
 		fmt.Fprintf(
-			w,
+			flag.CommandLine.Output(),
 			usage,
 			os.Args[0],
 			os.Args[0])
-		flag.PrintDefaults()
+		fs.PrintDefaults()
 	}
+
+	return &FlagSet{fs}
+}
+
+// Parse parses the command-line flags from os.Args[1:].
+// Must be called after all flags are defined and before flags are accessed by the program.
+// Note: this documentation was copied from flags.Parse()
+func (fs *FlagSet) Parse() {
+	fs.FlagSet.Parse(os.Args[1:])
 }

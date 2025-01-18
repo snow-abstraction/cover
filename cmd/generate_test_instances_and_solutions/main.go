@@ -20,6 +20,7 @@ package main
 import (
 	"encoding/json"
 	"flag"
+
 	"fmt"
 	"log"
 	"log/slog"
@@ -40,7 +41,7 @@ const (
 
 // main creates some instance test data. See the `func usage()` or run with `-help` for more details.
 func main() {
-	flag.Usage = util.CreateUsageFunc(`Usage: %s -verbose
+	flags := util.NewFlagSet(`Usage: %s -verbose
 
 %s creates some instance test data. Specifically it:
 1. generates some set covering instances
@@ -50,15 +51,15 @@ func main() {
 
 Arguments:
 `)
-	pythonSolverPath := flag.String("solver", "tools/solve_sc.py", "python solver path")
-	outputDir := flag.String("output", "testdata/instances",
+	pythonSolverPath := flags.String("solver", "tools/solve_sc.py", "python solver path")
+	outputDir := flags.String("output", "testdata/instances",
 		"output directory for instances and python solution files")
-	suite := flag.String("suite", "tiny", "instance suite to generate (tiny, small)")
-	workersCount := flag.Int("workers", 4, "number of instances to solve concurrently")
-	specificationsPath := flag.String("specifications", defaultSpecificationsPath,
+	suite := flags.String("suite", "tiny", "instance suite to generate (tiny, small)")
+	workersCount := flags.Int("workers", 4, "number of instances to solve concurrently")
+	specificationsPath := flags.String("specifications", defaultSpecificationsPath,
 		"instance specifications file")
-	logLevel := flag.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
-	flag.Parse()
+	logLevel := flags.String("logLevel", "Info", "log level (Debug, Info, Warn, Error)")
+	flags.Parse()
 
 	level := parseLogLevel(*logLevel)
 	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
@@ -67,7 +68,7 @@ Arguments:
 	})))
 
 	slog.Debug("Running with flags:")
-	flag.VisitAll(func(f *flag.Flag) { slog.Debug("flag", f.Name, f.Value) })
+	flags.VisitAll(func(f *flag.Flag) { slog.Debug("flag", f.Name, f.Value) })
 
 	if *workersCount <= 0 {
 		fmt.Fprintln(os.Stderr, "works must be greater than 0")
